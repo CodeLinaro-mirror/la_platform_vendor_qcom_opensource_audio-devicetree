@@ -34,6 +34,13 @@ dtbo-y += sun-audio.dtbo \
                 sun-audio-hamilton-mtp-3.5mm.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_MONACO), y)
+dtbo-y += monaco-dmic-audio.dtbo \
+                monaco-wsa-audio.dtbo \
+                monaco-amic-audio-idp-v2.dtbo \
+                monaco-audio-standalone-wdp-v1.dtbo
+ endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
