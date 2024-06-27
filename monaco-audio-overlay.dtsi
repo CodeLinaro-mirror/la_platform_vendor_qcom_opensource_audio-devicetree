@@ -311,3 +311,6 @@
 	};
 };
 
+&adsp_loader {
+	status = "ok";
+};
