@@ -77,3 +77,7 @@
 				  <&audio_cc_ipc_platform>,
 				  <&cc_codec>;
 };
+
+&adsp_loader {
+	status = "ok";
+};
