@@ -1,0 +1,372 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ */
+
+&lpass_tlmm {
+	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
+		pins = "gpio17";
+		function = "gpio";
+		drive-strength = <16>;
+		bias-disable;
+		output-low;
+};
+
+&swr0 {
+	wsa8850_0009: wsa8855@00009 {
+		compatible = "qcom,simple-sdca-amp";
+		pinctrl-0 = <&spkr_1_sd_n_active>;
+		pinctrl-names = "default";
+		powerdown-gpios = <&lpass_tlmm 17 GPIO_ACTIVE_LOW>;
+		vdd-1p8-supply = <&vreg_l15b_1p8>;
+		vdd-io-supply = <&vreg_l3g_1p2>;
+		qcom,lpass-cdc-handle = <&lpass_cdc>;
+		qcom,simple-amp-function-array = <1>, <2>;
+		qcom,codec-name = sdca-simple-amp.01;
+		function_1_stereo: stereo_amp {
+			mipi-sdca-function-number = 0x1;
+
+			mipi-sdca-function-initialization-table = <0x40580606 0x24
+									0x40580626 0x24
+									0x40580613 0x1
+									0x40580633 0x1
+									0x40580640 0x1
+									0x40580640 0x1
+									0x405806A1 0x14
+									0x405806B1 0x14
+									0x405806A9 0x14
+									0x405806B9 0x14
+									0x4058041C 0xF
+									0x40580470 0x2
+									0x40580470 0x2
+									0x40580470 0x0
+									0x40580470 0x1
+									0x40400008 0x2
+									0x40580602 0x60
+									0x40580622 0x60>;
+
+
+			/* Entity0 - Entity0 - Function Level Controls _DSD  */
+			entity_id_0x0: mipi-sdca-entity-id-0x0-subproperties@entity0 {
+				mipi-sdca-entity-label = <ENTITY 0>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x1-subproperties = <&control_subproperty_E0_C01>;   //Commit_Group_Mask
+					mipi-sdca-control-0x4-subproperties = <&control_subproperty_E0_C04>;   //Function_SDCA_Version
+					mipi-sdca-control-0x5-subproperties = <&control_subproperty_E0_C05>;   //Function_Type
+					mipi-sdca-control-0x6-subproperties = <&control_subproperty_E0_C06>;   //Function_Manufacturer_ID
+					mipi-sdca-control-0x7-subproperties = <&control_subproperty_E0_C07>;   //Function_ID
+					mipi-sdca-control-0x8-subproperties = <&control_subproperty_E0_C08>;   //Function_Version
+					mipi-sdca-control-0x9-subproperties = <&control_subproperty_E0_C09>;   //Function_Extension_ID_0
+					mipi-sdca-control-0xA-subproperties = <&control_subproperty_E0_C0A>;   //Function_Extension_Version
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E0_C010>; //Function_Status
+					mipi-sdca-control-0x11-subproperties = <&control_subproperty_E0_C011>; //Function_Action
+					mipi-sdca-control-0x2C-subproperties = <&control_subproperty_E0_C02C>; //Device_Manufacturer_ID_0
+					mipi-sdca-control-0x2D-subproperties = <&control_subproperty_E0_C02D>; //Device _Part_ID_0
+					mipi-sdca-control-0x2E-subproperties = <&control_subproperty_E0_C02E>; //Device_Version
+					mipi-sdca-control-0x2F-subproperties = <&control_subproperty_E0_C02F>; //Device_SDCA_Version
+				}
+				control_subproperty_E0_C01: mipi-sdca-control-0x1-subproperties@C001 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>; //RW
+				}
+				control_subproperty_E0_C04: mipi-sdca-control-0x4-subproperties@C004 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>; //RW
+					mipi-sdca-control-dc-value = <0x11>; //Function_SDCA_Version
+				}
+				control_subproperty_E0_C05: mipi-sdca-control-0x5-subproperties@C005 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>; //RW
+					mipi-sdca-control-dc-value = <0x6>; //Function_Type
+				}
+			}
+
+			/* Entity1 - IT 21 */
+			entity_id_0x1: mipi-sdca-entity-id-0x1-subproperties@IT21 {
+				mipi-sdca-entity-type = <0x02>; // Refer Table 78
+				mipi-sdca-entity-label = <IT 21>;
+				//ToCheck
+				mipi-sdca-terminal-type =<0x191>; //PDM Render/Capture Stream Data Port, Refer 6.2.3 in MIPI_SDCA_DRAFT
+				/* usage(0x04), latency(0x08, required by MSFT class diver) ClusterIndex(0x10)
+				 * DataPort_Selector(0x11) (Logic  - (1<<0x04 | 1<<0x10 | 1<<11) - 0x30010)
+				*/
+				//ToCheck
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x10>, <0x11>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E1_C10>; //ClusterIndex
+					mipi-sdca-control-0x11-subproperties = <&control_subproperty_E1_C11>; //DataPort_Selector
+				}
+
+				control_subproperty_E1_C10: mipi-sdca-control-0x10-subproperties@C110 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x3>; //RW
+				}
+
+				control_subproperty_E1_C11: mipi-sdca-control-0x11-subproperties@C110 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>; //#TODO DC 
+				}
+			}
+
+			/* Start Entity2 - CS 21 */
+			entity_id_0x2: mipi-sdca-entity-id-0x2-subproperties@CS21 {
+				mipi-sdca-entity-type = <0x0B>;
+				mipi-sdca-entity-label = <CS 21>;
+				mipi-sdca-terminal-type =<0x191>; //PDM Render/Capture Stream Data Port, Refer 6.2.3 in MIPI_SDCA_DRAFT
+
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x01>, <0x10>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x01-subproperties = <&control_subproperty_E2_C01>; //Clock_valid
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E2_C10>; //Sample rate
+				}
+
+				control_subproperty_E2_C01: mipi-sdca-control-0x01-subproperties@C201 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>; //RO
+				}
+				control_subproperty_E2_C10: mipi-sdca-control-0x10-subproperties@C210 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x2>; //RW
+				}
+			} /* End of Entity2 */
+
+			/* Start Entity3 - PPU 21 */
+			entity_id_0x3: mipi-sdca-entity-id-0x3-subproperties@CS21 {
+				mipi-sdca-entity-type = <0x25>;
+
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x10>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E3_C10> //PostureNumber
+				}
+
+				control_subproperty_E3_C10: mipi-sdca-control-0x10-subproperties@C310 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity3 */
+
+			/* Start Entity4 - FU 21 */
+			entity_id_0x4: mipi-sdca-entity-id-0x4-subproperties@FU21 {
+				mipi-sdca-entity-type = <0x07>;
+				mipi-sdca-control-list = <0xf0040>;
+				#TODO -- Channels volume ???
+				mipi-sdca-control-numbers = <0x0>, <0x1>, <0x2>;
+				mipi-sdca-control-selectors = <0x01>, <0x02>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x01-subproperties = <&control_subproperty_E4_C01> //Mute_rx0
+					mipi-sdca-control-0x02-subproperties = <&control_subproperty_E4_C02> //Volume_rx0
+				}
+
+				control_subproperty_E4_C01: mipi-sdca-control-0x01-subproperties@C401 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+				control_subproperty_E4_C02: mipi-sdca-control-0x02-subproperties@C402 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity4 */
+
+			/* Start Entity7 - SAPU 29 */
+			entity_id_0x7: mipi-sdca-entity-id-0x7-subproperties@SAPU29 {
+				mipi-sdca-entity-type = <0x24>;
+				mipi-sdca-control-list = <0x30000>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x10>, <0x11>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E7_C10>; //Protection_Mode
+					mipi-sdca-control-0x11-subproperties = <&control_subproperty_E7_C11>; //Protection_Status
+				}
+
+				control_subproperty_E7_C10: mipi-sdca-control-0x10-subproperties@C710 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+				control_subproperty_E7_C11: mipi-sdca-control-0x11-subproperties@C711 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity7 */
+
+			/* Start Entity 0x0A - PDE 23 */
+			entity_id_0xA: mipi-sdca-entity-id-0xA-subproperties@PDE23 {
+				mipi-sdca-entity-type = <0x11>;
+				mipi-sdca-control-list = <0x10002>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x02>, <0x10>;
+				mipi_sdca_control_list: control-list {
+				mipi-sdca-control-0x02-subproperties = <&control_subproperty_E0A_C02>; //Requested PS
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E0A_C10>; //Actual PS
+				}
+
+				control_subproperty_E0A_C02: mipi-sdca-control-0x02-subproperties@C0A02 {
+							mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+							mipi-sdca-control-access-mode = <0x0>;
+				}
+				control_subproperty_E0A_C10: mipi-sdca-control-0x10-subproperties@C0A10 {
+							mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+							mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity 0x0A */
+
+			/* Start Entity 0x0B - OT 23 */
+			entity_id_0xB: mipi-sdca-entity-id-0xB-subproperties@OT23 {
+				mipi-sdca-entity-type = <0x03>;
+				mipi-sdca-control-list = <0x00110>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x04>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x04-subproperties = <&control_subproperty_E0B_C04>; //Usage
+				}
+
+				control_subproperty_E0B_C04: mipi-sdca-control-0x04-subproperties@C0B04 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity 0x0B */
+
+			/* Start Entity 0x0C - IT 29 */
+			entity_id_0xC: mipi-sdca-entity-id-0xC-subproperties@IT29 {
+				mipi-sdca-entity-type = <0x02>;
+				mipi-sdca-control-list = <0x10118>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x10>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E0C_C04>; //Cluster_Index
+				}
+
+				control_subproperty_E0C_C04: mipi-sdca-control-0x04-subproperties@C0C04 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity 0x0C */
+
+			/* Start EntityD - XU 24 */
+			entity_id_0xD: mipi-sdca-entity-id-0xD-subproperties@UX24 {
+				mipi-sdca-entity-type = <0x0A>;
+				mipi-sdca-control-list = <0x001C2>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x1>, <0x7>, <0x8>;
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x1-subproperties = <&control_subproperty_E0D_C01>; //ByPass
+					mipi-sdca-control-0x7-subproperties = <&control_subproperty_E0D_C07>; //XU_ID
+					mipi-sdca-control-0x8-subproperties = <&control_subproperty_E0D_C08>; // XU_Version
+				}
+
+				control_subproperty_E0D_C01: mipi-sdca-control-0x01-subproperties@C0D01 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+					mipi-sdca-control-dc-value = <0x1>; //Bypass
+				}
+
+				control_subproperty_E0D_C07: mipi-sdca-control-0x07-subproperties@C0D07 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+
+				control_subproperty_E0D_C08: mipi-sdca-control-0x08-subproperties@C0D08 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of EntityD */
+
+			/* Start EntityE - CS 24 */
+			entity_id_0xE: mipi-sdca-entity-id-0xE-subproperties@CS24 {
+				mipi-sdca-entity-type = <0x0B>;
+				mipi-sdca-entity-label = <CS 24>;
+				mipi-sdca-terminal-type =<0x191>; //PDM Render/Capture Stream Data Port, Refer 6.2.3 in MIPI_SDCA_DRAFT
+				mipi-sdca-control-list = <0x10004>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x02>, <0x10>;
+
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x02-subproperties = <&control_subproperty_E0E_C02> //Clock_valid
+					mipi-sdca-control-0x10-subproperties = <&control_subproperty_E0E_C10>; //Sample rate
+				}
+
+				control_subproperty_E0E_C02: mipi-sdca-control-0x02-subproperties@C0E02 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+
+				control_subproperty_E0E_C10: mipi-sdca-control-0x10-subproperties@C210 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+
+
+
+			} /* End of EntityE - CS 24 */
+
+			/* Start Entity 0x0F - OT 24 */
+			entity_id_0xF: mipi-sdca-entity-id-0xF-subproperties@OT24 {
+				mipi-sdca-entity-type = <0x03>;
+				mipi-sdca-control-list = <0x20110>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x04>, <0x11>;
+
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x04-subproperties = <&control_subproperty_E0F_C04>; //Usage
+					mipi-sdca-control-0x11-subproperties = <&control_subproperty_E0F_C11>; //DataPort_Selector
+				}
+
+				control_subproperty_E0F_C04: mipi-sdca-control-0x04-subproperties@C0F04 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+				control_subproperty_E0F_C11: mipi-sdca-control-0x11-subproperties@C0F11 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity 0x0F */
+
+			/* Start Entity 0x11 - TG 23 */
+			entity_id_0x11: mipi-sdca-entity-id-0x11-subproperties@TG23 {
+				mipi-sdca-entity-type = <0x30>;
+				mipi-sdca-control-list = <0x10000>;
+				mipi-sdca-control-numbers = <0x0>;
+				mipi-sdca-control-selectors = <0x11>;
+
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x11-subproperties = <&control_subproperty_E011_C011>; //Tone_divider
+				}
+
+				control_subproperty_E011_C011: mipi-sdca-control-0x11-subproperties@C1111 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			} /* End of Entity 0x11 */
+		}
+
+		/*fucntion for Mono Left Amp*/
+		function_2: mono_left_amp {
+			mipi-sdca-entity-id-list = <0x1>, <0x2>, <0x3>, <0x4>, <0x5>,
+						   <0x6>, <0x7>, <0x8>, <0x9>, <0xA>,
+						   <0xB>, <0xC>, <0xD>, <0xE>, <0xF>,
+						   <0x10>, <0x11>, <0x12>, <0x13>, <0x14>,
+						   <0x15>, <0x16>, <0x17>, <0x18>;
+
+			/* Start Entity1 - IT 21 */
+			entity_id_0x1: mipi-sdca-entity-id-0x1-subproperties@IT21 {
+				mipi-sdca-entity-type = <0x02>;
+				mipi-sdca-entity-label = <IT 21>;
+				mipi-sdca-terminal-type =<0x191>; //PDM Render/Capture Stream Data Port, Refer 6.2.3 in MIPI_SDCA_DRAFT
+				mipi-sdca-control-list = <0x30110>; //usage(0x04), latency(0x08, required by MSFT class diver) ClusterIndex(0x10), DataPort_Selector(0x11) (Logic - 									(1<<0x04 | 1<<0x10 | 1<<11) - 0x30010)
+				mipi_sdca_control_list: control-list {
+					mipi-sdca-control-0x4-subproperties = <&control_subproperty_E1_C04>; //Usage
+					/ **
+					mipi-sdca-control-0x8-subproperties = <>; // Latency
+					mipi-sdca-control-0x10-subproperties = <>; //ClusterIndex
+					mipi-sdca-control-0x11-subproperties = <>; //DataPort_Selector
+				}			**/
+				control_subproperty_E1_C04: mipi-sdca-control-0x4-subproperties@C104 {
+					mipi-sdca-control-access-layer = <0x4>; // Device, Refer 7.1.9
+					mipi-sdca-control-access-mode = <0x0>;
+				}
+			}
+		}
+	}
+}
