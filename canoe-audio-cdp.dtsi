@@ -3,7 +3,7 @@
  * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
-#include "sun-audio-overlay.dtsi"
+#include "canoe-audio-overlay.dtsi"
 
 &lpass_cdc {
 	qcom,num-macros = <4>;
@@ -44,8 +44,8 @@
 	status = "disabled";
 };
 
-&sun_snd {
-	qcom,model = "sun-cdp-snd-card";
+&canoe_snd {
+	qcom,model = "canoe-cdp-wsa884x-snd-card";
 	swr-haptics-unsupported;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
@@ -135,4 +135,7 @@
 	qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
 	qcom,usbss-hsj-connect-enabled;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1680>;
+	qcom,msm-mbhc-usbc-audio-supported = <0>;
+	qcom,msm-mbhc-hphl-swh = <1>;
+	qcom,msm-mbhc-gnd-swh = <1>;
 };
