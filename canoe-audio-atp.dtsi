@@ -4,6 +4,7 @@
  */
 
 #include "canoe-audio-cdp.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
 
 &swr_haptics {
 	status = "disabled";
@@ -21,7 +22,7 @@
 	qcom,wsa-max-devs = <0>;
 };
 
-&swr0 {
+&wsa_swr {
 	qcom,swr-num-dev = <0>;
 	wsa884x_0220 {
 		status = "disabled";

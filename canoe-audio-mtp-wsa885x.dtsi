@@ -4,7 +4,8 @@
  */
 
 #include "canoe-audio-overlay.dtsi"
-//#include "canoe-audio-simple-amp.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
+#include "canoe-audio-simple-amp.dtsi"
 
 &fm_i2s1_gpios {
 	status = "ok";
@@ -15,7 +16,9 @@
 	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>;
-
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+			"wcd939x_codec", "swr-haptics";
+	swr-haptics-unsupported;
 	qcom,audio-routing =
 			"AMIC1", "Analog Mic1",
 			"AMIC1", "MIC BIAS1",

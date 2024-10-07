@@ -34,6 +34,20 @@ dtbo-y += sun-audio.dtbo \
                 sun-audio-hamilton-mtp-3.5mm.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_CANOE), y)
+dtbo-y += canoe-audio.dtbo \
+                canoe-audio-mtp.dtbo \
+                canoe-audio-cdp.dtbo \
+                canoe-audio-qrd.dtbo \
+                canoe-audio-atp.dtbo \
+                canoe-audio-rcm.dtbo \
+                canoe-audio-mtp-qmp.dtbo \
+                canoe-audio-mtp-3.5mm.dtbo \
+                canoe-audio-hamilton-mtp.dtbo \
+                canoe-audio-hamilton-cdp.dtbo \
+                canoe-audio-hamilton-rcm.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo

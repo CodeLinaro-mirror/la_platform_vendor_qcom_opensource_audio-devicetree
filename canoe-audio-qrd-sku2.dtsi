@@ -4,27 +4,28 @@
  */
 
 #include "canoe-audio-overlay.dtsi"
-//#include "canoe-audio-simple-amp.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
+#include "canoe-audio-simple-amp.dtsi"
 
-&tx_swr_clk_active {
+&swr_tx_clk_active {
 	config {
 		drive-strength = <2>;
 	};
 };
 
-&tx_swr_data0_active {
+&swr_tx_data0_active {
 	config {
 		drive-strength = <2>;
 	};
 };
 
-&tx_swr_data1_active {
+&swr_tx_data1_active {
 	config {
 		drive-strength = <2>;
 	};
 };
 
-&tx_swr_data2_active {
+&swr_tx_data2_active {
 	config {
 		drive-strength = <2>;
 	};

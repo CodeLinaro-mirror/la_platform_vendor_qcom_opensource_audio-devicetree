@@ -4,7 +4,8 @@
  */
 
 #include "canoe-audio-overlay.dtsi"
-//#include "canoe-audio-simple-amp.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
+#include "canoe-audio-simple-amp.dtsi"
 
 &lpass_cdc {
 	qcom,num-macros = <4>;

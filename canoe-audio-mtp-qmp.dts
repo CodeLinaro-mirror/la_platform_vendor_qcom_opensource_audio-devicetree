@@ -6,12 +6,12 @@
 /dts-v1/;
 /plugin/;
 
-#include "canoe-audio-mtp-3.5mm.dtsi"
+#include "canoe-audio-mtp-qmp.dtsi"
  / {
 	model = "Qualcomm Technologies, Inc. Canoe MTP";
 	compatible = "qcom,canoe-mtp", "qcom,canoe", "qcom,mtp";
 	qcom,msm-id = <0x10294 0x10000>, <0x10294 0x20000>, <0x10295 0x10000>, <0x10295 0x20000>,
 		      <0x1010294 0x10000>, <0x1010294 0x20000>, <0x1010295 0x10000>,
 		      <0x1010295 0x20000>;
-	qcom,board-id = <0x108 0>;
+	qcom,board-id = <0x208 0>;
 };

@@ -59,13 +59,13 @@
 		qcom,smmu-enabled;
 		iommus = <&apps_smmu 0x1001 0x0080>, <&apps_smmu 0x1041 0x20>;
 		memory-region = <&audio_cnss_resv_region>;
-		qcom,iommu-group = <&cnss_audio_iommu_group0>;
+/*		qcom,iommu-group = <&cnss_audio_iommu_group0>;*/
 		qcom,smmu-sid-mask = /bits/ 64 <0xf>;
 		dma-coherent;
 
 		audio_cnss_resv_region: audio_cnss_resv_region {
-			iommu-addresses = <&msm_audio_ion 0x00000000 0x88000000>,
-				<&msm_audio_ion 0xb0000000 0x50000000>;
+			iommu-addresses = <&msm_audio_ion 0x00000000 0x18000000>,
+				<&msm_audio_ion 0xb0000000  0x50000000>;
 		};
 	};
 
@@ -135,7 +135,7 @@
 		};
 
 		va_macro: va-macro@7660000 {
-			swr2: va_swr_master {
+			tx_swr: va_swr_master {
 			};
 		};
 
@@ -143,17 +143,17 @@
 		};
 
 		rx_macro: rx-macro@6AC0000 {
-			swr1: rx_swr_master {
+			rx_swr: rx_swr_master {
 			};
 		};
 
 		wsa_macro: wsa-macro@6B00000 {
-			swr0: wsa_swr_master {
+			wsa_swr: wsa_swr_master {
 			};
 		};
 
 		wsa2_macro: wsa2-macro@6AA0000 {
-			swr3: wsa2_swr_master {
+			wsa2_swr: wsa2_swr_master {
 			};
 		};
 	};
@@ -164,14 +164,13 @@
 		};
 	};
 
-	sun_snd: sound {
-		compatible = "qcom,sun-asoc-snd";
+	canoe_snd: sound {
+		compatible = "qcom,canoe-asoc-snd";
 		qcom,mi2s-audio-intf = <1>;
 		qcom,tdm-audio-intf = <0>;
 		qcom,auxpcm-audio-intf = <1>;
-		qcom,wcn-bt = <1>;
+		qcom,wcn-bt = <0>;
 		qcom,ext-disp-audio-rx = <0>;
-		qcom,afe-rxtx-lb = <0>;
 
 		clock-names = "lpass_audio_hw_vote";
 		clocks = <&lpass_audio_hw_vote 0>;
@@ -179,10 +178,10 @@
 };
 
 &aliases {
-	swr0 = "/soc/spf_core_platform/lpass-cdc/wsa-macro@6B00000/wsa_swr_master";
-	swr1 = "/soc/spf_core_platform/lpass-cdc/rx-macro@6AC0000/rx_swr_master";
-	swr2 = "/soc/spf_core_platform/lpass-cdc/va-macro@7660000/va_swr_master";
-	swr3 = "/soc/spf_core_platform/lpass-cdc/wsa2-macro@6AA0000/wsa2_swr_master";
+	wsa_swr = "/soc/spf_core_platform/lpass-cdc/wsa-macro@6B00000/wsa_swr_master";
+	rx_swr = "/soc/spf_core_platform/lpass-cdc/rx-macro@6AC0000/rx_swr_master";
+	tx_swr = "/soc/spf_core_platform/lpass-cdc/va-macro@7660000/va_swr_master";
+	wsa2_swr = "/soc/spf_core_platform/lpass-cdc/wsa2-macro@6AA0000/wsa2_swr_master";
 	swr4 = "/soc/spf_core_platform/lpass_bt_swr@6CA0000/bt_swr_mstr";
 };
 
