@@ -5,13 +5,15 @@
 #include <dt-bindings/gpio/gpio.h>
 
 &swr0 {
-	wsa8855: wsa8855@02170230 {
+	qcom,swr-num-dev = <1>;
+
+	wsa8855_0230: wsa8855@02170230 {
 		reg = <0x0105 0x02170230>;
 		compatible = "qcom,simple-sdca-amp";
 		sound-name-prefix = "SA1"; /* simple amp - 1 */
 		powerdown-gpios = <&tlmm 76 GPIO_ACTIVE_LOW>;
 		vdd-1p8-supply = <&L15B>;
-		vdd-io-supply = <&L1G>; //TODO check
+		vdd-io-supply = <&L1G>;
 		qcom,lpass-cdc-handle = <&lpass_cdc>;
 
 		/* Function Numbers , Define function dt entries in the same order as func numbers */
@@ -35,21 +37,21 @@
 								0x40580470 0x2   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_CLR(1) */
 								0x40580470 0x0   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_CLR(0) */
 								0x40580470 0x1   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_EN(1) */
-								0x40400008 0x2   /* SMP_AMP_CTRL_STEREO_CMT_GRP_MASK - CMT_GRP_MASK(2)*/
-								0x40580602 0x60  /* CDC_RX0_RX_PATH_CFG1 - HPF_EN(0)*/
-								0x40580622 0x60  /* CDC_RX1_RX_PATH_CFG1 - HPF_EN(0)*/
-								0x405800CA 0x85  /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL2 - SPARE_BITS_0(Sets LDO to 1.6V)*/
-								0x405800CB 0xC   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL3 - ADC_VREF_VCTL_I(Sets VREF_I to 1.35V)*/
+								0x40400008 0x2   /* SMP_AMP_CTRL_STEREO_CMT_GRP_MASK - CMT_GRP_MASK(2) */
+								0x40580602 0x60  /* CDC_RX0_RX_PATH_CFG1 - HPF_EN(0) */
+								0x40580622 0x60  /* CDC_RX1_RX_PATH_CFG1 - HPF_EN(0) */
+								0x405800CA 0x85  /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL2 - SPARE_BITS_0(Sets LDO to 1.6V) */
+								0x405800CB 0xC   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL3 - ADC_VREF_VCTL_I(Sets VREF_I to 1.35V) */
+								0x405800CB 0xE   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL3 - ADC_VREF_VCTL_I(Sets VREF_I to 1.35V) */
 								0x405800CC 0xC   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_REF_CTL - ADC_VREF_VCTL_V(Sets VREF_V to 1.35V) */
-								0x405806C4 0x32  /* CDC_CLSH_CLSH_V_PA_MIN - V_PA_MIN(update classH PA Min) */
 								0x405804B4 0x1   /* PANDEIRO_DIG_CTRL0_PANDEIRO_DIG_CTRL0.GAIN_RAMP0_CTL1 - ANA_BYPASS(1) */
-								0x405804B7 0x1   /* PANDEIRO_DIG_CTRL0_PANDEIRO_DIG_CTRL0.GAIN_RAMP1_CTL1 - ANA_BYPASS(1)*/
+								0x405804B7 0x1   /* PANDEIRO_DIG_CTRL0_PANDEIRO_DIG_CTRL0.GAIN_RAMP1_CTL1 - ANA_BYPASS(1) */
 								0x40580601 0x88  /* CDC_RX0.RX_PATH_CFG0 - DLY_ZN_EN(1) */
 								0x40580601 0x89  /* CDC_RX0.RX_PATH_CFG0 - PH_EQ_EN */
 								0x40580621 0x88  /* CDC_RX1.RX_PATH_CFG0 - DLY_ZN_EN(1) */
 								0x40580621 0x89  /* CDC_RX1.RX_PATH_CFG0 - PH_EQ_EN */
 								0x4058005B 0xC2  /* PANDEIRO_ANA_TOP.BOOST_STB_CTRL2 */
-								0x4058005C 0x20>;/* PANDEIRO_ANA_TOP.BOOST_STB_CTRL3*/
+								0x4058005C 0x20>;/* PANDEIRO_ANA_TOP.BOOST_STB_CTRL3 */
 
 /* Assume Below settings for QC platform, This can be choosen depends on user
  * Accrodingly USAGE_MODES Will be updated in Mixers of snd-devices
@@ -140,12 +142,12 @@
 
 					control_subproperty_E0_C010: mipi-sdca-control-0x10-subproperties@C010 {
 						mipi-sdca-control-access-layer = <0x4>;
-						mipi-sdca-control-access-mode = <0x0>; //RW1C TODO
+						mipi-sdca-control-access-mode = <0x2>; //RW1C
 					};
 
 					control_subproperty_E0_C011: mipi-sdca-control-0x11-subproperties@C011 {
 						mipi-sdca-control-access-layer = <0x4>;
-						mipi-sdca-control-access-mode = <0x0>; //RW1S TODO
+						mipi-sdca-control-access-mode = <0x2>; //RW1S
 					};
 
 					control_subproperty_E0_C02C: mipi-sdca-control-0x2C-subproperties@C02C {
@@ -187,7 +189,7 @@
 
 					control_subproperty_E1_C11: mipi-sdca-control-0x11-subproperties@C111 {
 						mipi-sdca-control-access-layer = <0x4>;
-						mipi-sdca-control-access-mode = <0x0>; //#TODO DC
+						mipi-sdca-control-access-mode = <0x0>; //R
 					};
 				};
 			}; /* End of Entity1 */
@@ -227,7 +229,7 @@
 
 					control_subproperty_E3_C10: mipi-sdca-control-0x10-subproperties@C310 {
 						mipi-sdca-control-access-layer = <0x4>;
-						mipi-sdca-control-access-mode = <0x2>; //RW TODO Dual
+						mipi-sdca-control-access-mode = <0x2>; //RW
 					};
 				};
 			}; /* End of Entity3 */
@@ -257,7 +259,7 @@
 
 			/* Start Entity7 - SAPU29 */
 			entity_id_0x7: mipi-sdca-entity-id-0x7-subproperties@SAPU29 {
-				mipi-sdca-entity-label = "SAPU21";
+				mipi-sdca-entity-label = "SAPU29";
 				mipi-sdca-entity-number = <0x7>;
 				mipi-sdca-control-numbers = <0x0>;
 				mipi-sdca-control-selectors = <0x10>, <0x11>;
@@ -376,7 +378,7 @@
 
 					control_subproperty_E0F_C11: mipi-sdca-control-0x11-subproperties@C0F11 {
 						mipi-sdca-control-access-layer = <0x4>;
-						mipi-sdca-control-access-mode = <0x0>; //R TODO DC
+						mipi-sdca-control-access-mode = <0x0>; //R
 					};
 				};
 			}; /* End of Entity 0x0F */
