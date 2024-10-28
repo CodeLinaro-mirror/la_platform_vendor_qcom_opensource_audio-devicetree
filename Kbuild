@@ -34,6 +34,10 @@ dtbo-y += sun-audio.dtbo \
                 sun-audio-hamilton-mtp-3.5mm.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_SDXKOVA), y)
+dtbo-y +=  sdxkova-audio.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
