@@ -67,6 +67,18 @@ dtbo-y += yupik-iot-audio.dtbo \
                 yupikp-iot-audio-qrd-overlay.dtbo
 endif
 
+
+ifeq ($(CONFIG_ARCH_KERA), y)
+dtbo-y += kera-audio.dtbo \
+                kera-audio-cdp.dtbo \
+                kera-audio-mtp.dtbo \
+                kera-audio-mtp-qmp1000.dtbo \
+                kera-audio-qrd.dtbo \
+                kera-audio-rcm.dtbo \
+                kera-audio-rcm-orne.dtbo
+
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
