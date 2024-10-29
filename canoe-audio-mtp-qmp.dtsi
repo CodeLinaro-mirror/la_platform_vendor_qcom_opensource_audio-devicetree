@@ -164,9 +164,7 @@
 		"VA DMIC1", "VA MIC BIAS3",
 		"VA DMIC2", "VA MIC BIAS1",
 		"VA DMIC3", "VA MIC BIAS1";
-	qcom,msm-mbhc-usbc-audio-supported = <1>;
-	qcom,msm-mbhc-hphl-swh = <0>;
-	qcom,msm-mbhc-gnd-swh = <0>;
+	qcom,wsa-max-devs = <1>;
 };
 
 &wsa884x_0220 {

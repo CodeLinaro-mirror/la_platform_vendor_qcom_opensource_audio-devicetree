@@ -4,8 +4,13 @@
  */
 
 /*This is CDP with Hamilton wlan*/
-#include "canoe-audio-cdp.dtsi"
+#include "canoe-audio-cdp-wsa885x.dtsi"
 
 &lpass_bt_swr {
 	status = "disabled";
+};
+
+&canoe_snd {
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+				<&lpass_cdc>;
 };

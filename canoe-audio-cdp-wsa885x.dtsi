@@ -31,33 +31,10 @@
 	status = "disabled";
 };
 
-&cdc_pri_mi2s_gpios {
-	status = "disabled";
-};
-
 &fm_i2s1_gpios {
 	status = "ok";
 };
 
-&cdc_tert_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_quat_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_quin_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_sen_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_sep_mi2s_gpios {
-	status = "disabled";
-};
 &swr_haptics {
 	status = "disabled";
 };
@@ -131,8 +108,8 @@
 		"VA DMIC7", "Digital Mic7",
 		"VA DMIC0", "VA MIC BIAS1",
 		"VA DMIC1", "VA MIC BIAS1",
-		"VA DMIC2", "VA MIC BIAS1",
-		"VA DMIC3", "VA MIC BIAS1",
+		"VA DMIC2", "VA MIC BIAS3",
+		"VA DMIC3", "VA MIC BIAS3",
 		"VA DMIC4", "VA MIC BIAS3",
 		"VA DMIC5", "VA MIC BIAS3",
 		"VA DMIC6", "VA MIC BIAS4",

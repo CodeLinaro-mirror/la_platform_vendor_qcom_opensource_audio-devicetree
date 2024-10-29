@@ -14,33 +14,10 @@
 	status = "disabled";
 };
 
-&cdc_pri_mi2s_gpios {
-	status = "disabled";
-};
-
 &fm_i2s1_gpios {
 	status = "ok";
 };
 
-&cdc_tert_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_quat_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_quin_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_sen_mi2s_gpios {
-	status = "disabled";
-};
-
-&cdc_sep_mi2s_gpios {
-	status = "disabled";
-};
 &swr_haptics {
 	status = "disabled";
 };
@@ -113,20 +90,13 @@
 		"VA DMIC7", "Digital Mic7",
 		"VA DMIC0", "VA MIC BIAS1",
 		"VA DMIC1", "VA MIC BIAS1",
-		"VA DMIC2", "VA MIC BIAS1",
-		"VA DMIC3", "VA MIC BIAS1",
+		"VA DMIC2", "VA MIC BIAS3",
+		"VA DMIC3", "VA MIC BIAS3",
 		"VA DMIC4", "VA MIC BIAS3",
 		"VA DMIC5", "VA MIC BIAS3",
 		"VA DMIC6", "VA MIC BIAS4",
 		"VA DMIC7", "VA MIC BIAS4";
 	qcom,cdc-dmic67-gpios = <&cdc_dmic67_gpios>;
-	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&swr_haptics>,
-			<&wsa884x_0220>, <&wsa884x_0221>;
-	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wcd939x_codec", "swr-haptics",
-			"wsa-codec1", "wsa-codec2";
-	qcom,wsa-max-devs = <2>;
 	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
 	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
 	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;

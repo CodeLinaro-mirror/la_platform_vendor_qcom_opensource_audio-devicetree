@@ -22,17 +22,35 @@
 	qcom,wsa-max-devs = <0>;
 };
 
+&rx_swr_gpios {
+	status = "disabled";
+};
+
+&wcd939x_rst_gpio {
+	status = "disabled";
+};
+
+&wcd939x_tx_slave {
+	status = "disabled";
+};
+
+&wcd939x_rx_slave {
+	status = "disabled";
+};
+
 &wsa_swr {
 	qcom,swr-num-dev = <0>;
-	wsa884x_0220 {
-		status = "disabled";
-	};
+};
 
-	wsa884x_0221 {
-		status = "disabled";
-	};
+&wsa884x_0220 {
+	status = "disabled";
+};
+
+&wsa884x_0221 {
+	status = "disabled";
 };
 
 &wcd939x_codec {
 	status = "disabled";
 };
+

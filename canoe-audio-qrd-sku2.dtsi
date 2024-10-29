@@ -31,10 +31,6 @@
 	};
 };
 
-&wsa2_macro {
-	status = "disabled";
-};
-
 &canoe_snd {
 	qcom,model = "canoe-qrd-snd-card";
 	qcom,wsa8855-supported;
@@ -44,6 +40,8 @@
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			   "wcd939x_codec", "swr-haptics",
 			   	"sdca-simple-amp.01";
+	swr-haptics-unsupported;
+	qcom,wsa-max-devs = <1>;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
 		"AMIC1", "MIC BIAS1",
@@ -84,12 +82,7 @@
 		"VA_AIF2 CAP", "VA_SWR_CLK",
 		"VA_AIF3 CAP", "VA_SWR_CLK";
 
-	qcom,msm-mbhc-usbc-audio-supported = <1>;
-	qcom,msm-mbhc-hphl-swh = <0>;
-	qcom,msm-mbhc-gnd-swh = <0>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
-	qcom,wcd-disable-legacy-surge;
-	wcd939x-i2c-handle = <&wcd_usbss>;
 };
 
 &wsa884x_0220 {
