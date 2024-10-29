@@ -87,14 +87,15 @@
 
 &canoe_snd {
 	qcom,model = "canoe-mtp-qmp-snd-card";
+	qcom,wsa8855-supported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
 			<&qmp01>, <&qmp02>,
-			<&qmp03>, <&qmp04>;
+			<&qmp03>, <&qmp04>, <&wsa8855_0230>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 		"wcd939x_codec", "swr-haptics",
 		"wsa-codec1", "qmp-dmic.01", "qmp-dmic.02",
-		"qmp-dmic.03", "qmp-dmic.04";
+		"qmp-dmic.03", "qmp-dmic.04", "sdca-simple-amp.01";
 	qcom,qmp-mic = <1>;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
@@ -135,8 +136,8 @@
 		"RX_TX DEC1_INP", "TX DEC1 MUX",
 		"RX_TX DEC2_INP", "TX DEC2 MUX",
 		"RX_TX DEC3_INP", "TX DEC3 MUX",
-		"SpkrLeft IN", "WSA_SPK1 OUT",
-		"SpkrRight IN", "WSA_SPK2 OUT",
+		"SA1 AMP IN", "WSA_SPK1 OUT",
+		"SA1 AMP IN", "WSA_SPK2 OUT",
 		"TX SWR_INPUT", "WCD_TX_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC02 NORMAL_OUTPUT",
