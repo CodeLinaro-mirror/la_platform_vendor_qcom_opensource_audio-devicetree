@@ -123,7 +123,6 @@
 			"sdca-simple-amp.01";
 	qcom,wsa-max-devs = <1>;
 	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
-	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
 	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
 	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
