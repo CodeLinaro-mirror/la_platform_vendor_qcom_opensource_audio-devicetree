@@ -14,7 +14,6 @@
 &canoe_snd {
 	qcom,model = "canoe-mtp-snd-card";
 	qcom,wsa8855-supported;
-	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
 			<&wsa8855_0230>;
