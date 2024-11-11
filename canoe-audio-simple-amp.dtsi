@@ -60,29 +60,6 @@
 								0x405806C7 0xD   /* CDC_CLSH_CLSH_SIG_DP_CTL0 */
 								0x405806C3 0x3>; /* CDC_CLSH_CLSH_V_HD_PA */
 
-/* Assume Below settings for QC platform, This can be choosen depends on user
- * Accrodingly USAGE_MODES Will be updated in Mixers of snd-devices
- * Usage_MODE_0 for stereo speaker , Both Channels to select (0 ,0)
- * Usage_MODE_1 for Ultrasound, Both Channels to select (1, 1)
- * Usage_MODE_2 for Reciever Mode , Both Channels to select (2, 2)
- *
-*/
-
-			mode_0_tbl = <0x40580480 0x1c   /* PATH_GAIN - DB_18, MIN_GAIN - DB_0, AUX_GAIN - DB_0 */
-					0x4058049B 0xe  /* DRE_ON - DRE_EN(1) */
-					0x40580605 0x0  /* CDC_RX0 PGA_GAIN - DB_0 */
-					0x40580625 0x0>;/* CDC_RX1 PGA_GAIN - DB_0 */
-
-			mode_1_tbl = <0x40580481 0x4    /* PATH_GAIN - DB_18, MIN_GAIN - DB_0, AUX_GAIN - DB_18 */
-					0x4058049C 0x2  /* DRE_ON - DRE_OFF(0) */
-					0x40580605 0x0  /* CDC_RX0 PGA_GAIN - DB_0 */
-					0x40580625 0x0>;/* CDC_RX1 PGA_GAIN - DB_0 */
-
-			mode_2_tbl = <0x40580482 0x21   /* PATH_GAIN - DB_12, MIN_GAIN - DB_M6, AUX_GAIN - DB_M6*/
-					0x4058049D 0xF  /* DRE_ON - DRE_EN(1) */
-					0x40580605 0x0  /* CDC_RX0 PGA_GAIN - DB_0 */
-					0x40580625 0x0>;/* CDC_RX1 PGA_GAIN - DB_0 */
-
 			/* Entity0 - Entity0 - Function Level Controls _DSD  */
 			entity_id_0x0: mipi-sdca-entity-id-0x0-subproperties@entity0 {
 				mipi-sdca-entity-label = "ENTITY0";
