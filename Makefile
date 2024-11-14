@@ -1,5 +1,4 @@
-AUDIO_DEVICETREE_ROOT=$(KERNEL_SRC)/$(M)
-AUDIO_KERNEL_ROOT=$(AUDIO_DEVICETREE_ROOT)/../../../opensource/monaco/audio-kernel/include
+AUDIO_KERNEL_ROOT=${ANDROID_BUILD_TOP}/vendor/qcom/opensource/monaco/audio-kernel/include
 
 KBUILD_OPTIONS += KBUILD_DTC_INCLUDE=$(AUDIO_KERNEL_ROOT)
 KBUILD_OPTIONS += KBUILD_EXTMOD_DTS=.
