@@ -4,7 +4,7 @@
  */
 #include <dt-bindings/gpio/gpio.h>
 
-&wsa_swr {
+&swr0 {
 	qcom,swr-num-dev = <1>;
 
 	wsa8855_0230: wsa8855@02170230 {
