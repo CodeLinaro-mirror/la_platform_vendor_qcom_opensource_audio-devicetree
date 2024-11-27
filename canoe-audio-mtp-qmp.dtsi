@@ -7,7 +7,7 @@
 #include "canoe-audio-lpass-reg.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
-&tx_swr {
+&swr2 {
 	qmp01: qmp@04170232 {
 		/*
 		 * reg = <Class_partID[7:0]

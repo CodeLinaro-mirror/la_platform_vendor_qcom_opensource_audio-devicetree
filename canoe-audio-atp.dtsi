@@ -38,7 +38,7 @@
 	status = "disabled";
 };
 
-&wsa_swr {
+&swr0 {
 	qcom,swr-num-dev = <0>;
 };
 

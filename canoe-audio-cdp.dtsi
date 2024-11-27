@@ -55,11 +55,11 @@
 		"TX DMIC3", "Digital Mic3",
 		"TX DMIC3", "MIC BIAS3",
 		"TX DMIC4", "Digital Mic4",
-		"TX DMIC4", "MIC BIAS3",
+		"TX DMIC4", "MIC BIAS4",
 		"TX DMIC5", "Digital Mic5",
-		"TX DMIC5", "MIC BIAS3",
+		"TX DMIC5", "MIC BIAS4",
 		"TX DMIC6", "Digital Mic6",
-		"TX DMIC6", "MIC BIAS4",
+		"TX DMIC6", "MIC BIAS3",
 		"TX DMIC7", "Digital Mic7",
 		"TX DMIC7", "MIC BIAS4",
 		"IN1_HPHL", "HPHL_OUT",
@@ -92,13 +92,12 @@
 		"VA DMIC1", "VA MIC BIAS1",
 		"VA DMIC2", "VA MIC BIAS3",
 		"VA DMIC3", "VA MIC BIAS3",
-		"VA DMIC4", "VA MIC BIAS3",
-		"VA DMIC5", "VA MIC BIAS3",
-		"VA DMIC6", "VA MIC BIAS4",
+		"VA DMIC4", "VA MIC BIAS4",
+		"VA DMIC5", "VA MIC BIAS4",
+		"VA DMIC6", "VA MIC BIAS3",
 		"VA DMIC7", "VA MIC BIAS4";
 	qcom,cdc-dmic67-gpios = <&cdc_dmic67_gpios>;
 	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
-	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
 	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
 	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;

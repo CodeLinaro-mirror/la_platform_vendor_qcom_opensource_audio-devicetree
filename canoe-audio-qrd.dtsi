@@ -14,7 +14,7 @@
 	qcom,wsa-bat-cfgs = <2>, <2>;
 };
 
-&tx_swr {
+&swr2 {
 	qmp01: qmp@04170232 {
 		/*
 		 * reg = <Class_partID[7:0]
