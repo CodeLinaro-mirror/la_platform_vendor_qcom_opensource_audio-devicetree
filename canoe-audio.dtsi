@@ -169,7 +169,7 @@
 		qcom,mi2s-audio-intf = <1>;
 		qcom,tdm-audio-intf = <0>;
 		qcom,auxpcm-audio-intf = <1>;
-		qcom,wcn-bt = <0>;
+		qcom,wcn-bt = <1>;
 		qcom,ext-disp-audio-rx = <0>;
 
 		clock-names = "lpass_audio_hw_vote";
