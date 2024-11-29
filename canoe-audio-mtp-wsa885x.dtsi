@@ -4,7 +4,8 @@
  */
 
 #include "canoe-audio-overlay.dtsi"
-//#include "canoe-audio-simple-amp.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
+#include "canoe-audio-simple-amp.dtsi"
 
 &fm_i2s1_gpios {
 	status = "ok";
@@ -12,10 +13,15 @@
 
 &canoe_snd {
 	qcom,model = "canoe-mtp-snd-card";
-	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
+	qcom,wsa8855-supported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&swr_haptics>;
-
+			<&wcd939x_codec>, <&swr_haptics>,
+			<&wsa8855_0230>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+			"wcd939x_codec", "swr-haptics",
+			"sdca-simple-amp.01";
+	/*Remove to enable Haptics*/
+	swr-haptics-unsupported;
 	qcom,audio-routing =
 			"AMIC1", "Analog Mic1",
 			"AMIC1", "MIC BIAS1",
@@ -48,7 +54,7 @@
 			"IN1_HPHL", "HPHL_OUT",
 			"IN2_HPHR", "HPHR_OUT",
 			"IN3_EAR", "AUX_OUT",
-			"HAP_IN", "WSA2_HAPT OUT",
+//			"HAP_IN", "WSA2_HAPT OUT",
 			"WSA SRC0_INP", "SRC0",
 			"WSA_TX DEC0_INP", "TX DEC0 MUX",
 			"WSA_TX DEC1_INP", "TX DEC1 MUX",
@@ -56,8 +62,8 @@
 			"RX_TX DEC1_INP", "TX DEC1 MUX",
 			"RX_TX DEC2_INP", "TX DEC2 MUX",
 			"RX_TX DEC3_INP", "TX DEC3 MUX",
-			"SpkrLeft IN", "WSA_SPK1 OUT",
-			"SpkrRight IN", "WSA_SPK2 OUT",
+			"SA1 AMP IN", "WSA_SPK1 OUT",
+			"SA1 AMP IN", "WSA_SPK2 OUT",
 			"TX SWR_INPUT", "WCD_TX_OUTPUT",
 			"VA SWR_INPUT", "VA_SWR_CLK",
 			"VA SWR_INPUT", "WCD_TX_OUTPUT",
@@ -72,11 +78,7 @@
 			"VA DMIC1", "VA MIC BIAS1",
 			"VA DMIC2", "VA MIC BIAS3",
 			"VA DMIC3", "VA MIC BIAS3";
-	qcom,msm-mbhc-usbc-audio-supported = <1>;
-	qcom,msm-mbhc-hphl-swh = <0>;
-	qcom,msm-mbhc-gnd-swh = <0>;
-	qcom,wcd-disable-legacy-surge;
-	wcd939x-i2c-handle = <&wcd_usbss>;
+	qcom,wsa-max-devs = <1>;
 };
 
 &wsa884x_0220 {

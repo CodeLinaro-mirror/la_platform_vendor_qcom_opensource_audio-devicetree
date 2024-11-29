@@ -574,7 +574,7 @@
 			pins = "gpio9";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -625,7 +625,7 @@
 			pins = "gpio10";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -646,7 +646,7 @@
 	wsa_swr_clk_active: wsa_swr_clk_active {
 		mux {
 			pins = "gpio10";
-			function = "func2";
+			function = "func2";			
 		};
 
 		config {
@@ -765,7 +765,7 @@
 			pins = "gpio12";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -779,7 +779,7 @@
 			pins = "gpio12";
 			drive-strength = <2>;   /* 2 mA */
 			bias-pull-down;         /* PULL DOWN */
-			input-enable;
+			input-enable;			
 		};
 	};
 
@@ -820,7 +820,7 @@
 			pins = "gpio13";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -834,7 +834,7 @@
 			pins = "gpio13";
 			drive-strength = <2>;   /* 2 mA */
 			bias-pull-down;         /* PULL DOWN */
-			input-enable;
+			input-enable;			
 		};
 	};
 
@@ -945,7 +945,7 @@
 			pins = "gpio15";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -1001,7 +1001,7 @@
 			pins = "gpio16";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -1084,7 +1084,7 @@
 			pins = "gpio17";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -1098,7 +1098,7 @@
 			pins = "gpio17";
 			drive-strength = <2>;   /* 2 mA */
 			bias-pull-down;         /* PULL DOWN */
-			input-enable;
+			input-enable;			
 		};
 	};
 
@@ -1153,7 +1153,7 @@
 			pins = "gpio18";
 			drive-strength = <2>;   /* 2 mA */
 			bias-pull-down;         /* PULL DOWN */
-			input-enable;
+			input-enable;			
 		};
 	};
 
@@ -1167,7 +1167,7 @@
 			pins = "gpio19";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;		
 		};
 	};
 
@@ -1262,7 +1262,7 @@
 			pins = "gpio20";
 			drive-strength = <2>;   /* 2 mA */
 			bias-pull-down;         /* PULL DOWN */
-			input-enable;
+			input-enable;			
 		};
 	};
 
@@ -1327,7 +1327,7 @@
 			pins = "gpio21";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 
@@ -1354,7 +1354,7 @@
 			pins = "gpio22";
 			drive-strength = <8>;   /* 8 mA */
 			bias-disable;           /* NO PULL */
-			output-high;
+			output-high;			
 		};
 	};
 

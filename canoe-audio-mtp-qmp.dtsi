@@ -3,9 +3,9 @@
  * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
-<<<<<<< HEAD
 #include "canoe-audio-overlay.dtsi"
-//#include "canoe-audio-simple-amp.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
+#include "canoe-audio-simple-amp.dtsi"
 
 &swr2 {
 	qmp01: qmp@04170232 {
@@ -17,7 +17,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC01";
 		qcom,codec-name = "qmp-dmic.01";
-		qmp-vdd-supply = <&L10B>;
+		qmp-vdd-supply = <&wcd_mb3_reg>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
@@ -35,7 +35,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC02";
 		qcom,codec-name = "qmp-dmic.02";
-		qmp-vdd-supply = <&L10B>;
+		qmp-vdd-supply = <&wcd_mb1_reg>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL2 LANE0>, <OFFSET1_VAL1 LANE0>,
 				<OFFSET1_VAL2 LANE0>, <OFFSET1_VAL1 LANE0>,
@@ -53,7 +53,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC03";
 		qcom,codec-name = "qmp-dmic.03";
-		qmp-vdd-supply = <&L10B>;
+		qmp-vdd-supply = <&wcd_mb3_reg>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL3 LANE0>, <OFFSET1_VAL2 LANE0>,
 				<OFFSET1_VAL3 LANE0>, <OFFSET1_VAL2 LANE0>,
@@ -71,7 +71,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC04";
 		qcom,codec-name = "qmp-dmic.04";
-		qmp-vdd-supply = <&L10B>;
+		qmp-vdd-supply = <&wcd_mb1_reg>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
@@ -87,14 +87,15 @@
 
 &canoe_snd {
 	qcom,model = "canoe-mtp-qmp-snd-card";
+	qcom,wsa8855-supported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
 			<&qmp01>, <&qmp02>,
-			<&qmp03>, <&qmp04>;
+			<&qmp03>, <&qmp04>, <&wsa8855_0230>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 		"wcd939x_codec", "swr-haptics",
 		"wsa-codec1", "qmp-dmic.01", "qmp-dmic.02",
-		"qmp-dmic.03", "qmp-dmic.04";
+		"qmp-dmic.03", "qmp-dmic.04", "sdca-simple-amp.01";
 	qcom,qmp-mic = <1>;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
@@ -135,8 +136,8 @@
 		"RX_TX DEC1_INP", "TX DEC1 MUX",
 		"RX_TX DEC2_INP", "TX DEC2 MUX",
 		"RX_TX DEC3_INP", "TX DEC3 MUX",
-		"SpkrLeft IN", "WSA_SPK1 OUT",
-		"SpkrRight IN", "WSA_SPK2 OUT",
+		"SA1 AMP IN", "WSA_SPK1 OUT",
+		"SA1 AMP IN", "WSA_SPK2 OUT",
 		"TX SWR_INPUT", "WCD_TX_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC02 NORMAL_OUTPUT",
@@ -163,17 +164,9 @@
 		"VA DMIC1", "VA MIC BIAS3",
 		"VA DMIC2", "VA MIC BIAS1",
 		"VA DMIC3", "VA MIC BIAS1";
-=======
-#include "canoe-audio-mtp-wsa885x.dtsi"
-
-&canoe_snd {
->>>>>>> origin/audio-kernel-handset.lnx.11.0
-	qcom,msm-mbhc-usbc-audio-supported = <0>;
-	qcom,msm-mbhc-hphl-swh = <1>;
-	qcom,msm-mbhc-gnd-swh = <1>;
+	qcom,wsa-max-devs = <1>;
 };
 
-<<<<<<< HEAD
 &wsa884x_0220 {
 	status = "disabled";
 };
@@ -189,5 +182,3 @@
 &wsa884x_2_0221 {
 	status = "disabled";
 };
-=======
->>>>>>> origin/audio-kernel-handset.lnx.11.0
