@@ -11,6 +11,6 @@
 / {
 	model = "Qualcomm Technologies, Inc. Canoe RUMI";
 	compatible = "qcom,canoe-rumi", "qcom,canoe", "qcom,rumi";
-	qcom,msm-id = <0x10294 0x10000>, <0x10294 0x20000>;
+	qcom,msm-id = <660 0x10000>, <660 0x20000>;
 	qcom,board-id = <15 0>;
 };
