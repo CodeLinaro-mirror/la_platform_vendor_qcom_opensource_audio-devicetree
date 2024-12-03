@@ -36,6 +36,7 @@ endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
 dtbo-y += canoe-audio.dtbo \
+		canoe-audio-rumi.dtbo \
                 canoe-audio-mtp.dtbo \
                 canoe-audio-atp.dtbo \
                 canoe-audio-mtp-wsa885x.dtbo \
