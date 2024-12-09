@@ -5,6 +5,7 @@
 
 
 &qupv3_se2_i2c {
+	status = "okay";
 	tavil_codec {
 		wcd: wcd_pinctrl@5 {
 			compatible = "qcom,wcd-pinctrl";
