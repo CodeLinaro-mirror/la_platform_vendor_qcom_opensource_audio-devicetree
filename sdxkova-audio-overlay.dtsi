@@ -495,15 +495,3 @@
 	};
 };
 
-&soc {
-       qcom,dma-heaps {
-                compatible = "qcom,dma-heaps";
-		depends-on-supply = <&scm>;
-                qcom_audio: qcom,audio {
-                        qcom,dma-heap-name = "qcom,audio";
-                        qcom,dma-heap-type = <HEAP_TYPE_CARVEOUT>;
-                        memory-region = <&audio_heap_mem>;
-                };
-        };
-};
-
