@@ -126,6 +126,7 @@
 		"swr-haptics", "wsa-codec1", "wsa-codec2",
 		"qmp-dmic.01", "qmp-dmic.02",
 		"qmp-dmic.03", "qmp-dmic.04";
+	qcom,ext-disp-audio-rx = <1>;
 	qcom,qmp-mic = <1>;
 	qcom,audio-routing =
 		"HAP_IN", "WSA2_HAPT OUT",
