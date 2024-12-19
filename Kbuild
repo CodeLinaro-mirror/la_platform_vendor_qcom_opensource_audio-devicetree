@@ -47,6 +47,7 @@ dtbo-y += canoe-audio.dtbo \
                 canoe-audio-rcm.dtbo \
                 canoe-audio-mtp-qmp.dtbo \
                 canoe-audio-mtp-3.5mm.dtbo \
+                canoe-audio-mtp-pictor.dtbo \
                 canoe-audio-hamilton-mtp.dtbo \
                 canoe-audio-hamilton-cdp.dtbo \
                 canoe-audio-hamilton-rcm.dtbo
