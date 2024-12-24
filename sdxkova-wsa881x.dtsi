@@ -10,7 +10,7 @@
 			#address-cells = <2>;
 			#size-cells = <0>;
 			qcom,swr-num-dev = <1>;
-
+			status = "disabled";
 			wsa881x_0214: wsa881x@21170214 {
 				compatible = "qcom,wsa881x";
 				reg = <0x00 0x21170214>;
