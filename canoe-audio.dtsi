@@ -170,8 +170,7 @@
 		qcom,tdm-audio-intf = <0>;
 		qcom,auxpcm-audio-intf = <1>;
 		qcom,wcn-bt = <1>;
-		qcom,ext-disp-audio-rx = <0>;
-
+		qcom,ext-disp-audio-rx = <1>;
 		clock-names = "lpass_audio_hw_vote";
 		clocks = <&lpass_audio_hw_vote 0>;
 	};
