@@ -10,7 +10,7 @@
 
 &spf_core_platform {
 	sdxkova_snd: sound {
-		compatible = "qcom,sdx-asoc-snd-tavil-without-wsa";
+		compatible = "qcom,sdx-asoc-snd-tavil";
 		qcom,model = "sdx-tavil-i2s-snd-card";
 		qcom,prim_mi2s_master = <&prim_master>;
 	};
