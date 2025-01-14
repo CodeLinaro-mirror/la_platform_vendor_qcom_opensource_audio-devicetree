@@ -20,6 +20,12 @@
 		"TX DMIC2", "Digital Mic2",
 		"TX DMIC3", "Digital Mic3";
 	qcom,wsa-max-devs = <0>;
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc";
+};
+
+&rx_macro {
+	qcom,is-used-swr-gpio = <0>;
 };
 
 &rx_swr_gpios {
