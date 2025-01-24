@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <bindings/qcom,audio-ext-clk.h>
@@ -59,13 +59,12 @@
 		qcom,smmu-enabled;
 		iommus = <&apps_smmu 0x1001 0x0080>, <&apps_smmu 0x1041 0x20>;
 		memory-region = <&audio_cnss_resv_region>;
-/*		qcom,iommu-group = <&cnss_audio_iommu_group0>;*/
+		qcom,iommu-group = <&cnss_audio_iommu_group0>;
 		qcom,smmu-sid-mask = /bits/ 64 <0xf>;
 		dma-coherent;
 
 		audio_cnss_resv_region: audio_cnss_resv_region {
-			iommu-addresses = <&msm_audio_ion 0x00000000 0x18000000>,
-				<&msm_audio_ion 0xb0000000  0x50000000>;
+			iommu-addresses = <&msm_audio_ion 0x0 0x0 0x0 0x18000000>;
 		};
 	};
 
@@ -169,9 +168,8 @@
 		qcom,mi2s-audio-intf = <1>;
 		qcom,tdm-audio-intf = <0>;
 		qcom,auxpcm-audio-intf = <1>;
-		qcom,wcn-bt = <0>;
-		qcom,ext-disp-audio-rx = <0>;
-
+		qcom,wcn-bt = <1>;
+		qcom,ext-disp-audio-rx = <1>;
 		clock-names = "lpass_audio_hw_vote";
 		clocks = <&lpass_audio_hw_vote 0>;
 	};

@@ -11,6 +11,7 @@
 };
 
 &canoe_snd {
+	qcom,wcn-bt = <0>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 				<&lpass_cdc>;
 };
