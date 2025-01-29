@@ -38,6 +38,10 @@ ifeq ($(CONFIG_ARCH_SDXKOVA), y)
 dtbo-y +=  sdxkova-audio.dtbo
 endif
 
+ifeq ($(TARGET_SUPPORT), sa510m)
+dtbo-y += sa510m-audio.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
