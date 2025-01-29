@@ -1,15 +1,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include "canoe-audio-overlay.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
-
-&fm_i2s1_gpios {
-	status = "ok";
-};
 
 &canoe_snd {
 	qcom,model = "canoe-mtp-snd-card";
