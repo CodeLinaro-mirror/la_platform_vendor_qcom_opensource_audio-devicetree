@@ -1,0 +1,30 @@
+/*
+* Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+#include "sa510m-audio-overlay.dtsi"
+
+&glink_edge {
+	audio_gpr: qcom,gpr {
+		compatible = "qcom,gpr";
+		qcom,glink-channels = "modem_apps";
+		qcom,intents = <0x200 20>;
+		reg = <0x1>;
+
+		spf_core {
+			compatible = "qcom,spf_core";
+			reg = <0x3>;
+		};
+
+		audio-pkt {
+			compatible = "qcom,audio-pkt";
+			qcom,audiopkt-ch-name = "apr_audio_svc";
+			reg = <0x17>;
+		};
+
+		audio_prm {
+			compatible = "qcom,audio_prm";
+			reg = <0x7>;
+		};
+	};
+};

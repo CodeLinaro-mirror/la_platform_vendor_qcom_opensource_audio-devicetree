@@ -1,0 +1,58 @@
+/*
+* Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+#include "sa510m-audio-lpass.dtsi"
+&soc {
+                codec_vreg: regulator-codec-tlv320aic3x {
+		compatible = "regulator-fixed";
+		regulator-name = "codec_vreg";
+		startup-delay-us = <5000>;
+		gpio = <&tlmm 48 0>;
+		enable-active-high;
+		regulator-always-on;
+	};
+
+		snd_tlv3x: sound-auto {
+		compatible = "qcom,sdx-asoc-snd-auto";
+		qcom,model = "sdx-auto-i2s-snd-card";
+		qcom,prim_mi2s_aux_master = <&prim_master_slave>;
+		qcom,prim_mi2s_aux_slave = <&prim_slave>;
+		qcom,sec_mi2s_aux_master = <&sec_master_slave>;
+		qcom,sec_mi2s_aux_slave = <&sec_slave>;
+
+		pinctrl-names = "default";
+		pinctrl-0 =  <&i2s_mclk_active &tlv_reset_active &tlv_cdc_power>;
+		asoc-codec = <&tlv320aic3x_codec>, <&stub_codec>;
+		asoc-codec-names = "tlv320aic3x", "msm-stub-codec.1";
+		qcom,msm_audio_ssr_devs = <&audio_gpr>;
+        };
+};
+
+&soc {
+
+	clock_audio_up: audio_ext_clk_up {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <4>;
+		qcom,codec-lpass-clk-id = <0x302>;
+		qcom,codec-lpass-ext-clk-freq = <9600000>;
+		qcom,use-pinctrl = <1>;
+		pinctrl-names = "sleep", "active";
+		pinctrl-0 = <&i2s_mclk_sleep>;
+		pinctrl-1 = <&i2s_mclk_active>;
+		#clock-cells = <1>;
+	};
+
+};
+
+&qupv3_se4_i2c {
+	status = "ok";
+	tlv320aic3x_codec: tlv320aic3x@18 {
+		compatible = "ti,tlv320aic3x";
+		reg = <0x18>;
+		gpio-reset = <&tlmm 49 0>;
+		AVDD-supply = <&codec_vreg>;
+		IOVDD-supply = <&codec_vreg>;
+		ai3x-ocmv = <1>;
+	};
+};
