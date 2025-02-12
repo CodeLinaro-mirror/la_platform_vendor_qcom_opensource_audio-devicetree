@@ -166,6 +166,7 @@
 		"VA DMIC2", "VA MIC BIAS1",
 		"VA DMIC3", "VA MIC BIAS1";
 	qcom,wsa-max-devs = <1>;
+	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
 };
 
 &wsa884x_0220 {
