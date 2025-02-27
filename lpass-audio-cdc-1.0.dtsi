@@ -207,6 +207,16 @@
 		 */
 			qcom,tx-dmic-clk-div-factor = <4 4 4 4>;
 			qcom,is-used-swr-gpio = <0>;
+		/* Adapt block tuning registers and its values.
+		 * < adapt_reg_address msm_mic/swr_mic_value hs_mic_value >
+		 */
+			adapt-tuning-reg-values = < 0x0810 0x4C 0x4C
+						0x0814 0x1D 0x1D
+						0x0818 0x7C 0x7C
+						0x081C 0x3C 0x3C
+						0x0820 0x67 0x67
+						0x0824 0x16 0x16
+						0x0828 0x03 0x03>;
 		};
 };
 &adsp_loader {
