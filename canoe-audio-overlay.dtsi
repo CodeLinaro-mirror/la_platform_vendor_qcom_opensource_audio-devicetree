@@ -714,6 +714,7 @@
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&spkr_02_sd_n_active>;
 		pinctrl-1 = <&spkr_02_sd_n_sleep>;
+		qcom,lpi-gpios;
 	};
 
 	wsa_spkr_en13: wsa_spkr_en2_pinctrl {
@@ -721,6 +722,7 @@
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&spkr_13_sd_n_active>;
 		pinctrl-1 = <&spkr_13_sd_n_sleep>;
+		qcom,lpi-gpios;
 	};
 
 	wcd939x_rst_gpio: msm_cdc_pinctrl@32 {
