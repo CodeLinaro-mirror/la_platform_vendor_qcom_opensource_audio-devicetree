@@ -1346,7 +1346,7 @@
 
 		config {
 			pins = "gpio0";
-			drive-strength = <4>;
+			drive-strength = <2>;
 			slew-rate = <1>;
 			bias-disable;
 		};
@@ -1374,7 +1374,7 @@
 
 		config {
 			pins = "gpio1";
-			drive-strength = <4>;
+			drive-strength = <2>;
 			slew-rate = <1>;
 			bias-bus-hold;
 		};
@@ -1402,7 +1402,7 @@
 
 		config {
 			pins = "gpio2";
-			drive-strength = <4>;
+			drive-strength = <2>;
 			slew-rate = <1>;
 			bias-bus-hold;
 		};
@@ -1430,7 +1430,7 @@
 
 		config {
 			pins = "gpio14";
-			drive-strength = <4>;
+			drive-strength = <2>;
 			slew-rate = <1>;
 			bias-bus-hold;
 		};
