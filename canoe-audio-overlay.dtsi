@@ -470,6 +470,7 @@
 			"VA DMIC1", "VA MIC BIAS1",
 			"VA DMIC2", "VA MIC BIAS3",
 			"VA DMIC3", "VA MIC BIAS3";
+		qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
 		qcom,msm-mbhc-usbc-audio-supported = <1>;
 		qcom,msm-mbhc-hphl-swh = <0>;
 		qcom,msm-mbhc-gnd-swh = <0>;
