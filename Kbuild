@@ -51,6 +51,10 @@ dtbo-y += canoe-audio.dtbo \
                 canoe-audio-hamilton-rcm.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_VIENNA), y)
+dtbo-y += vienna-audio.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
