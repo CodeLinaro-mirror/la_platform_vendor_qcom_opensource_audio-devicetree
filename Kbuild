@@ -53,6 +53,13 @@ dtbo-y += canoe-audio.dtbo \
                 canoe-audio-hamilton-rcm.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_QTI_VM), y)
+dtbo-y +=  lemans-vm-lv-audio.dtbo
+dtbo-y +=  lemans-vm-la-audio.dtbo
+dtbo-y +=  monaco-vm-la-audio.dtbo
+dtbo-y +=  monaco-vm-lv-audio.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
