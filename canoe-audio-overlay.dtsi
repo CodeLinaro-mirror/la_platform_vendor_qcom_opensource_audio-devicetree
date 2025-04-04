@@ -34,7 +34,19 @@
 		compatible = "qcom,lpass-cdc-va-macro";
 		clock-names = "lpass_audio_hw_vote";
 		clocks = <&lpass_audio_hw_vote 0>;
-		qcom,va-dmic-sample-rate = <600000>;
+		/*
+		 * Clk divding factors for each DMIC pair.
+		 * Valid entries for each DMIC pair:
+		 *	2, 3, 4, 6, 8, 16
+		 *
+		 * These factors are translated to corresponding config values
+		 *  for the following registers,
+		 *   -- LPASS_VA_TOP_CSR_DMIC0_CTL,
+		 *   -- LPASS_VA_TOP_CSR_DMIC1_CTL,
+		 *   -- LPASS_VA_TOP_CSR_DMIC2_CTL,
+		 *   -- LPASS_VA_TOP_CSR_DMIC3_CTL,
+		 */
+		qcom,va-dmic-clk-div-factor = <16 16 16 16>;
 		qcom,va-clk-mux-select = <1>;
 		qcom,default-clk-id = <TX_CORE_CLK>;
 		qcom,use-clk-id = <VA_CORE_CLK>;
@@ -78,7 +90,19 @@
 	tx_macro: tx-macro@6AE0000 {
 		compatible = "qcom,lpass-cdc-tx-macro";
 		qcom,default-clk-id = <TX_CORE_CLK>;
-		qcom,tx-dmic-sample-rate = <2400000>;
+		/*
+		 * Clk divding factors for each DMIC pair.
+		 * Valid entries for each DMIC pair:
+		 *	2, 3, 4, 6, 8, 16
+		 *
+		 * These factors are translated to corresponding config values
+		 *  for the following registers,
+		 *   -- LPASS_VA_TOP_CSR_DMIC0_CTL,
+		 *   -- LPASS_VA_TOP_CSR_DMIC1_CTL,
+		 *   -- LPASS_VA_TOP_CSR_DMIC2_CTL,
+		 *   -- LPASS_VA_TOP_CSR_DMIC3_CTL,
+		 */
+		qcom,tx-dmic-clk-div-factor = <4 4 4 4>;
 		qcom,is-used-swr-gpio = <0>;
 	};
 
@@ -715,6 +739,7 @@
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&spkr_02_sd_n_active>;
 		pinctrl-1 = <&spkr_02_sd_n_sleep>;
+		qcom,lpi-gpios;
 	};
 
 	wsa_spkr_en13: wsa_spkr_en2_pinctrl {
@@ -722,6 +747,7 @@
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&spkr_13_sd_n_active>;
 		pinctrl-1 = <&spkr_13_sd_n_sleep>;
+		qcom,lpi-gpios;
 	};
 
 	wcd939x_rst_gpio: msm_cdc_pinctrl@32 {
