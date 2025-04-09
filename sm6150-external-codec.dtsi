@@ -1,0 +1,113 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+
+#include <bindings/audio-codec-port-types.h>
+#include "sm6150-wcd.dtsi"
+
+&wcd_intr_default {
+	mux {
+		pins = "gpio50";
+	};
+
+	config {
+		pins = "gpio50";
+	};
+};
+
+&sm6150_snd {
+	qcom,model = "sm6150-tavil-snd-card";
+	qcom,tavil_codec = <1>;
+	qcom,ext-disp-audio-rx = <0>;
+	qcom,auxpcm-audio-intf = <0>;
+	qcom,audio-routing =
+		"AIF4 VI", "MCLK",
+		"RX_BIAS", "MCLK",
+		"MADINPUT", "MCLK",
+		"hifi amp", "LINEOUT1",
+		"hifi amp", "LINEOUT2",
+		"AMIC2", "Headset Mic",
+		"Headset Mic", "MIC BIAS2",
+		"AMIC3", "ANCRight Headset Mic",
+		"ANCRight Headset Mic", "MIC BIAS2",
+		"AMIC4", "ANCLeft Headset Mic",
+		"ANCLeft Headset Mic", "MIC BIAS2",
+		"AMIC5", "Handset Mic",
+		"Handset Mic", "MIC BIAS3",
+		"DMIC0", "Digital Mic0",
+		"Digital Mic0", "MIC BIAS1",
+		"DMIC1", "Digital Mic1",
+		"Digital Mic1", "MIC BIAS1",
+		"DMIC2", "Digital Mic2",
+		"Digital Mic2", "MIC BIAS3",
+		"DMIC3", "Digital Mic3",
+		"Digital Mic3", "MIC BIAS3",
+		"DMIC4", "Digital Mic4",
+		"Digital Mic4", "MIC BIAS4",
+		"DMIC5", "Digital Mic5",
+		"Digital Mic5", "MIC BIAS4",
+		"SpkrLeft IN", "SPK1 OUT",
+		"SpkrRight IN", "SPK2 OUT";
+	asoc-codec = <&stub_codec>, <&ext_disp_audio_codec>, <&wcd934x_cdc>,
+			<&wsa881x_11>, <&wsa881x_12>;
+	asoc-codec-names = "msm-stub-codec.1", "msm-ext-disp-audio-codec-rx", "tavil_codec",
+			"wsa-codec1", "wsa-codec2";
+	qcom,wsa-max-devs = <2>;
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&wcd934x_cdc>,
+				  <&lpi_tlmm>;
+};
+
+&slim_aud {
+	status = "okay";
+	tavil_codec {
+		swr3: swr_master {
+			compatible = "qcom,swr-mstr";
+			#address-cells = <2>;
+			#size-cells = <0>;
+			qcom,swr-num-ports = <8>;
+			qcom,swr-port-mapping = <1 SPKR_L 0x1>,
+				<2 SPKR_L_COMP 0xF>, <3 SPKR_L_BOOST 0x3>,
+				<4 SPKR_R 0x1>, <5 SPKR_R_COMP 0xF>,
+				<6 SPKR_R_BOOST 0x3>, <7 SPKR_L_VI 0x3>,
+				<8 SPKR_R_VI 0x3>;
+			qcom,swr_master_id = <1>;
+			qcom,swr-num-dev = <2>;
+			qcom,swr-master-version = <0x1030000>;
+			wsa881x_11: wsa881x@11 {
+				compatible = "qcom,wsa881x";
+				reg = <0x10 0x20170211>;
+				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd1>;
+				qcom,wsa-prefix = "SpkrLeft";
+			};
+
+			wsa881x_12: wsa881x@12 {
+				compatible = "qcom,wsa881x";
+				reg = <0x10 0x20170212>;
+				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd2>;
+				qcom,wsa-prefix = "SpkrRight";
+			};
+
+			wsa881x_13: wsa881x@13 {
+				compatible = "qcom,wsa881x";
+				reg = <0x10 0x21170213>;
+				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd1>;
+				qcom,wsa-prefix = "SpkrLeft";
+			};
+
+			wsa881x_14: wsa881x@14 {
+				compatible = "qcom,wsa881x";
+				reg = <0x10 0x21170214>;
+				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd2>;
+				qcom,wsa-prefix = "SpkrRight";
+			};
+		};
+	};
+};
+
+&dai_slim {
+	status = "okay";
+};
