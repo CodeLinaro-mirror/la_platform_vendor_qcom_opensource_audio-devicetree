@@ -96,6 +96,10 @@
 	status = "disabled";
 };
 
+&swr1 {
+	status = "disabled";
+};
+
 &rx_macro {
 	qcom,is-used-swr-gpio = <0>;
 };
