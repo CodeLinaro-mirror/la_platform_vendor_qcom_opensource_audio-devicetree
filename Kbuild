@@ -52,7 +52,8 @@ dtbo-y += canoe-audio.dtbo \
                 canoe-audio-hamilton-cdp.dtbo \
                 canoe-audio-hamilton-rcm.dtbo \
                 alor-interposer-audio-mtp.dtbo \
-                alor-interposer-audio-rcm.dtbo
+                alor-interposer-audio-rcm.dtbo \
+                alor-interposer-audio-qrd.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
