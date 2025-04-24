@@ -1,6 +1,6 @@
 //
 /* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- * SPDX-License-Identifier: BSD-3-Clause-Clear
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include <bindings/qcom,audio-ext-clk.h>
@@ -78,7 +78,7 @@
 			qcom,noise-gate-mode = <2>;
 			#cooling-cells = <2>;
 
-			swr0: wsa_swr_master {
+		swr0: wsa_swr_master {
 				compatible = "qcom,swr-mstr";
 				#address-cells = <2>;
 				#size-cells = <0>;
@@ -182,7 +182,7 @@
 						<4 SWRM_TX3_CH1 0x1>, <4 SWRM_TX3_CH2 0x2>,
 						<4 SWRM_TX3_CH3 0x4>, <4 SWRM_TX3_CH4 0x8>,
 						<5 SWRM_TX_PCM_IN 0x3>;
-				qcom,swr-num-dev = <5>;//I think this is fixed?
+				qcom,swr-num-dev = <5>;
 				qcom,swr-clock-stop-mode0 = <1>;
 				qcom,swr-mstr-irq-wakeup-capable = <1>;
 				qcom,is-always-on = <1>;
@@ -208,4 +208,17 @@
 			qcom,is-used-swr-gpio = <0>;
 		};
 	};
+};
+
+
+&adsp_loader {
+	status = "ok";
+};
+
+&aliases {
+	swr0 = "/soc/spf_core_platform/lpass-cdc/wsa-macro@6B00000/wsa_swr_master";
+	swr1 = "/soc/spf_core_platform/lpass-cdc/rx-macro@6AC0000/rx_swr_master";
+	swr2 = "/soc/spf_core_platform/lpass-cdc/va-macro@7660000/va_swr_master";
+	swr3 = "/soc/spf_core_platform/lpass-cdc/wsa2-macro@6AA0000/wsa2_swr_master";
+	swr4 = "/soc/spf_core_platform/lpass_bt_swr@6CA0000/bt_swr_mstr";
 };
