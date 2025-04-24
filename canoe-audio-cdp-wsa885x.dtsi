@@ -3,7 +3,9 @@
  * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
-#include "canoe-audio-overlay.dtsi"
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "wsa884x.dtsi"
+#include "wcd939x.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
@@ -33,6 +35,45 @@
 
 &swr_haptics {
 	status = "disabled";
+};
+
+&wcd939x_tx_slave {
+	status = "okay";
+};
+
+&wcd939x_rx_slave {
+	status = "okay";
+};
+
+&wcd939x_codec {
+	status = "okay";
+	/* 0 for digital crosstalk disabled,
+	 * 1 for digital crosstalk with local sensed a-xtalk enabled, and
+	 * 2 for digital crosstalk with remote sensed a-xtalk enabled.
+	 */
+	qcom,usbcss-hs-xtalk-config = <0>;
+	qcom,usbcss-hs-rdson = <600>;
+	qcom,usbcss-hs-r2 = <7550>;
+	qcom,usbcss-hs-r3 = <1>;
+	qcom,usbcss-hs-r4 = <330>;
+	qcom,usbcss-hs-r5 = <5>;
+	qcom,usbcss-hs-r6 = <1>;
+	qcom,usbcss-hs-r7 = <5>;
+	qcom,usbcss-hs-lin-k-aud = <13>;
+	qcom,usbcss-hs-lin-k-gnd = <13>;
+
+};
+
+&swr0 {
+	qcom,swr-num-dev = <2>;
+};
+
+&swr1 {
+	qcom,swr-num-dev = <1>;
+};
+
+&swr3 {
+	qcom,swr-num-dev = <2>;
 };
 
 &canoe_snd {
@@ -129,4 +170,6 @@
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+				  <&lpass_cdc>, <&lpass_bt_swr>;
 };
