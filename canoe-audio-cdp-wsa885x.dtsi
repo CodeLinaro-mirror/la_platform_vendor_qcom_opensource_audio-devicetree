@@ -151,6 +151,9 @@
 		"VA DMIC5", "VA MIC BIAS4",
 		"VA DMIC6", "VA MIC BIAS3",
 		"VA DMIC7", "VA MIC BIAS4";
+	qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
+	qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
+	qcom,cdc-dmic45-gpios = <&cdc_dmic45_gpios>;
 	qcom,cdc-dmic67-gpios = <&cdc_dmic67_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
