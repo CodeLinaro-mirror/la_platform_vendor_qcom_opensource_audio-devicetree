@@ -1,6 +1,5 @@
-//
-/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- * SPDX-License-Identifier: BSD-3-Clause-Clear
+/*
+ * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include <bindings/qcom,audio-ext-clk.h>
@@ -74,9 +73,6 @@
 
 	lpi_tlmm: lpi_pinctrl@07760000 {
 		compatible = "qcom,lpi-pinctrl";
-		reg = <0x07760000 0x0>;
-		qcom,gpios-count = <23>;
-		qcom,slew-reg = <0x07760000 0x0>;
 		gpio-controller;
 		#gpio-cells = <2>;
 		qcom,lpi-offset-tbl = <0x00000000>, <0x00001000>,
@@ -122,9 +118,7 @@
 		clocks = <&lpass_core_hw_vote 0>,
 				<&lpass_audio_hw_vote 0>;
 	};
-
 };
-
 &adsp_loader {
 	/delete-property/ qcom,adsp-state;
 };

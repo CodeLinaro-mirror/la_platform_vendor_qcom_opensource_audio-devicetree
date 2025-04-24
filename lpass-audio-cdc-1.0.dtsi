@@ -25,8 +25,6 @@
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 			qcom,fs-gen-sequence = <0x3000 0x1 0x1>, <0x3004 0x3 0x3>,
 					<0x3004 0x3 0x1>, <0x3080 0x2 0x2>;
-			qcom,rx_mclk_mode_muxsel = <0x06BEC0D8>;
-			qcom,wsa_mclk_mode_muxsel = <0x06BEA110>;
 		clock-names = "tx_core_clk", "rx_core_clk", "wsa_core_clk",
 				"wsa2_core_clk", "rx_tx_core_clk",
 				"wsa_tx_core_clk", "wsa2_tx_core_clk",
@@ -40,7 +38,7 @@
 		rx_macro: rx-macro@6AC0000 {
 			compatible = "qcom,lpass-cdc-rx-macro";
 			qcom,rx-swr-gpios = <&rx_swr_gpios>;
-			qcom,rx_mclk_mode_muxsel = <0x06BEC0D8>;
+
 			qcom,rx-bcl-pmic-params = /bits/ 8 <0x00 0x03 0x48>;
 			qcom,default-clk-id = <RX_TX_CORE_CLK>;
 			clock-names = "rx_mclk2_2x_clk";
@@ -104,7 +102,6 @@
 
 		wsa2_macro: wsa2-macro@6AA0000 {
 			compatible = "qcom,lpass-cdc-wsa2-macro";
-			wsa_data_fs_ctl_reg = <0x6B6F000>;
 			qcom,wsa2-swr-gpios = <&wsa2_swr_gpios>;
 			qcom,wsa-bat-cfgs= <1>, <1>;
 			qcom,wsa-rloads= <2>, <2>;
