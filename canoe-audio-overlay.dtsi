@@ -370,21 +370,7 @@
 };
 
 &soc {
-	wsa_spkr_en02: wsa_spkr_en1_pinctrl {
-		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&spkr_02_sd_n_active>;
-		pinctrl-1 = <&spkr_02_sd_n_sleep>;
-		qcom,lpi-gpios;
-	};
 
-	wsa_spkr_en13: wsa_spkr_en2_pinctrl {
-		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&spkr_13_sd_n_active>;
-		pinctrl-1 = <&spkr_13_sd_n_sleep>;
-		qcom,lpi-gpios;
-	};
 
 	wcd939x_rst_gpio: msm_cdc_pinctrl@32 {
 		compatible = "qcom,msm-cdc-pinctrl";
@@ -395,20 +381,6 @@
 
 
 
-	clock_audio_bt_swr_mclk_clk: bt_swr_mclk_clk {
-		compatible = "qcom,audio-ref-clk";
-		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_15>;
-		qcom,codec-lpass-ext-clk-freq = <24576000>;
-		qcom,codec-lpass-clk-id = <0x31A>;
-		#clock-cells = <1>;
-	};
 
-	clock_audio_bt_swr_mclk_clk_2x: bt_swr_mclk_clk_2x {
-		compatible = "qcom,audio-ref-clk";
-		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_16>;
-		qcom,codec-lpass-ext-clk-freq = <24576000>;
-		qcom,codec-lpass-clk-id = <0x31B>;
-		#clock-cells = <1>;
-	};
 };
 
