@@ -6,6 +6,7 @@
 &wsa2_macro {
 	reg = <0x6AA0000 0x0>;
 	wsa_data_fs_ctl_reg = <0x6B6F000>;
+	qcom,wsa2-swr-gpios = <&wsa2_swr_gpios>;
 };
 
 &swr0 {
@@ -21,6 +22,7 @@
 &rx_macro {
 	reg = <0x6AC0000 0x0>;
 	qcom,rx_mclk_mode_muxsel = <0x06BEC0D8>;
+	qcom,rx-swr-gpios = <&rx_swr_gpios>;
 };
 
 &lpi_tlmm {
@@ -47,6 +49,7 @@
 &wsa_macro {
 	reg = <0x6B00000 0x0>;
 	wsa_data_fs_ctl_reg = <0x6B6F000>;
+	qcom,wsa-swr-gpios = <&wsa_swr_gpios>;
 };
 
 &swr2 {
@@ -57,4 +60,5 @@
 
 &va_macro {
 	reg = <0x7660000 0x0>;
+	qcom,va-swr-gpios = <&va_swr_gpios>;
 };
