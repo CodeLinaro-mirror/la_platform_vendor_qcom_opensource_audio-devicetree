@@ -1,0 +1,25 @@
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
+ */
+
+#include <bindings/qcom,audio-ext-clk.h>
+#include <bindings/qcom,lpass-cdc-clk-rsc.h>
+#include <bindings/audio-codec-port-types.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include "lpass-audio-clk.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+&spf_core_platform {
+	lpass_cdc:lpass-cdc {
+		compatible = "qcom,lpass-cdc";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		clock-names = "lpass_core_hw_vote",
+				"lpass_audio_hw_vote";
+		clocks = <&lpass_core_hw_vote 0>,
+				<&lpass_audio_hw_vote 0>;
+		qcom,num-macros = <5>;
+		qcom,lpass-cdc-version = <7>;
+	};
+};
