@@ -47,6 +47,10 @@
 		 *   -- LPASS_VA_TOP_CSR_DMIC3_CTL,
 		 */
 		qcom,va-dmic-clk-div-factor = <16 16 16 16>;
+		/* Property to override the qcom,va-dmic-clk-div-factor
+		 * for sampling rates hgher than 16kHz.
+                 */
+		qcom,va-dmic-override-clk-div-factor = <4 4 4 4>;
 		qcom,va-clk-mux-select = <1>;
 		qcom,default-clk-id = <TX_CORE_CLK>;
 		qcom,use-clk-id = <VA_CORE_CLK>;
