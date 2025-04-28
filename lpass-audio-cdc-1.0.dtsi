@@ -1,6 +1,6 @@
 //
 /* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- *  SPDX-License-Identifier: BSD-3-Clause-Clear
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include <bindings/qcom,audio-ext-clk.h>
@@ -8,8 +8,8 @@
 #include <bindings/audio-codec-port-types.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include "lpass-audio-clk.dtsi"
-#include "lpass-audio-bt-swr.dtsi"
-#include "lpass-cdc-gpio.dtsi"
+
+
 &spf_core_platform {
 	lpass_cdc:lpass-cdc {
 		compatible = "qcom,lpass-cdc";
@@ -37,8 +37,6 @@
 
 		rx_macro: rx-macro@6AC0000 {
 			compatible = "qcom,lpass-cdc-rx-macro";
-			qcom,rx-swr-gpios = <&rx_swr_gpios>;
-
 			qcom,rx-bcl-pmic-params = /bits/ 8 <0x00 0x03 0x48>;
 			qcom,default-clk-id = <RX_TX_CORE_CLK>;
 			clock-names = "rx_mclk2_2x_clk";
@@ -69,7 +67,6 @@
 
 		wsa_macro: wsa-macro@6B00000 {
 			compatible = "qcom,lpass-cdc-wsa-macro";
-			qcom,wsa-swr-gpios = <&wsa_swr_gpios>;
 			qcom,wsa-bcl-pmic-params = /bits/ 8 <0x00 0x03 0x48>;
 			qcom,default-clk-id = <WSA_TX_CORE_CLK>;
 			qcom,thermal-max-state = <11>;
@@ -102,7 +99,6 @@
 
 		wsa2_macro: wsa2-macro@6AA0000 {
 			compatible = "qcom,lpass-cdc-wsa2-macro";
-			qcom,wsa2-swr-gpios = <&wsa2_swr_gpios>;
 			qcom,wsa-bat-cfgs= <1>, <1>;
 			qcom,wsa-rloads= <2>, <2>;
 			qcom,wsa-system-gains= <0 9>, <0 9>;
@@ -138,7 +134,6 @@
 		va_macro: va-macro@7660000 {
 			compatible = "qcom,lpass-cdc-va-macro";
 			clock-names = "lpass_audio_hw_vote";
-			qcom,va-swr-gpios = <&va_swr_gpios>;
 			clocks = <&lpass_audio_hw_vote 0>;
 		/*
 		 * Clk divding factors for each DMIC pair.
@@ -183,6 +178,12 @@
 				qcom,swr-clock-stop-mode0 = <1>;
 				qcom,swr-mstr-irq-wakeup-capable = <1>;
 				qcom,is-always-on = <1>;
+			};
+		};
+
+		lpass_bt_swr: lpass_bt_swr@6CA0000 {
+			compatible = "qcom,lpass-bt-swr";
+			swr4: bt_swr_mstr {
 			};
 		};
 
