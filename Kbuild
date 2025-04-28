@@ -57,10 +57,14 @@ endif
 
 ifeq ($(CONFIG_ARCH_YUPIK), y)
 dtbo-y += yupik-iot-audio.dtbo \
-		yupik-iot-audio-idp-overlay.dtbo \
-		yupik-iot-audio-hsp-overlay.dtbo \
-		yupik-iot-audio-qrd-overlay.dtbo \
-		yupik-iot-audio-idps-amoled-overlay.dtbo
+                yupik-iot-audio-idp-overlay.dtbo \
+                yupik-iot-audio-hsp-overlay.dtbo \
+                yupik-iot-audio-qrd-overlay.dtbo \
+                yupik-iot-audio-idps-amoled-overlay.dtbo \
+                yupikp-iot-audio-hsp-overlay.dtbo \
+                yupikp-iot-audio-idp-overlay.dtbo \
+                yupikp-iot-audio-idps-amoled-overlay.dtbo \
+                yupikp-iot-audio-qrd-overlay.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
