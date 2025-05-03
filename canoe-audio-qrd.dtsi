@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  */
 
 #include "canoe-audio-overlay.dtsi"
@@ -96,6 +96,10 @@
 	status = "disabled";
 };
 
+&swr1 {
+	status = "disabled";
+};
+
 &rx_macro {
 	qcom,is-used-swr-gpio = <0>;
 };
@@ -152,4 +156,5 @@
 		"VA_AIF2 CAP", "VA_SWR_CLK",
 		"VA_AIF3 CAP", "VA_SWR_CLK";
 	qcom,wcd-disabled = <1>;
+	qcom,wcn-bt-ext = <1>;
 };
