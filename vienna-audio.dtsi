@@ -1,0 +1,96 @@
+/*
+ * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include <bindings/qcom,audio-ext-clk.h>
+#include <bindings/qcom,gpr.h>
+#include "msm-audio-lpass.dtsi"
+
+&soc {
+
+	spf_core_platform: spf_core_platform {
+		compatible = "qcom,spf-core-platform";
+	};
+
+	lpass_audio_hw_vote: vote_lpass_audio_hw {
+		//compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_AUDIO_HW_VOTE>;
+		#clock-cells = <1>;
+	};
+
+	qcom,glinkpkt {
+		compatible = "qcom,glinkpkt";
+
+		qcom,glinkpkt-q6-audio-ctrl {
+			qcom,glinkpkt-edge = "adsp";
+			qcom,glinkpkt-ch-name = "audio_cdc_apps_ar";
+			qcom,glinkpkt-dev-name = "glinkpkt_q6_audio_ctrl";
+		};
+	};
+
+	q6codec_core_ipc: qcom,q6codec_core_ipc {
+		qcom,glink-channels = "audio_cdc_apps_cc";
+		qcom,intents = <0x2000 2>;
+	};
+
+	q6codec_core_platform: qcom,q6codec_core_platform {
+		compatible = "qcom,q6codec-core-platform";
+		vienna_snd: sound {
+			compatible = "qcom,vienna-asoc-snd";
+		};
+	};
+
+};
+
+
+&remoteproc_adsp_glink {
+	audio_gpr: qcom,gpr {
+		compatible = "qcom,gpr";
+		qcom,glink-channels = "adsp_apps";
+		qcom,intents = <0x200 20>;
+		qcom,ch-sched-rt;
+		reg = <GPR_DOMAIN_ADSP>;
+
+		spf_core {
+			compatible = "qcom,spf_core";
+			reg = <GPR_SVC_ADSP_CORE>;
+		};
+
+		audio-pkt {
+			compatible = "qcom,audio-pkt";
+			qcom,audiopkt-ch-name = "apr_audio_svc";
+			reg = <GPR_SVC_MAX>;
+		};
+
+		audio_prm: q6prm {
+			compatible = "qcom,audio_prm";
+			reg = <GPR_SVC_ASM>;
+		};
+	};
+};
+
+&spf_core_platform {
+	msm_audio_ion: qcom,msm-audio-ion {
+		compatible = "qcom,msm-audio-ion";
+		qcom,smmu-version = <2>;
+		qcom,smmu-enabled;
+		iommus = <&apps_smmu 0x01c1 0x0>;
+		qcom,smmu-sid-mask = /bits/ 64 <0xf>;
+		qcom,iommu-dma-addr-pool = <0x10000000 0x10000000>;
+	};
+
+};
+
+
+&vienna_snd {
+	qcom,model = "vienna-snd-card";
+        asoc-codec  = <&stub_codec>;
+        asoc-codec-names = "msm-stub-codec.1";
+        qcom,msm_audio_ssr_devs = <&audio_gpr>;
+};
+
+&adsp_loader {
+        status = "ok";
+};
+
