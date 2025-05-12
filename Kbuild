@@ -43,6 +43,7 @@ dtbo-y += canoe-audio.dtbo \
                 canoe-audio-cdp-wsa885x.dtbo \
                 canoe-audio-cdp.dtbo \
                 canoe-audio-qrd.dtbo \
+                canoe-audio-hdk.dtbo \
                 canoe-audio-qrd-sku2.dtbo \
                 canoe-audio-rcm.dtbo \
                 canoe-audio-mtp-qmp.dtbo \
