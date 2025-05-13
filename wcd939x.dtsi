@@ -10,7 +10,6 @@
 	};
 };
 
-
 &swr2 {
 
 	wcd939x_tx_slave: wcd939x-tx-slave {

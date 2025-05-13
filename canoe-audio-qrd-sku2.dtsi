@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: BSD-3-Clause-Clear.
  */
 
-#include "lpass-audio-cdc-1.0.dtsi"
 #include "canoe-lpi.dtsi"
+#include "lpass-audio-cdc-1.0.dtsi"
 #include "lpass-audio-bt-swr.dtsi"
 #include "lpass-cdc-gpio.dtsi"
+#include "canoe-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
 #include "wcd939x.dtsi"
-#include "canoe-audio-lpass-reg.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
 &swr_tx_clk_active {
@@ -37,15 +37,9 @@
 };
 
 &swr3 {
-	qcom,swr-num-dev = <2>;
-};
-
-&swr2 {
-	qcom,swr-num-dev = <2>;
-};
-
-&swr1 {
-	qcom,swr-num-dev = <1>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "okay";
+	};
 };
 
 &wcd939x_tx_slave {
@@ -87,11 +81,11 @@
 	qcom,audio-core-list = <0>, <1>;
 	qcom,wsa8855-supported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-		      <&wcd939x_codec>, <&swr_haptics>,
-		      <&wsa8855_0230>;
+			<&wcd939x_codec>, <&swr_haptics>,
+			<&wsa8855_0230>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			   "wcd939x_codec", "swr-haptics",
-			   	"sdca-simple-amp.01";
+			"wcd939x_codec", "swr-haptics",
+			"sdca-simple-amp.01";
 	qcom,wsa-max-devs = <1>;
 	qcom,wcn-bt-ext = <1>;
 	qcom,dedicated-wsa2;
@@ -142,7 +136,7 @@
 	qcom,msm-mbhc-gnd-swh = <0>;
 	wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
-				  <&lpass_cdc>, <&lpass_bt_swr>;
+			<&lpass_cdc>, <&lpass_bt_swr>;
 		/*
 		 * ====================
 		 * UPD backend - WSA
@@ -164,30 +158,29 @@
 		qcom,upd_backends_used = "wsa";
 		qcom,upd_lpass_reg_addr = <0x6B00418 0x6B14020>;
 		qcom,upd_ear_pa_reg_addr = <0x3430>;
-
 		/*
-		 * ====================
-		 * UPD backend - WCD
-		 * ====================
-		 *
-		 * Mute/Unmute the interpolator
-		 * ------------------------------
-		 * Register: LPASS_WCD_CDC_RX0_RX_PATH_MIX_CTL - 0x6AC0418
-		 *
-		 * Send control commands to the wcd from the soundwire controller
-		 * ----------------------------------------------------------------
-		 * Register: LPASS_WCD_SWR_MSTR_WSA_SWRM_CPUn_CMD_FIFO_WR_CMD - 0x7634020
-		 *
-		 * Enable/Disable ear piece
-		 * --------------------------
-		 * Register: DIG_CTRL0_PA_FSM_EN - 0x300A
-		 *
-		 */
+		* ====================
+		* UPD backend - WCD
+		* ====================
+		*
+		* Mute/Unmute the interpolator
+		* ------------------------------
+		* Register: LPASS_WCD_CDC_RX0_RX_PATH_MIX_CTL - 0x6AC0418
+		*
+		* Send control commands to the wcd from the soundwire controller
+		* ----------------------------------------------------------------
+		* Register: LPASS_WCD_SWR_MSTR_WSA_SWRM_CPUn_CMD_FIFO_WR_CMD - 0x7634020
+		*
+		* Enable/Disable ear piece
+		* --------------------------
+		* Register: DIG_CTRL0_PA_FSM_EN - 0x300A
+		*
+		*/
 		/*
-		 * qcom,upd_backends_used = "wcd";
-		 * qcom,upd_lpass_reg_addr = <0x6AC0418 0x7634020>;
-		 * qcom,upd_ear_pa_reg_addr = <0x300A>;
-		 */
+		* qcom,upd_backends_used = "wcd";
+		* qcom,upd_lpass_reg_addr = <0x6AC0418 0x7634020>;
+		* qcom,upd_ear_pa_reg_addr = <0x300A>;
+		*/
 };
 
 &wsa884x_0220 {

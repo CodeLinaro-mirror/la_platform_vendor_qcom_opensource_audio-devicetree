@@ -31,26 +31,20 @@
 	qcom,wsa-system-gains= <0 9>, <0 9>;
 };
 
-&swr0 {
-	qcom,swr-num-dev = <2>;
-};
-
-&swr1 {
-	qcom,swr-num-dev = <1>;
-};
-
 &swr3 {
-	qcom,swr-num-dev = <1>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "disabled";
+	};
 };
 
 &swr0 {
-wsa884x_0220: wsa884x@02170220 {
-	status = "okay";
-};
+	wsa884x_0220: wsa884x@02170220 {
+		status = "okay";
+	};
 
-wsa884x_0221: wsa884x@02170221 {
-	status = "okay";
-};
+	wsa884x_0221: wsa884x@02170221 {
+		status = "okay";
+	};
 
 };
 

@@ -74,5 +74,20 @@
 		qcom,codec-lpass-clk-id = <0x318>;
 		#clock-cells = <1>;
 	};
+	clock_audio_bt_swr_mclk_clk: bt_swr_mclk_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_15>;
+		qcom,codec-lpass-ext-clk-freq = <24576000>;
+		qcom,codec-lpass-clk-id = <0x31A>;
+		#clock-cells = <1>;
+	};
+
+	clock_audio_bt_swr_mclk_clk_2x: bt_swr_mclk_clk_2x {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_16>;
+		qcom,codec-lpass-ext-clk-freq = <24576000>;
+		qcom,codec-lpass-clk-id = <0x31B>;
+		#clock-cells = <1>;
+	};
 
 };
