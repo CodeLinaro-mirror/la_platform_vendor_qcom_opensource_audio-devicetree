@@ -36,10 +36,6 @@
 	status = "disabled";
 };
 
-&swr_haptics {
-	status = "disabled";
-};
-
 &wcd939x_tx_slave {
 	status = "okay";
 };
@@ -65,18 +61,6 @@
 	qcom,usbcss-hs-lin-k-aud = <13>;
 	qcom,usbcss-hs-lin-k-gnd = <13>;
 
-};
-
-&swr0 {
-	qcom,swr-num-dev = <2>;
-};
-
-&swr1 {
-	qcom,swr-num-dev = <1>;
-};
-
-&swr3 {
-	qcom,swr-num-dev = <2>;
 };
 
 &canoe_snd {

@@ -124,10 +124,10 @@
 			    &swr_tx_data1_active &swr_tx_data2_active>;
 		pinctrl-1 = <&swr_tx_clk_sleep &swr_tx_data0_sleep
 			    &swr_tx_data1_sleep &swr_tx_data2_sleep>;
-		qcom,lpi-gpios;
 		qcom,chip-wakeup-reg = <0xf1a4008>;
 		qcom,chip-wakeup-maskbit = <7>;
 		qcom,chip-wakeup-default-val = <0x1>;
+		qcom,lpi-gpios;
 		#gpio-cells = <0>;
 	};
 

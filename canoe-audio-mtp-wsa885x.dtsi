@@ -12,9 +12,6 @@
 #include "wcd939x.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
-&lpass_cdc {
-	qcom,num-macros = <5>;
-};
 
 &wsa884x_0220 {
 	status = "disabled";
@@ -34,6 +31,7 @@
 
 &wsa2_macro {
 	status = "okay";
+	qcom,wsa-bat-cfgs= <1>, <1>;
 };
 
 &swr_haptics {
@@ -67,16 +65,10 @@
 
 };
 
-&swr0 {
-	qcom,swr-num-dev = <2>;
-};
-
-&swr1 {
-	qcom,swr-num-dev = <1>;
-};
-
 &swr3 {
-	qcom,swr-num-dev = <2>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "okay";
+	};
 };
 
 &canoe_snd {
@@ -147,6 +139,8 @@
 	qcom,wsa-max-devs = <1>;
 	qcom,wcn-bt-ext = <1>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
+	qcom,msm-mbhc-usbc-audio-supported = <1>;
+	qcom,msm-mbhc-hphl-swh = <0>;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <1>;

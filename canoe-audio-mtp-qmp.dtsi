@@ -38,6 +38,9 @@
 
 &swr3 {
 	qcom,swr-num-dev = <2>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "okay";
+	};
 };
 
 &swr2 {

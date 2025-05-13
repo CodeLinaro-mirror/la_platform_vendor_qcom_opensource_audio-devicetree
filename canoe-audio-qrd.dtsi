@@ -2,7 +2,6 @@
 /* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
-
 #include "lpass-audio-cdc-1.0.dtsi"
 #include "canoe-lpi.dtsi"
 #include "lpass-audio-bt-swr.dtsi"
@@ -18,12 +17,20 @@
 	qcom,wsa-system-gains= <0 9>, <0 9>;
 };
 
-&swr0 {
-	qcom,swr-num-dev = <2>;
+&wsa2_macro {
+	wsa_data_fs_ctl_reg = <0x6B6F000>;
+	qcom,wsa-bat-cfgs= <2>, <2>;
+	qcom,wsa-rloads= <2>, <2>;
+	qcom,wsa-system-gains= <0 9>, <0 9>;
+};
+
+&swr1 {
+	status = "disabled";
 
 };
 
 &swr0{
+	status = "okay";
 	wsa884x_0220: wsa884x@02170220 {
 		status = "okay";
 	};
@@ -33,13 +40,12 @@
 	};
 };
 
-&swr1 {
-	qcom,swr-num-dev = <1>;
 
-};
 
 &swr3 {
-	qcom,swr-num-dev = <2>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "okay";
+	};
 
 };
 
@@ -71,9 +77,6 @@
 	status = "disabled";
 };
 
-&swr1 {
-	status = "disabled";
-};
 
 &swr2 {
 	qmp01: qmp@04170232 {
@@ -158,23 +161,21 @@
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <1>;
-	qcom,ext-disp-audio-rx = <1>;
 	qcom,tdm-max-slots = <8>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
-
-
+	qcom,ext-disp-audio-rx = <1>;
+	qcom,qmp-mic = <1>;
+	qcom,wsa-max-devs = <2>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&swr_haptics>,	<&wsa884x_0220>, <&wsa884x_0221>,
-			<&qmp01>, <&qmp02>,
+			<&swr_haptics>,	<&wsa884x_0220>,
+			<&wsa884x_0221>, <&qmp01>, <&qmp02>,
 			<&qmp03>, <&qmp04>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 		"swr-haptics", "wsa-codec1", "wsa-codec2",
 		"qmp-dmic.01", "qmp-dmic.02",
 		"qmp-dmic.03", "qmp-dmic.04";
-	qcom,qmp-mic = <1>;
-	qcom,wsa-max-devs = <2>;
 	qcom,dedicated-wsa2;
 	qcom,audio-routing =
 		"HAP_IN", "WSA2_HAPT OUT",
@@ -201,9 +202,13 @@
 		"VA_AIF3 CAP", "VA_SWR_CLK";
 	qcom,wcd-disabled = <1>;
 	qcom,wcn-bt-ext = <1>;
+	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
+	qcom,msm-mbhc-usbc-audio-supported = <1>;
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
-				  <&lpass_cdc>, <&lpass_bt_swr>;
-				/*
+				<&lpass_cdc>, <&lpass_bt_swr>;
+		/*
 		 * ====================
 		 * UPD backend - WSA
 		 * ====================

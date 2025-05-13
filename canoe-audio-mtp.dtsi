@@ -19,16 +19,10 @@
 	qcom,wsa-system-gains= <0 9>, <0 9>;
 };
 
-&swr0 {
-	qcom,swr-num-dev = <2>;
-};
-
-&swr1 {
-	qcom,swr-num-dev = <1>;
-};
-
 &swr3 {
-	qcom,swr-num-dev = <2>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "okay";
+	};
 };
 
 &swr0 {
