@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <bindings/qcom,audio-ext-clk.h>
@@ -485,10 +485,12 @@
 		qcom,msm-mbhc-usbc-audio-supported = <0>;
 		qcom,msm-mbhc-hphl-swh = <1>;
 		qcom,msm-mbhc-gnd-swh = <1>;
+		qcom,tdm-audio-intf = <1>;
 
 		qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
 		qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
 		qcom,cdc-dmic45-gpios = <&cdc_dmic45_gpios>;
+		qcom,sec-mi2s-gpios = <&cdc_sec_mi2s_gpios>;
 		asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			      <&wcd939x_codec>, <&swr_haptics>,
 			      <&wsa884x_0220>, <&wsa884x_0221>;
@@ -554,6 +556,16 @@
 				&i2s0_sd0_active &i2s0_sd1_active>;
 		pinctrl-1 = <&i2s0_sck_sleep &i2s0_ws_sleep
 				&i2s0_sd0_sleep &i2s0_sd1_sleep>;
+		#gpio-cells = <0>;
+	};
+
+	cdc_sec_mi2s_gpios: sec_mi2s_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&tdm1_clk_active &tdm1_ws_active
+				&tdm1_sd0_active &tdm1_sd1_active>;
+		pinctrl-1 = <&tdm1_clk_sleep &tdm1_ws_sleep
+				&tdm1_sd0_sleep &tdm1_sd1_sleep>;
 		#gpio-cells = <0>;
 	};
 
