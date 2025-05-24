@@ -3,7 +3,367 @@
  *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 #include <dt-bindings/gpio/gpio.h>
+
 &lpi_tlmm {
+
+/* Need to remove these one kernel patch is available*/
+#if 1 
+L1G: L1G {
+
+};
+
+
+i2s0_sd0 {
+		i2s0_sd0_sleep: i2s0_sd0_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s0_sd0_active: i2s0_sd0_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s0_sd1 {
+		i2s0_sd1_sleep: i2s0_sd1_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s0_sd1_active: i2s0_sd1_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s0_sck {
+		i2s0_sck_sleep: i2s0_sck_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s0_sck_active: i2s0_sck_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s0_ws {
+		i2s0_ws_sleep: i2s0_ws_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s0_ws_active: i2s0_ws_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s1_sck {
+		i2s1_sck_sleep: i2s1_sck_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s1_sck_active: i2s1_sck_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s1_ws {
+		i2s1_ws_sleep: i2s1_ws_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s1_ws_active: i2s1_ws_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s1_sd0 {
+		i2s1_sd0_sleep: i2s1_sd0_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s1_sd0_active: i2s1_sd0_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	i2s1_sd1 {
+		i2s1_sd1_sleep: i2s1_sd1_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		i2s1_sd1_active: i2s1_sd1_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm0_clk {
+		tdm0_clk_sleep: tdm0_clk_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm0_clk_active: tdm0_clk_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm0_ws {
+		tdm0_ws_sleep: tdm0_ws_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm0_ws_active: tdm0_ws_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm0_sd0 {
+		tdm0_sd0_sleep: tdm0_sd0_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm0_sd0_active: tdm0_sd0_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm0_sd1 {
+		tdm0_sd1_sleep: tdm0_sd1_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm0_sd1_active: tdm0_sd1_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm1_clk {
+		tdm1_clk_sleep: tdm1_clk_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm1_clk_active: tdm1_clk_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm1_ws {
+		tdm1_ws_sleep: tdm1_ws_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm1_ws_active: tdm1_ws_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm1_sd0 {
+		tdm1_sd0_sleep: tdm1_sd0_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm1_sd0_active: tdm1_sd0_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	tdm1_sd1 {
+		tdm1_sd1_sleep: tdm1_sd1_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		tdm1_sd1_active: tdm1_sd1_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	/* Need to remove this entries */
+	hap_swr_slave_reg: hap_swr_slave_reg {
+
+	};
+
+	/* Need to remove this entries */
+	wcd939x_reset_active: wcd939x_reset_active {
+		mux {
+		};
+
+		config {
+		};
+	};
+
+	/* Need to remove this entries */
+	wcd939x_reset_sleep: wcd939x_reset_sleep {
+		mux {
+		};
+
+		config {
+		};
+	};
+
+	/* Need to remove this entries */
+	/* WSA speaker - north reset pins */
+	spkr_02_sd_n {
+		spkr_02_sd_n_sleep: spkr_02_sd_n_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		spkr_02_sd_n_active: spkr_02_sd_n_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+
+	/* Need to remove this entries */
+	/* WSA speaker - south reset pins */
+	spkr_13_sd_n {
+		spkr_13_sd_n_sleep: spkr_13_sd_n_sleep {
+			mux {
+			};
+
+			config {
+			};
+		};
+
+		spkr_13_sd_n_active: spkr_13_sd_n_active {
+			mux {
+			};
+
+			config {
+			};
+		};
+	};
+#endif
 	wsa2_swr_data_active: wsa2_swr_data_active {
 		mux {
 		};

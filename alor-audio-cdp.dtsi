@@ -37,6 +37,33 @@
 	 */
 };
 
+/* Below TAMBORA Entries will be moved to wcd939x.dtsi */
+
+&swr1 {
+	wcd9378_rx_slave: wcd9378-rx-slave {
+
+	};
+
+};
+
+&swr2 {
+	wcd9378_tx_slave: wcd9378-tx-slave {
+
+	};
+};
+
+/* This Needs to be uncommented once wcd_usbss node is available */
+
+	/*
+	 * &wcd_usbss {
+	 * 	status = "diasbled";
+	 *};
+	 */
+&lpass_cdc {
+	wcd9378_codec: wcd9378-codec {
+	};
+};
+
 &wcd9378_tx_slave {
 	status = "disabled";
 };
