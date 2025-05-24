@@ -3,11 +3,11 @@
  *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 #include "alor-audio-cdp.dtsi"
-
+#if 0
 &swr_haptics {
 	status = "disabled";
 };
-
+#endif
 &alor_snd {
 	qcom,wcn-btfm = <0>;
 	qcom,ext-disp-audio-rx = <0>;

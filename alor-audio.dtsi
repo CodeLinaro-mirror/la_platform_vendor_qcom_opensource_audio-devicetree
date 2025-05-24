@@ -171,6 +171,12 @@
 	};
 };
 
+&spf_core_platform {
+	aliases: dummy_alias {
+	//need to remove
+	};
+};
+
 &aliases {
 	swr0 = "/soc/spf_core_platform/lpass-cdc/wsa-macro@6B00000/wsa_swr_master";
 	swr1 = "/soc/spf_core_platform/lpass-cdc/rx-macro@6AC0000/rx_swr_master";
