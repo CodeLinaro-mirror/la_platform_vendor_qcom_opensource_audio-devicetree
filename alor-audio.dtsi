@@ -52,7 +52,8 @@
 };
 
 &spf_core_platform {
-
+	#address-cells = <2>;
+	#size-cells = <2>;
 	msm_audio_ion: qcom,msm-audio-ion {
 		compatible = "qcom,msm-audio-ion";
 		qcom,smmu-version = <2>;
