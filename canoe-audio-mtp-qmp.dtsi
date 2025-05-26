@@ -1,11 +1,47 @@
-// SPDX-License-Identifier: BSD-3-Clause
-/*
- * Copyright (c) 2023-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
-#include "canoe-audio-overlay.dtsi"
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "canoe-lpi.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
+#include "wsa884x.dtsi"
+#include "wcd939x.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
+
+&wsa884x_0220 {
+	status = "disabled";
+};
+
+&wsa884x_0221 {
+	status = "disabled";
+};
+
+&wsa884x_2_0220 {
+	status = "disabled";
+};
+
+&wsa884x_2_0221 {
+	status = "disabled";
+};
+
+&swr1 {
+	qcom,swr-num-dev = <1>;
+};
+
+&swr2 {
+	qcom,swr-num-dev = <2>;
+};
+
+&swr3 {
+	qcom,swr-num-dev = <2>;
+	swr_haptics: swr_haptics@f0170220 {
+		status = "okay";
+	};
+};
 
 &swr2 {
 	qmp01: qmp@04170232 {
@@ -88,6 +124,10 @@
 &canoe_snd {
 	qcom,model = "canoe-mtp-qmp-snd-card";
 	qcom,wsa8855-supported;
+	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,wcn-bt = <1>;
+	qcom,ext-disp-audio-rx = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
 			<&qmp01>, <&qmp02>,
@@ -97,6 +137,10 @@
 		"qmp-dmic.01", "qmp-dmic.02",
 		"qmp-dmic.03", "qmp-dmic.04", "sdca-simple-amp.01";
 	qcom,qmp-mic = <1>;
+	qcom,tdm-max-slots = <8>;
+	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,audio-core-list = <0>, <1>;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
 		"AMIC1", "MIC BIAS1",
@@ -167,20 +211,37 @@
 		"VA DMIC3", "VA MIC BIAS1";
 	qcom,wsa-max-devs = <1>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
-};
-
-&wsa884x_0220 {
-	status = "disabled";
-};
-
-&wsa884x_0221 {
-	status = "disabled";
-};
-
-&wsa884x_2_0220 {
-	status = "disabled";
-};
-
-&wsa884x_2_0221 {
-	status = "disabled";
+	qcom,msm-mbhc-usbc-audio-supported = <1>;
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
+	wcd939x-i2c-handle = <&wcd_usbss>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+				  <&lpass_cdc>, <&lpass_bt_swr>;
+	/*
+	 * Add this property,
+	 * To Enable swr haptics through OPCM port.
+	 * This will include wsa2 dailinks.
+	 */
+	qcom,dedicated-wsa2;
+	/*
+	 * ====================
+	 * UPD backend - WSA
+	 * ====================
+	 *
+	 * Mute/Unmute the interpolator
+	 * ------------------------------
+	 * Register:Â LPASS_WSA_CDC_RX0_RX_PATH_MIX_CTL - 0x6B00418
+	 *
+	 * Send control commands to the peripheral from the soundwire controller
+	 * -----------------------------------------------------------------------
+	 * Register: LPASS_WSA_SWR_MSTR_WSA_SWRM_CPUn_CMD_FIFO_WR_CMD - 0x6B14020
+	 *
+	 * Enable/Disable ear piece
+	 * --------------------------
+	 * Register:Â DIG_CTRL0_PA_FSM_EN - 0x3430
+	 *
+	 */
+	qcom,upd_backends_used = "wsa";
+	qcom,upd_lpass_reg_addr = <0x6B00418 0x6B14020>;
+	qcom,upd_ear_pa_reg_addr = <0x3430>;
 };
