@@ -61,7 +61,7 @@
 
 &swr1 {
 	/*This implementation needs to be there in Machine driver */
-	swr_haptics: swr_haptics@f0170220 {
+	swr_rx_haptics: swr_haptics@f0170220 {
 		status = "okay";
 		reg = <0x03 0xf0170220>;
 		compatible = "qcom,pmih010x-swr-haptics";
@@ -109,8 +109,7 @@
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&swr_haptics>,
-			<&wsa884x_0220>;
+			<&wcd939x_codec>, <&swr_rx_haptics>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd939x_codec", "swr-haptics",
 			"wsa-codec1";
