@@ -71,7 +71,7 @@
 			<OFFSET1_VAL2 LANE0>, <OFFSET1_VAL4 LANE0>,
 			<OFFSET1_VAL21 LANE0>, <OFFSET1_VAL9 LANE0>,
 			<OFFSET1_VAL13 LANE0>, <OFFSET1_VAL25 LANE0>;
-		cdc-vdd-1p8-supply = <&L7B>;
+		cdc-vdd-1p8-supply = <&L15B>;
 		qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-1p8-current = <20000>;
 		qcom,cdc-vdd-1p8-lpm-supported = <1>;

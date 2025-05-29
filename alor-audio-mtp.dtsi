@@ -35,37 +35,26 @@
 	 */
 };
 
+&wcd9378_rx_slave {
+	status = "okay";
+};
+
+&wcd9378_tx_slave {
+	status = "okay";
+};
+
+&wcd9378_codec {
+	status = "okay";
+};
+
+/* This needs to be un commented */
+//&wcd_usbss {
+	//status = "disabled";
+//};
+
 &wsa8855_0230 {
-	vdd-io-supply = <&L1G_LEVEL>;
+	vdd-io-supply = <&L1F>;
 };
-
-/* Below TAMBORA Entries will be moved to wcd939x.dtsi */
-&swr1 {
-	wcd9378_rx_slave: wcd9378-rx-slave {
-	};
-};
-
-&swr2 {
-
-	wcd9378_tx_slave: wcd9378-tx-slave {
-	};
-
-};
-
-&lpass_cdc {
-
-	wcd9378_codec: wcd9378_codec {
-	};
-
-};
-
-/* This Needs to be uncommented once wcd_usbss node is available */
-
-	/*
-	 * &wcd_usbss {
-	 * 	status = "diasbled";
-	 *};
-	 */
 
 &cdc_pri_mi2s_gpios {
 	status = "okay";

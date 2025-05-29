@@ -59,16 +59,11 @@
 
 };
 
-&swr1 {
-	/*This implementation needs to be there in Machine driver */
-	swr_rx_haptics: swr_haptics@f0170220 {
-		status = "okay";
-		reg = <0x03 0xf0170220>;
-		compatible = "qcom,pmih010x-swr-haptics";
-		swr-slave-supply = <&hap_swr_slave_reg>;
-		qcom,rx_swr_ch_map = <0 0x01 0x01 0 PCM_OUT1>;
-	};
+&rx_swr_haptics {
+	status = "okay";
+	swr-slave-supply = <&hap_swr_slave_reg>;
 };
+
 
 &wcd939x_tx_slave {
 	status = "okay";
@@ -109,7 +104,7 @@
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&swr_rx_haptics>;
+			<&wcd939x_codec>, <&rx_swr_haptics>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd939x_codec", "swr-haptics",
 			"wsa-codec1";
@@ -160,7 +155,7 @@
 	qcom,msm-mbhc-gnd-swh = <0>;
 
 	/* This needs to be un commented */
-//	wcd939x-i2c-handle = <&wcd_usbss>;
+	//wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 			<&lpass_cdc>, <&lpass_bt_swr>;
 		/*

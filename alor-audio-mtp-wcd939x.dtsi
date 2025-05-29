@@ -19,6 +19,10 @@
 	status = "disabled";
 };
 
+&wsa8855_0230 {
+	vdd-io-supply = <&L1F>;
+};
+
 &wcd939x_tx_slave {
 	status = "okay";
 };
@@ -31,8 +35,8 @@
 	status = "okay";
 	qcom,cdc-vdd-rx-current = <45000>;
 	qcom,cdc-vdd-tx-current = <45000>;
-	/*This is needs to be removed*/
-	cdc-vdd-px-supply = <&L1G>;
+
+	cdc-vdd-px-supply = <&L1F>;
 	/*
 	 * 0 for digital crosstalk disabled,
 	 * 1 for digital crosstalk with local sensed a-xtalk enabled, and
@@ -40,53 +44,11 @@
 	 */
 };
 
-&wcd9378_tx_slave {
-	status = "disabled";
+&rx_swr_haptics {
+	status = "okay";
+	swr-slave-supply = <&hap_swr_slave_reg>;
 };
 
-&wcd9378_rx_slave {
-	status = "disabled";
-};
-
-&wcd9378_codec {
-	status = "disabled";
-};
-
-&swr1 {
-/* Below TAMBORA Entries will be moved to wcd939x.dtsi */
-	wcd9378_rx_slave: wcd9378-rx-slave {
-
-	};
-
-};
-&swr2 {
-	wcd9378_tx_slave: wcd9378-tx-slave {
-
-	};
-};
-/* This Needs to be uncommented once wcd_usbss node is available */
-        /*
-         * &wcd_usbss {
-         *      status = "diasbled";
-         *};
-         */
-
-&lpass_cdc {
-        wcd9378_codec: wcd9378-codec {
-
-       };
-};
-
-&swr1 {
-	/*This implementation needs to be there in Machine driver */
-	swr_haptics: swr_haptics@f0170220 {
-		status = "okay";
-		reg = <0x03 0xf0170220>;
-		compatible = "qcom,pmih010x-swr-haptics";
-		swr-slave-supply = <&hap_swr_slave_reg>;
-		qcom,rx_swr_ch_map = <0 0x01 0x01 0 PCM_OUT1>;
-	};
-};
 
 &alor_snd {
 	qcom,model = "alor-mtp-wcd939x-snd-card";
@@ -105,7 +67,7 @@
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&swr_haptics>,
+			<&wcd939x_codec>, <&rx_swr_haptics>,
 			<&wsa8855_0230>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd939x_codec", "swr-haptics",

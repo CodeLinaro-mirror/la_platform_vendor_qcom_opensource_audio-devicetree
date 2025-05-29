@@ -67,6 +67,7 @@ dtbo-y += canoe-audio.dtbo \
                 alor-interposer-audio-qrd.dtbo \
                 alor-audio.dtbo \
                 alor-audio-mtp.dtbo \
+                alor-audio-mtp-wcd939x.dtbo \
                 alor-audio-qrd.dtbo \
                 alor-audio-cdp.dtbo \
                 alor-audio-atp.dtbo \
