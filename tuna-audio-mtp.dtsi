@@ -1,0 +1,15 @@
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "tuna-audio-overlay.dtsi"
+
+&wsa_macro {
+	qcom,wsa-bat-cfgs= <1>, <1>;
+};
+
+&tuna_snd {
+	qcom,model = "tuna-mtp-snd-card";
+	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
+};
