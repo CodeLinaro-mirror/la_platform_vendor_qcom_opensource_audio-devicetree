@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -24,6 +24,7 @@
 		compatible = "qcom,gpr";
 		qcom,glink-channels = "adsp_apps";
 		qcom,intents = <0x200 20>;
+		qcom,ch-sched-rt;
 		reg = <GPR_DOMAIN_ADSP>;
 
 		spf_core {
