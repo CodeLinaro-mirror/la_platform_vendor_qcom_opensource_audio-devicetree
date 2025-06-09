@@ -51,6 +51,7 @@ dtbo-y += canoe-audio.dtbo \
                 canoe-audio-atp.dtbo \
                 canoe-audio-mtp-wsa885x.dtbo \
                 canoe-audio-cdp-wsa885x.dtbo \
+                canoe-audio-cdp-pandeiro-i2s.dtbo \
                 canoe-audio-cdp.dtbo \
                 canoe-audio-qrd.dtbo \
                 canoe-audio-hdk.dtbo \
