@@ -44,6 +44,14 @@
 	 */
 };
 
+&cdc_pri_mi2s_gpios {
+	status = "okay";
+	pinctrl-0 = <&i2s0_sck_active &i2s0_ws_active
+			&i2s0_sd0_active>;
+	pinctrl-1 = <&i2s0_sck_sleep &i2s0_ws_sleep
+			&i2s0_sd0_sleep>;
+};
+
 &rx_swr_haptics {
 	status = "okay";
 	swr-slave-supply = <&hap_swr_slave_reg>;
@@ -118,10 +126,11 @@
 	 * To Enable swr haptics through OPCM port.
 	 * This will include wsa2 dailinks.
 	 */
-	//wcd939x-i2c-handle = <&wcd_usbss>;
+	wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,wcd-disable-legacy-surge;
 	qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
 	qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
+	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 				  <&lpass_cdc>, <&lpass_bt_swr>;
 
