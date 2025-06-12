@@ -48,9 +48,9 @@
 };
 
 /* This needs to be un commented */
-//&wcd_usbss {
-	//status = "disabled";
-//};
+&wcd_usbss {
+	status = "disabled";
+};
 
 &wsa8855_0230 {
 	vdd-io-supply = <&L1F>;
@@ -58,6 +58,10 @@
 
 &cdc_pri_mi2s_gpios {
 	status = "okay";
+	pinctrl-0 = <&i2s0_sck_active &i2s0_ws_active
+			&i2s0_sd0_active>;
+	pinctrl-1 = <&i2s0_sck_sleep &i2s0_ws_sleep
+			&i2s0_sd0_sleep>;
 };
 
 &alor_snd {

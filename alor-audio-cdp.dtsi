@@ -53,6 +53,10 @@
 
 &cdc_pri_mi2s_gpios {
 	status = "okay";
+	pinctrl-0 = <&i2s0_sck_active &i2s0_ws_active
+			&i2s0_sd0_active>;
+	pinctrl-1 = <&i2s0_sck_sleep &i2s0_ws_sleep
+			&i2s0_sd0_sleep>;
 };
 
 &fm_i2s1_gpios {
@@ -176,7 +180,7 @@
 			"wcd939x_codec",
 			"wsa-codec1", "wsa-codec2";
 	qcom,wsa-max-devs = <2>;
-	//wcd939x-i2c-handle = <&wcd_usbss>;
+	wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
 	qcom,sec-mi2s-gpios = <&fm_i2s1_gpios>;
 	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;

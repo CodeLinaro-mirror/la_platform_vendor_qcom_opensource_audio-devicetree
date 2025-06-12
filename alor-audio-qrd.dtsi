@@ -154,8 +154,7 @@
 	qcom,msm-mbhc-hphl-swh = <0>;
 	qcom,msm-mbhc-gnd-swh = <0>;
 
-	/* This needs to be un commented */
-	//wcd939x-i2c-handle = <&wcd_usbss>;
+	wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 			<&lpass_cdc>, <&lpass_bt_swr>;
 		/*
