@@ -7,7 +7,7 @@
 #include "alor-audio-mtp-wcd939x.dtsi"
 / {
 	model = "Qualcomm Technologies, Inc. Alor MTP + Harmonium + Panderio";
-	compatible = "qcom,alor-mtp", "qcom,alor", "qcom,mtp";
-	qcom,msm-id = <685 0x10000>;
+	compatible = "qcom,alor-mtp", "qcom,alor", "qcom,mtp", "qcom,alorp-mtp", "qcom,alorp";
+	qcom,msm-id = <685 0x10000>, <727 0x10000>;
 	qcom,board-id = <0x30008 0>;
 };
