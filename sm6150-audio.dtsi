@@ -161,7 +161,7 @@
 
 	sm6150_snd: sound {
 		compatible = "qcom,sm6150-asoc-snd";
-		qcom,mi2s-audio-intf = <0>;
+		qcom,mi2s-audio-intf = <1>;
 		qcom,auxpcm-audio-intf = <0>;
 		qcom,wcn-btfm = <0>;
 		clock-names = "lpass_core_hw_vote";
