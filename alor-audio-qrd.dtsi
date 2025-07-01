@@ -79,6 +79,9 @@
 	 * 1 for digital crosstalk with local sensed a-xtalk enabled, and
 	 * 2 for digital crosstalk with remote sensed a-xtalk enabled.
 	 */
+	cdc-vdd-px-supply = <&L1F>;
+	qcom,cdc-vdd-rx-current = <45000>;
+	qcom,cdc-vdd-tx-current = <45000>;
 	qcom,usbcss-hs-xtalk-config = <0>;
 	qcom,usbcss-hs-rdson = <600>;
 	qcom,usbcss-hs-r2 = <7550>;
@@ -104,7 +107,8 @@
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&rx_swr_haptics>;
+			<&wcd939x_codec>, <&rx_swr_haptics>,
+			<&wsa884x_0220>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd939x_codec", "swr-haptics",
 			"wsa-codec1";
