@@ -14,8 +14,8 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Alor";
-	compatible = "qcom,Alor";
-	qcom,msm-id = <685 0x10000>;
+	compatible = "qcom,Alor", "qcom, Alorp";
+	qcom,msm-id = <685 0x10000>, <727 0x10000>;
 	qcom,board-id = <0 0>;
 };
 

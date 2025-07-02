@@ -31,6 +31,7 @@
 	qcom,cdc-vdd-rx-current = <45000>;
 	qcom,cdc-vdd-tx-current = <45000>;
 
+	cdc-vdd-px-supply = <&L1F>;
 	/*
 	/* 0 for digital crosstalk disabled,
 	 * 1 for digital crosstalk with local sensed a-xtalk enabled, and
@@ -163,8 +164,8 @@
 		"VA DMIC7", "Digital Mic7",
 		"VA DMIC0", "VA MIC BIAS1",
 		"VA DMIC1", "VA MIC BIAS1",
-		"VA DMIC2", "VA MIC BIAS1",
-		"VA DMIC3", "VA MIC BIAS1",
+		"VA DMIC2", "VA MIC BIAS3",
+		"VA DMIC3", "VA MIC BIAS3",
 		"VA DMIC4", "VA MIC BIAS3",
 		"VA DMIC5", "VA MIC BIAS3",
 		"VA DMIC6", "VA MIC BIAS4",
