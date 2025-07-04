@@ -79,6 +79,10 @@ dtbo-y += kera-audio.dtbo \
 
 endif
 
+ifeq ($(CONFIG_ARCH_SM6150), y)
+dtbo-y += qcs610-audio-iot-overlay.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
