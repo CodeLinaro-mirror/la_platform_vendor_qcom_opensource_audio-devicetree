@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 /*
- * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <bindings/qcom,audio-ext-clk.h>
@@ -214,9 +215,4 @@
 };
 
 &qupv3_se1_i2c {
-	status = "ok";
-	fsa4480: fsa4480@42 {
-		compatible = "qcom,fsa4480-i2c";
-		reg = <0x42>;
-	};
 };
