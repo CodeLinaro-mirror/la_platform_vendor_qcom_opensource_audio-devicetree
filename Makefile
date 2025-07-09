@@ -1,11 +1,5 @@
-CUR_MKFILE = $(abspath $(lastword $(MAKEFILE_LIST)))
-AUDIO_DEVICETREE_ROOT=$(dir $(CUR_MKFILE))
-
-ifneq ($(KERNAL_HEADER_DIR),)
 AUDIO_KERNEL_ROOT=${ANDROID_BUILD_TOP}/vendor/qcom/opensource/audio-kernel/include
-else
-AUDIO_KERNEL_ROOT=$(AUDIO_DEVICETREE_ROOT)/../../opensource/audio-kernel/include
-endif
+
 
 KBUILD_OPTIONS += KBUILD_DTC_INCLUDE=$(AUDIO_KERNEL_ROOT)
 KBUILD_OPTIONS += KBUILD_EXTMOD_DTS=.
