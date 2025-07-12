@@ -48,15 +48,15 @@
 	qcom,swr-num-dev = <1>;
 };
 
-&wsa884x_0220{
+&wsa884x_0220 {
 	status = "okay";
+	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;
 	cdc-vdd-1p8-supply = <&L15B>;
 	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 	qcom,cdc-vdd-1p8-current = <20000>;
 	qcom,cdc-vdd-1p8-lpm-supported = <1>;
 	qcom,cdc-static-supplies = "cdc-vdd-1p8";
 	sound-name-prefix = "SpkrLeft";
-
 };
 
 &rx_swr_haptics {
@@ -96,7 +96,7 @@
 };
 
 &alor_snd {
-	qcom,model = "alor-qrd-snd-card";
+	qcom,model = "alor-qrd-wsa884x-snd-card";
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <0>;
