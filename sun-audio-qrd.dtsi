@@ -57,6 +57,10 @@
 	qcom,usbcss-hs-lin-k-gnd = <13>;
 };
 
+&lpass_bt_swr {
+	status = "disabled";
+};
+
 &sun_snd {
 	qcom,model = "sun-qrd-snd-card";
 
@@ -108,4 +112,6 @@
 	qcom,wcd-disable-legacy-surge;
 	wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,sec-mi2s-gpios = <&cdc_sec_mi2s_gpios>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+			   <&lpass_cdc>;
 };
