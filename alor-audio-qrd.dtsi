@@ -48,6 +48,10 @@
 	qcom,swr-num-dev = <1>;
 };
 
+&swr1 {
+	qcom,swr-num-dev = <2>;
+};
+
 &wsa884x_0220 {
 	status = "okay";
 	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;

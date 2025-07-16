@@ -44,6 +44,10 @@
 	 */
 };
 
+&swr1 {
+	qcom,swr-num-dev = <2>;
+};
+
 &cdc_pri_mi2s_gpios {
 	status = "okay";
 	pinctrl-0 = <&i2s0_sck_active &i2s0_ws_active
