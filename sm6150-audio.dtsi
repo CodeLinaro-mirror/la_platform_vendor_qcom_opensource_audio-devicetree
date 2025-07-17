@@ -1,0 +1,189 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "msm-audio-lpass.dtsi"
+#include <bindings/qcom,audio-ext-clk.h>
+#include <bindings/qcom,gpr.h>
+
+&soc {
+        spf_core_platform: spf_core_platform {
+                compatible = "qcom,spf-core-platform";
+        };
+
+        lpass_core_hw_vote: vote_lpass_core_hw {
+                compatible = "qcom,audio-ref-clk";
+                qcom,codec-ext-clk-src = <AUDIO_LPASS_CORE_HW_VOTE>;
+                #clock-cells = <1>;
+        };
+
+};
+
+&remoteproc_adsp_glink {
+        audio_gpr: qcom,gpr {
+                compatible = "qcom,gpr";
+                qcom,glink-channels = "adsp_apps";
+                qcom,intents = <0x200 20>;
+                reg = <GPR_DOMAIN_ADSP>;
+
+                spf_core {
+                        compatible = "qcom,spf_core";
+                        reg = <GPR_SVC_ADSP_CORE>;
+                };
+
+                audio-pkt {
+                        compatible = "qcom,audio-pkt";
+                        qcom,audiopkt-ch-name = "apr_audio_svc";
+                        reg = <GPR_SVC_MAX>;
+                };
+
+                audio_prm: q6prm {
+                        compatible = "qcom,audio_prm";
+                        qcom,sleep-api-supported = <0>;
+                        reg = <GPR_SVC_ASM>;
+                };
+        };
+};
+
+&spf_core_platform {
+        msm_audio_ion: qcom,msm-audio-ion {
+                compatible = "qcom,msm-audio-ion";
+	        qcom,smmu-version = <2>;
+                qcom,smmu-enabled;
+                iommus = <&apps_smmu 0x1721 0x0>;
+                qcom,smmu-sid-mask = /bits/ 64 <0xf>;
+                com,iova-start-addr = <0x20000000>;
+                qcom,iommu-dma-addr-pool = <0x10000000 0x10000000>;
+		dma-coherent;
+        };
+
+        msm_audio_ion_cma: qcom,msm-audio-ion-cma {
+                compatible = "qcom,msm-audio-ion-cma";
+        };
+	lpi_tlmm: lpi_pinctrl@62b40000 {
+                compatible = "qcom,lpi-pinctrl";
+                reg = <0x62b40000 0x0>;
+                qcom,gpios-count = <32>;
+                gpio-controller;
+                #gpio-cells = <2>;
+                qcom,lpi-offset-tbl = <0x00000000>, <0x00001000>,
+                                        <0x00002000>, <0x00003000>,
+                                        <0x00004000>, <0x00005000>,
+                                        <0x00006000>, <0x00007000>,
+                                        <0x00008000>, <0x00009000>,
+                                        <0x0000A000>, <0x0000B000>,
+                                        <0x0000C000>, <0x0000D000>,
+                                        <0x0000E000>, <0x0000F000>,
+                                        <0x00010000>, <0x00011000>,
+                                        <0x00012000>, <0x00013000>,
+                                        <0x00014000>, <0x00015000>,
+                                        <0x00016000>, <0x00017000>,
+                                        <0x00018000>, <0x00019000>,
+                                        <0x0001A000>, <0x0001B000>,
+                                        <0x0001C000>, <0x0001D000>,
+                                        <0x0001E000>, <0x0001F000>;
+
+                clock-names = "lpass_core_hw_vote";
+                clocks = <&lpass_core_hw_vote 0>;
+	};
+	bolero_cdc: bolero-cdc {
+		status = "ok";
+                compatible = "qcom,bolero-codec";
+                clock-names = "lpass_core_hw_vote";
+                clocks = <&lpass_core_hw_vote 0>;
+
+
+                        bolero-clk-rsc-mngr {
+                                compatible = "qcom,bolero-clk-rsc-mngr";
+                        };
+
+                        va_macro: va-macro@62f20000 {
+                        };
+
+                        tx_macro: tx-macro@62ec0000 {
+                                swr2: tx_swr_master {
+                                };
+                        };
+
+                        rx_macro: rx-macro@62ee0000 {
+                                swr1: rx_swr_master {
+                                };
+                        };
+                        wsa_macro: wsa-macro@62f00000 {
+                                swr0: wsa_swr_master {
+                                };
+                        };
+                };
+	cdc_dmic01_gpios: cdc_dmic01_pinctrl {
+                compatible = "qcom,msm-cdc-pinctrl";
+                pinctrl-names = "aud_active", "aud_sleep";
+                pinctrl-0 = <&cdc_dmic01_clk_active &cdc_dmic01_data_active>;
+                pinctrl-1 = <&cdc_dmic01_clk_sleep &cdc_dmic01_data_sleep>;
+                qcom,lpi-gpios;
+                #gpio-cells = <0>;
+        };
+        cdc_dmic23_gpios: cdc_dmic23_pinctrl {
+                compatible = "qcom,msm-cdc-pinctrl";
+                pinctrl-names = "aud_active", "aud_sleep";
+                pinctrl-0 = <&cdc_dmic23_clk_active &cdc_dmic23_data_active>;
+                pinctrl-1 = <&cdc_dmic23_clk_sleep &cdc_dmic23_data_sleep>;
+                qcom,lpi-gpios;
+                #gpio-cells = <0>;
+        };
+	 rx_swr_gpios: rx_swr_clk_data_pinctrl {
+                compatible = "qcom,msm-cdc-pinctrl";
+                pinctrl-names = "aud_active", "aud_sleep";
+                pinctrl-0 = <&rx_swr_clk_active &rx_swr_data_active>;
+                pinctrl-1 = <&rx_swr_clk_sleep &rx_swr_data_sleep>;
+                qcom,lpi-gpios;
+                #gpio-cells = <0>;
+        };
+        tx_swr_gpios: tx_swr_clk_data_pinctrl {
+                compatible = "qcom,msm-cdc-pinctrl";
+                pinctrl-names = "aud_active", "aud_sleep";
+                pinctrl-0 = <&tx_swr_clk_active &tx_swr_data1_active
+                                &tx_swr_data2_active>;
+                pinctrl-1 = <&tx_swr_clk_sleep &tx_swr_data1_sleep
+                                &tx_swr_data2_sleep>;
+                qcom,lpi-gpios;
+                #gpio-cells = <0>;
+        };
+        wcd937x_rst_gpio: msm_cdc_pinctrl@29 {
+                compatible = "qcom,msm-cdc-pinctrl";
+                pinctrl-names = "aud_active", "aud_sleep";
+                pinctrl-0 = <&lpi_wcd937x_reset_active>;
+                pinctrl-1 = <&lpi_wcd937x_reset_sleep>;
+                qcom,lpi-gpios;
+        };
+
+
+
+	sm6150_snd: sound {
+		compatible = "qcom,sm6150-asoc-snd";
+		qcom,mi2s-audio-intf = <1>;
+		qcom,auxpcm-audio-intf = <0>;
+		qcom,wcn-btfm = <0>;
+		clock-names = "lpass_core_hw_vote";
+                clocks = <&lpass_core_hw_vote 0>;
+
+	};
+};
+
+&aliases  {
+	swr0 = "/soc/spf_core_platform/bolero-cdc/wsa-macro@62f00000/wsa_swr_master";
+	swr1 = "/soc/spf_core_platform/bolero-cdc/rx-macro@62ee0000/rx_swr_master";
+	swr2 = "/soc/spf_core_platform/bolero-cdc/tx-macro@62ec0000/tx_swr_master";
+};
+
+
+/*&slim_aud {
+        status = "disabled";
+        dai_slim: msm_dai_slim {
+                status = "disabled";
+                compatible = "qcom,msm-dai-slim";
+                elemental-addr = [ff ff ff fe 17 02];
+        };
+};*/
+
+
