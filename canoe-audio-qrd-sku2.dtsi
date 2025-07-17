@@ -103,7 +103,7 @@
 		"VA AMIC1", "Analog Mic1",
 		"VA AMIC1", "VA MIC BIAS1",
 		"VA AMIC2", "Analog Mic2",
-		"VA AMIC2", "VA MIC BIAS2",
+		"VA AMIC2", "MIC BIAS2",
 		"VA AMIC3", "Analog Mic3",
 		"VA AMIC3", "VA MIC BIAS3",
 		"VA AMIC4", "Analog Mic4",
