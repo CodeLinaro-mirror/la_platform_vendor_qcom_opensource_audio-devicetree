@@ -21,6 +21,7 @@
 
 &wsa8855_0230 {
 	vdd-io-supply = <&L1F>;
+	powerdown-gpios = <&pm8550ve_g_gpios 3 GPIO_ACTIVE_LOW>;
 };
 
 &wcd939x_tx_slave {
