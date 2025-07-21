@@ -70,3 +70,7 @@
 
 };
 
+&va_swr_gpios {
+	qcom,chip-wakeup-reg = <0xf1a6008>;
+};
+
