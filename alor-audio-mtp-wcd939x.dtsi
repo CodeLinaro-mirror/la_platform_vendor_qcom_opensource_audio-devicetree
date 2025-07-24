@@ -21,6 +21,7 @@
 
 &wsa8855_0230 {
 	vdd-io-supply = <&L1F>;
+	powerdown-gpios = <&pm8550ve_g_gpios 3 GPIO_ACTIVE_LOW>;
 };
 
 &wcd939x_tx_slave {
@@ -63,8 +64,8 @@
 	qcom,wsa8855-supported;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
 	qcom,ext-disp-audio-rx = <0>;
 	qcom,tdm-max-slots = <8>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
