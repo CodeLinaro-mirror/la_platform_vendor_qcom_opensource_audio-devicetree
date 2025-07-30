@@ -76,6 +76,21 @@ dtbo-y += canoe-audio.dtbo \
                 alor-audio-rumi.dtbo
 endif
 
+dtbo-$(CONFIG_ARCH_PARROT) += parrot-audio.dtbo \
+                 parrot-audio-idp.dtbo \
+                 parrot-audio-idp-wcn3990.dtbo \
+                 parrot-audio-idp-wcn3990-amoled-rcm.dtbo \
+                 parrot-audio-idp-wcn6750-amoled.dtbo \
+                 parrot-audio-idp-wcn6750-amoled-rcm.dtbo \
+                 parrot-audio-idp-wcn6755-amoled-rcm.dtbo \
+                 parrot-audio-idp-wcn6755.dtbo \
+                 parrot-lite-audio-idp.dtbo \
+                 parrot-lite-audio-qrd.dtbo \
+                 parrot-audio-qrd.dtbo \
+                 parrot-audio-qrd-wcn6750.dtbo \
+                 parrot-audio-qrd-wcn6755.dts \
+                 parrot-audio-atp.dtbo
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
