@@ -24,6 +24,18 @@
 	qcom,wsa-system-gains= <0 9>, <0 9>;
 };
 
+&wsa_swr_clk_active {
+	config {
+		drive-strength = <4>;
+	};
+};
+
+&wsa_swr_data_active {
+	config {
+		drive-strength = <4>;
+	};
+};
+
 &swr1 {
 	status = "disabled";
 };
