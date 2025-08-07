@@ -20,9 +20,6 @@
 
 &lpi_tlmm {
 	status = "disabled";
-	hap_swr_slave_reg: hap_swr_slave_reg {
-
-	};
 };
 
 &lpass_cdc {

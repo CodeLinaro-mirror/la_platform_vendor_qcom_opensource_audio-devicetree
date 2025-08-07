@@ -4,6 +4,10 @@
  */
 #include <dt-bindings/gpio/gpio.h>
 &lpi_tlmm {
+	/* Need to remove this entries */
+	hap_swr_slave_reg: hap_swr_slave_reg {
+
+	};
 	/* Need to have this entry as alor dont have this */
 	L1G: L1G {
 

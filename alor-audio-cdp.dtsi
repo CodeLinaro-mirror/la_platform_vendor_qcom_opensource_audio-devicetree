@@ -10,12 +10,6 @@
 #include "wsa884x.dtsi"
 #include "wcd939x.dtsi"
 
-&lpi_tlmm {
-	hap_swr_slave_reg: hap_swr_slave_reg {
-
-	};
-};
-
 &lpass_cdc {
 	qcom,num-macros = <4>;
 };
@@ -97,6 +91,10 @@
 };
 
 &cdc_sep_mi2s_gpios {
+	status = "disabled";
+};
+
+&rx_swr_haptics {
 	status = "disabled";
 };
 
