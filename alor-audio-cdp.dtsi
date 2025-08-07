@@ -99,7 +99,7 @@
 };
 
 &alor_snd {
-	qcom,model = "alor-cdp-wsa884x-snd-card";
+	qcom,model = "alor-cdp-snd-card";
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <0>;
@@ -204,6 +204,4 @@
 	qcom,msm-mbhc-gnd-swh = <1>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1680>;
 	qcom,usbss-hsj-connect-enabled;
-	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
-				  <&lpass_cdc>, <&lpass_bt_swr>;
 };
