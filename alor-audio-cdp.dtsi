@@ -52,16 +52,6 @@
 
 };
 
-&wsa884x_0220 {
-	status = "okay";
-
-};
-
-&wsa884x_0221 {
-	status = "okay";
-
-};
-
 &cdc_pri_mi2s_gpios {
 	status = "okay";
 	pinctrl-0 = <&i2s0_sck_active &i2s0_ws_active
