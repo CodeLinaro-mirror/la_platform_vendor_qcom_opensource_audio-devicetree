@@ -48,23 +48,19 @@
 	qcom,swr-num-dev = <1>;
 };
 
-&swr1 {
-	qcom,swr-num-dev = <2>;
-};
-
-&wsa884x_0220 {
+&wsa884x_0220{
 	status = "okay";
-	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;
 	cdc-vdd-1p8-supply = <&L15B>;
 	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 	qcom,cdc-vdd-1p8-current = <20000>;
 	qcom,cdc-vdd-1p8-lpm-supported = <1>;
 	qcom,cdc-static-supplies = "cdc-vdd-1p8";
 	sound-name-prefix = "SpkrLeft";
+
 };
 
 &rx_swr_haptics {
-	status = "disabled";
+	status = "okay";
 	swr-slave-supply = <&hap_swr_slave_reg>;
 };
 
@@ -100,21 +96,21 @@
 };
 
 &alor_snd {
-	qcom,model = "alor-qrd-wsa884x-snd-card";
+	qcom,model = "alor-qrd-snd-card";
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-	qcom,wcn-bt = <1>;
+	qcom,wcn-bt = <0>;
 	qcom,ext-disp-audio-rx = <0>;
-	qcom,wcn-bt-ext = <1>;
+	qcom,wcn-bt-ext = <0>;
 	qcom,tdm-max-slots = <8>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>,
+			<&wcd939x_codec>, <&rx_swr_haptics>,
 			<&wsa884x_0220>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wcd939x_codec",
+			"wcd939x_codec", "swr-haptics",
 			"wsa-codec1";
 	qcom,wsa-max-devs = <1>;
 	qcom,audio-routing =
@@ -141,6 +137,7 @@
 		"IN1_HPHL", "HPHL_OUT",
 		"IN2_HPHR", "HPHR_OUT",
 		"IN3_EAR", "AUX_OUT",
+		"HAP_IN", "PCM_OUT",
 		"WSA SRC0_INP", "SRC0",
 		"WSA_TX DEC0_INP", "TX DEC0 MUX",
 		"WSA_TX DEC1_INP", "TX DEC1 MUX",
