@@ -60,7 +60,7 @@ ifeq ($(CONFIG_ARCH_SDXKOVA), y)
 dtbo-y +=  sdxkova-audio.dtbo
 endif
 
-ifeq ($(CONFIG_ARCH_SDXECHO), y)
+ifeq ($(TARGET_SUPPORT), sdxecho)
 dtbo-y +=  sdxecho-audio.dtbo
 endif
 
