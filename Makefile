@@ -1,3 +1,4 @@
+ifeq ($(TARGET_SUPPORT), sdxecho)
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
@@ -20,3 +21,15 @@ all: dtbs
 
 clean:
 	rm -rf *.preprocessed
+endif
+
+ifeq ($(TARGET_SUPPORT), sa535m)
+%:
+	echo "Processing target $@"
+	${CC} -undef -x assembler-with-cpp $@.dtso -I ${KERNEL_INCLUDE} -E -o $@.dts.preprocessed
+	${DTC} -O dtb -o $@.dtbo $@.dts.preprocessed
+
+clean:
+	rm -rf *.dtbo
+	rm -rf *.preprocessed
+endif
