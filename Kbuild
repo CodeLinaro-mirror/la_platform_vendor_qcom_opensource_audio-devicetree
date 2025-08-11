@@ -98,7 +98,8 @@ dtbo-y += kera-audio.dtbo \
 endif
 
 ifeq ($(CONFIG_ARCH_SM6150), y)
-dtbo-y += qcs610-audio-iot-overlay.dtbo
+dtbo-y += qcs610-audio-iot-overlay.dtbo \
+		qcs610-audio-opk-iot-overlay.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
