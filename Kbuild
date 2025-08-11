@@ -64,6 +64,6 @@ ifeq ($(CONFIG_ARCH_SDXECHO), y)
 dtbo-y +=  sdxecho-audio.dtbo
 endif
 
- always-y    := $(dtb-y) $(dtbo-y)
- subdir-y    := $(dts-dirs)
- clean-files    := *.dtb *.dtbo
+always-y    := $(dtb-y) $(dtbo-y)
+subdir-y    := $(dts-dirs)
+clean-files    := *.dtb *.dtbo

@@ -6,7 +6,7 @@
 #include "sdxecho-wcd.dtsi"
 #include "sdxecho-wsa881x.dtsi"
 #include "bindings/qcom,audio-ext-clk.h"
-#include <dt-bindings/arm/msm/qcom_dma_heap_dt_constants.h>
+#include <dt-bindings/arm/qcom_dma_heap_dt_constants.h>
 
 &sdxecho_snd {
 	qcom,audio-routing =

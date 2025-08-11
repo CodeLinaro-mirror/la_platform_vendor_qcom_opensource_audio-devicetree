@@ -8,8 +8,8 @@
 
 #include <dt-bindings/clock/qcom,sdx75-gcc.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include <dt-bindings/interconnect/qcom,sdx75.h>
-#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+#include <dt-bindings/interconnect/qcom,sdxecho.h>
+#include <dt-bindings/power/qcom-rpmpd.h>
 
 #include "sdxecho-audio.dtsi"
 
