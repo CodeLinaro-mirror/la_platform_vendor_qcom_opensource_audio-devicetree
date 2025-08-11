@@ -52,8 +52,18 @@
 	status = "disabled";
 };
 
+&pm8550ve_g_gpios {
+	pndr_spkr_sd_n: pndr_spkr_sd_n {
+		pins = "gpio3";
+		function = "normal";
+		power-source = <2>;
+	};
+};
+
 &wsa8855_0230 {
 	vdd-io-supply = <&L1F>;
+	pinctrl-0 = <&pndr_spkr_sd_n>;
+	pinctrl-names = "default";
 	powerdown-gpios = <&pm8550ve_g_gpios 3 GPIO_ACTIVE_LOW>;
 };
 
