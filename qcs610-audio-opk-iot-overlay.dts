@@ -1,0 +1,12 @@
+/dts-v1/;
+/plugin/;
+
+#include "qcs610-audio-opk.dtsi"
+
+/ {
+        model = "Qualcomm Technologies, Inc. Openkit Overlay";
+        compatible = "qcom,qcs610-opk", "qcom,qcs610", "qcom,opk";
+        qcom,msm-id = <401 0x0>;
+        qcom,board-id = <32 3>;
+};
+

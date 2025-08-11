@@ -149,6 +149,16 @@
                 qcom,lpi-gpios;
                 #gpio-cells = <0>;
         };
+	wcd934x_rst_gpio: msm_cdc_pinctrl@24 {
+                status = "okay";
+                compatible = "qcom,msm-cdc-pinctrl";
+                pinctrl-names = "aud_active", "aud_sleep";
+                pinctrl-0 = <&lpi_wcd934x_reset_active>;
+                pinctrl-1 = <&lpi_wcd934x_reset_sleep>;
+                qcom,lpi-gpios;
+                #gpio-cells = <0>;
+        };
+
         wcd937x_rst_gpio: msm_cdc_pinctrl@29 {
                 compatible = "qcom,msm-cdc-pinctrl";
                 pinctrl-names = "aud_active", "aud_sleep";
@@ -156,8 +166,6 @@
                 pinctrl-1 = <&lpi_wcd937x_reset_sleep>;
                 qcom,lpi-gpios;
         };
-
-
 
 	sm6150_snd: sound {
 		compatible = "qcom,sm6150-asoc-snd";
@@ -177,13 +185,13 @@
 };
 
 
-/*&slim_aud {
-        status = "disabled";
+&slim_aud {
+        //status = "disabled";
         dai_slim: msm_dai_slim {
                 status = "disabled";
                 compatible = "qcom,msm-dai-slim";
                 elemental-addr = [ff ff ff fe 17 02];
         };
-};*/
+};
 
 

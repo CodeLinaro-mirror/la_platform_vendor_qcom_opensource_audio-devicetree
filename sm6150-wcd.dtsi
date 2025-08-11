@@ -5,6 +5,7 @@
 
 
 &slim_aud {
+   ngd@1 {
 	tavil_codec {
 		tavil_wcd: wcd_pinctrl@5 {
 			compatible = "qcom,wcd-pinctrl";
@@ -160,4 +161,6 @@
 			#gpio-cells = <0>;
 		};
 	};
+};
+
 };

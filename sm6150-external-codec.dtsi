@@ -50,10 +50,10 @@
 		"Digital Mic5", "MIC BIAS4",
 		"SpkrLeft IN", "SPK1 OUT",
 		"SpkrRight IN", "SPK2 OUT";
-	asoc-codec = <&stub_codec>, <&ext_disp_audio_codec>, <&wcd934x_cdc>,
+	asoc-codec = <&stub_codec>,  <&wcd934x_cdc>,
 			<&wsa881x_11>, <&wsa881x_12>;
-	asoc-codec-names = "msm-stub-codec.1", "msm-ext-disp-audio-codec-rx", "tavil_codec",
-			"wsa-codec1", "wsa-codec2";
+	asoc-codec-names = "msm-stub-codec.1", "tavil_codec",
+			"wsa-codec.1", "wsa-codec.2";
 	qcom,wsa-max-devs = <2>;
 	qcom,msm-mbhc-hphl-swh = <0>;
 	qcom,msm-mbhc-gnd-swh = <0>;
@@ -62,7 +62,7 @@
 };
 
 &slim_aud {
-	status = "okay";
+   ngd@1 {
 	tavil_codec {
 		swr3: swr_master {
 			compatible = "qcom,swr-mstr";
@@ -106,6 +106,7 @@
 			};
 		};
 	};
+};
 };
 
 &dai_slim {
