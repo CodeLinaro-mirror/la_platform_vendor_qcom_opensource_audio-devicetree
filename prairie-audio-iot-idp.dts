@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "sm6150-audio-overlay.dtsi"
+
+/ {
+	model = "Internal Audio Codec IDP overlay";
+	compatible = "qcom,qcs610-idp", "qcom,qcs610", "qcom,idp";
+	qcom,msm-id = <401 0x0>;
+	qcom,board-id = <34 0>;
+};

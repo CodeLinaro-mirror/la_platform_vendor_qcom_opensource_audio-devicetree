@@ -71,12 +71,17 @@ endif
 ifeq ($(CONFIG_ARCH_KERA), y)
 dtbo-y += kera-audio.dtbo \
                 kera-audio-cdp.dtbo \
+                kera-iot-audio-cdp.dtbo \
                 kera-audio-mtp.dtbo \
                 kera-audio-mtp-qmp1000.dtbo \
                 kera-audio-qrd.dtbo \
                 kera-audio-rcm.dtbo \
                 kera-audio-rcm-orne.dtbo
 
+endif
+
+ifeq ($(CONFIG_ARCH_SM6150), y)
+dtbo-y += qcs610-audio-iot-overlay.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
