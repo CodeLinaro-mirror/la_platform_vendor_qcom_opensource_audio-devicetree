@@ -35,7 +35,8 @@ dtbo-$(CONFIG_ARCH_RAVELIN) += ravelin-audio.dtbo \
                  ravelin-audio-idp-wsa-hac.dtbo \
                  ravelin-audio-idp-4gb.dtbo \
                  ravelin-audio-qrd.dtbo \
-                 ravelin-audio-atp.dtbo
+                 ravelin-audio-atp.dtbo \
+                 montague-adrastea-overlay.dtbo
 
 dtbo-$(CONFIG_ARCH_CAPE) += cape-audio.dtbo \
                  cape-audio-cdp.dtbo \
