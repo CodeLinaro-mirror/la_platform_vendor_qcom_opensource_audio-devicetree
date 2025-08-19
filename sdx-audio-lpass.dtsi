@@ -13,7 +13,7 @@
         adsp_loader: qcom,msm-adsp-loader {
                 status = "ok";
                 compatible = "qcom,adsp-loader";
-                qcom,rproc-handle = <&modem_pas>;
+                qcom,rproc-handle = <&remoteproc_mpss>;
                 qcom,adsp-state = <0>;
                 qcom,proc-img-to-load = "modem";
         };
@@ -21,7 +21,7 @@
         adsp_notify: qcom,msm-adsp-notify {
                 status = "ok";
                 compatible = "qcom,adsp-notify";
-                qcom,rproc-handle = <&modem_pas>;
+                qcom,rproc-handle = <&remoteproc_mpss>;
         };
 
         qcom,msm-audio-ion {

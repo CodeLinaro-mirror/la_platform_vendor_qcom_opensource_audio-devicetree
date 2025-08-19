@@ -4,7 +4,7 @@
  */
 
 
-&qupv3_se2_i2c {
+&i2c2 {
 	status = "okay";
 	tavil_codec {
 		wcd: wcd_pinctrl@5 {

@@ -3,7 +3,7 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-&qupv3_se2_i2c {
+&i2c2 {
 	tavil_codec {
 		swr_master {
 			compatible = "qcom,swr-wcd";
