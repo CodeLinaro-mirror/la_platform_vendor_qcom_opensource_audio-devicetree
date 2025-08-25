@@ -3,8 +3,6 @@
 * SPDX-License-Identifier: BSD-3-Clause
 */
 
-#include "sa535m-audio-lpass.dtsi"
-
 &remoteproc_mpss_glink {
 	audio_gpr: qcom,gpr {
 		compatible = "qcom,gpr";
@@ -26,6 +24,320 @@
 		audio_prm {
 			compatible = "qcom,audio_prm";
 			reg = <0x7>;
+		};
+	};
+};
+
+&tlmm {
+
+	i2s_mclk {
+		i2s_mclk_sleep: i2s_mclk_sleep {
+			mux {
+				pins = "gpio74";
+				function = "i2s_mclk";
+			};
+
+			config {
+				pins = "gpio74";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+			};
+		};
+
+		i2s_mclk_active: i2s_mclk_active {
+			mux {
+				pins = "gpio74";
+				function = "i2s_mclk";
+			};
+
+			config {
+				pins = "gpio74";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+	};
+
+	pmx_pri_mi2s_aux {
+		pri_ws_sleep: pri_ws_sleep {
+			mux {
+				pins = "gpio16";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio16";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		pri_sck_sleep: pri_sck_sleep {
+			mux {
+				pins = "gpio19";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		pri_dout_sleep: pri_dout_sleep {
+			mux {
+				pins = "gpio18";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio18";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		pri_ws_active_master: pri_ws_active_master {
+			mux {
+				pins = "gpio16";
+				function = "pri_mi2s";
+			};
+
+			config {
+				pins = "gpio16";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+
+		pri_sck_active_master: pri_sck_active_master {
+			mux {
+				pins = "gpio19";
+				function = "pri_mi2s";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+
+		pri_ws_active_slave: pri_ws_active_slave {
+			mux {
+				pins = "gpio16";
+				function = "pri_mi2s";
+			};
+
+			config {
+				pins = "gpio16";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+			};
+		};
+
+		pri_sck_active_slave: pri_sck_active_slave {
+			mux {
+				pins = "gpio19";
+				function = "pri_mi2s";
+			};
+
+			config {
+				pins = "gpio19";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+			};
+		};
+
+		pri_dout_active: pri_dout_active {
+			mux {
+				pins = "gpio18";
+				function = "pri_mi2s";
+			};
+
+			config {
+				pins = "gpio18";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+	};
+
+	pmx_pri_mi2s_aux_din {
+		pri_din_sleep: pri_din_sleep {
+			mux {
+				pins = "gpio17";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio17";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		pri_din_active: pri_din_active {
+			mux {
+				pins = "gpio17";
+				function = "pri_mi2s";
+			};
+
+			config {
+				pins = "gpio17";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL */
+			};
+		};
+	};
+
+	pmx_sec_mi2s_aux {
+		sec_ws_sleep: sec_ws_sleep {
+			mux {
+				pins = "gpio20";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio20";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		sec_sck_sleep: sec_sck_sleep {
+			mux {
+				pins = "gpio23";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio23";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		sec_dout_sleep: sec_dout_sleep {
+			mux {
+				pins = "gpio22";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;	/* 2 mA */
+				bias-pull-down;		/* PULL DOWN */
+				input-enable;
+			};
+		};
+
+		sec_ws_active_master: sec_ws_active_master {
+			mux {
+				pins = "gpio20";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio20";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+
+		sec_sck_active_master: sec_sck_active_master {
+			mux {
+				pins = "gpio23";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio23";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+
+		sec_ws_active_slave: sec_ws_active_slave {
+			mux {
+				pins = "gpio20";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio20";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+			};
+		};
+
+		sec_sck_active_slave: sec_sck_active_slave {
+			mux {
+				pins = "gpio23";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio23";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+			};
+		};
+
+		sec_dout_active: sec_dout_active {
+			mux {
+				pins = "gpio22";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio22";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL*/
+				output-high;
+			};
+		};
+	};
+
+	pmx_sec_mi2s_aux_din {
+		sec_din_sleep: sec_din_sleep {
+			mux {
+				pins = "gpio21";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio21";
+				drive-strength = <2>;	/* 2 mA */
+				bias-disable;		/* NO PULL */
+				input-enable;
+			};
+		};
+
+		sec_din_active: sec_din_active {
+			mux {
+				pins = "gpio21";
+				function = "sec_mi2s";
+			};
+
+			config {
+				pins = "gpio21";
+				drive-strength = <8>;	/* 8 mA */
+				bias-disable;		/* NO PULL */
+			};
 		};
 	};
 };
@@ -53,7 +365,7 @@
 
 	qcom,msm-adsp-loader {
 		compatible = "qcom,adsp-loader";
-		qcom,rproc-handle = <&modem_pas>;
+		qcom,rproc-handle = <&remoteproc_mpss>;
 		qcom,adsp-state = <0>;
 		qcom,proc-img-to-load = "modem";
 	};
@@ -61,7 +373,7 @@
 	adsp_notify: qcom,msm-adsp-notify {
 		status = "ok";
 		compatible = "qcom,adsp-notify";
-		qcom,rproc-handle = <&modem_pas>;
+		qcom,rproc-handle = <&remoteproc_mpss>;
 	};
 
 	qcom,msm-audio-ion {
@@ -146,10 +458,25 @@
 		compatible = "regulator-fixed";
 		regulator-name = "codec_vreg";
 		startup-delay-us = <5000>;
-		gpio = <&tlmm 48 0>;
+		gpio = <&pmx75_gpios 05 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 		regulator-always-on;
 	};
+};
+
+&i2c2 {
+	status = "ok";
+	tlv320aic3x_codec: tlv320aic3x@18 {
+		compatible = "ti,tlv320aic3x";
+		reg = <0x18>;
+		reset-gpios = <&pmx75_gpios 13 GPIO_ACTIVE_HIGH>;
+		AVDD-supply = <&codec_vreg>;
+		IOVDD-supply = <&codec_vreg>;
+		ai3x-ocmv = <1>;
+	};
+};
+
+&soc {
 
 	snd_tlv3x: sound-auto {
 		compatible = "qcom,sdx-asoc-snd-auto";
@@ -166,16 +493,3 @@
 		qcom,msm_audio_ssr_devs = <&audio_gpr>;
         };
 };
-
-&i2c {
-	status = "ok";
-	tlv320aic3x_codec: tlv320aic3x@18 {
-		compatible = "ti,tlv320aic3x";
-		reg = <0x18>;
-		reset-gpios = <&tlmm 49 0>;
-		AVDD-supply = <&codec_vreg>;
-		IOVDD-supply = <&codec_vreg>;
-		ai3x-ocmv = <1>;
-	};
-};
-
