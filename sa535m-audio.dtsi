@@ -3,6 +3,8 @@
 * SPDX-License-Identifier: BSD-3-Clause
 */
 
+#include <dt-bindings/gpio/gpio.h>
+
 &remoteproc_mpss_glink {
 	audio_gpr: qcom,gpr {
 		compatible = "qcom,gpr";
@@ -458,7 +460,7 @@
 		compatible = "regulator-fixed";
 		regulator-name = "codec_vreg";
 		startup-delay-us = <5000>;
-		gpio = <&pmx75_gpios 05 GPIO_ACTIVE_HIGH>;
+		gpio = <&pmx75_gpios 5 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 		regulator-always-on;
 	};
@@ -487,9 +489,9 @@
 		qcom,sec_mi2s_aux_slave = <&sec_slave>;
 
 		pinctrl-names = "default";
-		pinctrl-0 =  <&i2s_mclk_active>;
+		pinctrl-0 = <&i2s_mclk_active>;
 		asoc-codec = <&tlv320aic3x_codec>, <&stub_codec>;
 		asoc-codec-names = "tlv320aic3x", "msm-stub-codec.1";
 		qcom,msm_audio_ssr_devs = <&audio_gpr>;
-        };
+	};
 };
