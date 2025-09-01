@@ -16,11 +16,11 @@
 	};
 };
 
-&qupv3_se2_i2c {
+&i2c2 {
 	status = "okay";
 };
 
-&glink_edge {
+&remoteproc_mpss_glink {
 	audio_gpr: qcom,gpr {
 		compatible = "qcom,gpr";
 		qcom,glink-channels = "modem_apps";

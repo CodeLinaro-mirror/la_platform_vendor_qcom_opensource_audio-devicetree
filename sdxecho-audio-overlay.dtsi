@@ -73,16 +73,16 @@
 		#clock-cells = <1>;
 	};
 
-	wcd_rst_gpio: msm_cdc_pinctrl@77 {
+	wcd_rst_gpio: msm_cdc_pinctrl@90 {
 		compatible = "qcom,msm-cdc-pinctrl";
-		qcom,cdc-rst-n-gpio = <&tlmm 77 0>;
+		qcom,cdc-rst-n-gpio = <&tlmm 90 0>;
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&cdc_reset_active>;
 		pinctrl-1 = <&cdc_reset_sleep>;
 	};
 };
 
-&qupv3_se2_i2c {
+&i2c2 {
 	status = "ok";
 	wcd934x_cdc: tavil_codec {
 		compatible = "qcom,tavil-i2c";
@@ -98,27 +98,27 @@
 		clock-names = "wcd_clk";
 		clocks = <&clock_audio_up 0>;
 
-		cdc-vdd-buck-supply = <&pmx75_l6>;
+		cdc-vdd-buck-supply = <&vreg_l6b_1p8>;
 		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-buck-current = <650000>;
 		qcom,cdc-vdd-buck-lpm-supported = <1>;
 
-		cdc-buck-sido-supply = <&pmx75_l6>;
+		cdc-buck-sido-supply = <&vreg_l6b_1p8>;
 		qcom,cdc-buck-sido-voltage = <1800000 1800000>;
 		qcom,cdc-buck-sido-current = <500000>;
 		qcom,cdc-buck-sido-lpm-supported = <1>;
 
-		cdc-vdd-tx-h-supply = <&pmx75_l6>;
+		cdc-vdd-tx-h-supply = <&vreg_l6b_1p8>;
 		qcom,cdc-vdd-tx-h-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-tx-h-current = <25000>;
 		qcom,cdc-vdd-tx-h-lpm-supported = <1>;
 
-		cdc-vdd-rx-h-supply = <&pmx75_l6>;
+		cdc-vdd-rx-h-supply = <&vreg_l6b_1p8>;
 		qcom,cdc-vdd-rx-h-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-rx-h-current = <25000>;
 		qcom,cdc-vdd-rx-h-lpm-supported = <1>;
 
-		cdc-vddpx-1-supply = <&pmx75_l6>;
+		cdc-vddpx-1-supply = <&vreg_l6b_1p8>;
 		qcom,cdc-vddpx-1-voltage = <1800000 1800000>;
 		qcom,cdc-vddpx-1-current = <10000>;
 		qcom,cdc-vddpx-1-lpm-supported = <1>;
@@ -161,12 +161,12 @@
 	cdc_reset_ctrl {
 		cdc_reset_sleep: cdc_reset_sleep {
 			mux {
-				pins = "gpio77";
+				pins = "gpio90";
 				function = "gpio";
 			};
 
 			config {
-				pins = "gpio77";
+				pins = "gpio90";
 				drive-strength = <2>;
 				bias-disable;
 				output-low;
@@ -175,12 +175,12 @@
 
 		cdc_reset_active:cdc_reset_active {
 			mux {
-				pins = "gpio77";
+				pins = "gpio90";
 				function = "gpio";
 			};
 
 			config {
-				pins = "gpio77";
+				pins = "gpio90";
 				drive-strength = <16>;
 				bias-pull-up;
 				output-high;
@@ -263,7 +263,7 @@
 		pri_ws_active_master: pri_ws_active_master {
 			mux {
 				pins = "gpio16";
-				function = "pri_mi2s";
+				function = "i2s0_ws";
 			};
 
 			config {
@@ -277,7 +277,7 @@
 		pri_sck_active_master: pri_sck_active_master {
 			mux {
 				pins = "gpio19";
-				function = "pri_mi2s";
+				function = "i2s0_sck";
 			};
 
 			config {
@@ -291,7 +291,7 @@
 		pri_ws_active_slave: pri_ws_active_slave {
 			mux {
 				pins = "gpio16";
-				function = "pri_mi2s";
+				function = "i2s0_ws";
 			};
 
 			config {
@@ -304,7 +304,7 @@
 		pri_sck_active_slave: pri_sck_active_slave {
 			mux {
 				pins = "gpio19";
-				function = "pri_mi2s";
+				function = "i2s0_sck";
 			};
 
 			config {
@@ -317,7 +317,7 @@
 		pri_dout_active: pri_dout_active {
 			mux {
 				pins = "gpio18";
-				function = "pri_mi2s";
+				function = "i2s0_data1";
 			};
 
 			config {
@@ -347,7 +347,7 @@
 		pri_din_active: pri_din_active {
 			mux {
 				pins = "gpio17";
-				function = "pri_mi2s";
+				function = "i2s0_data0";
 			};
 
 			config {
@@ -404,7 +404,7 @@
 		sec_ws_active_master: sec_ws_active_master {
 			mux {
 				pins = "gpio20";
-				function = "sec_mi2s";
+				function = "i2s1_ws";
 			};
 
 			config {
@@ -418,7 +418,7 @@
 		sec_sck_active_master: sec_sck_active_master {
 			mux {
 				pins = "gpio23";
-				function = "sec_mi2s";
+				function = "i2s1_sck";
 			};
 
 			config {
@@ -432,7 +432,7 @@
 		sec_ws_active_slave: sec_ws_active_slave {
 			mux {
 				pins = "gpio20";
-				function = "sec_mi2s";
+				function = "i2s1_ws";
 			};
 
 			config {
@@ -445,7 +445,7 @@
 		sec_sck_active_slave: sec_sck_active_slave {
 			mux {
 				pins = "gpio23";
-				function = "sec_mi2s";
+				function = "i2s1_sck";
 			};
 
 			config {
@@ -458,7 +458,7 @@
 		sec_dout_active: sec_dout_active {
 			mux {
 				pins = "gpio22";
-				function = "sec_mi2s";
+				function = "i2s1_data1";
 			};
 
 			config {
@@ -488,7 +488,7 @@
 		sec_din_active: sec_din_active {
 			mux {
 				pins = "gpio21";
-				function = "sec_mi2s";
+				function = "i2s1_data0";
 			};
 
 			config {
