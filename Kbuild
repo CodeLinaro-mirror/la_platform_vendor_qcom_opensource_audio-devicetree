@@ -71,6 +71,7 @@ endif
 ifeq ($(CONFIG_ARCH_KERA), y)
 dtbo-y += kera-audio.dtbo \
                 kera-audio-cdp.dtbo \
+                kera-iot-audio-cdp.dtbo \
                 kera-audio-mtp.dtbo \
                 kera-audio-mtp-qmp1000.dtbo \
                 kera-audio-qrd.dtbo \
