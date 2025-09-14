@@ -36,6 +36,7 @@
 	status = "okay";
 	qcom,cdc-vdd-rx-current = <45000>;
 	qcom,cdc-vdd-tx-current = <45000>;
+	qcom,cdc-vdd-px-current = <5000>;
 
 	cdc-vdd-px-supply = <&L1F>;
 	/*
