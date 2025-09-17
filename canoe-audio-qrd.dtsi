@@ -59,7 +59,7 @@
 
 };
 
-&wcd939x_rst_gpio {
+&wcd_rst_gpio {
 	status = "disabled";
 
 };

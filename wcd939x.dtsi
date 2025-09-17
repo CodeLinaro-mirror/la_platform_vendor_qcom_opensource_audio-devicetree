@@ -74,7 +74,7 @@
 			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
 			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
 			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>;
-		qcom,wcd-rst-gpio-node = <&wcd939x_rst_gpio>;
+		qcom,wcd-rst-gpio-node = <&wcd_rst_gpio>;
 		qcom,rx-slave = <&wcd939x_rx_slave>;
 		qcom,tx-slave = <&wcd939x_tx_slave>;
 
@@ -161,7 +161,7 @@
 			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
 			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
 			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>;
-		qcom,wcd-rst-gpio-node = <&wcd939x_rst_gpio>;
+		qcom,wcd-rst-gpio-node = <&wcd_rst_gpio>;
 		qcom,rx-slave = <&wcd9378_rx_slave>;
 		qcom,tx-slave = <&wcd9378_tx_slave>;
 

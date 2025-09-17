@@ -131,7 +131,7 @@
 		#gpio-cells = <0>;
 	};
 
-	wcd939x_rst_gpio: msm_cdc_pinctrl@32 {
+	wcd_rst_gpio: msm_cdc_pinctrl@32 {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&wcd939x_reset_active>;
