@@ -9,7 +9,7 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
 &wsa884x_0220 {
@@ -65,9 +65,10 @@
 
 &swr3 {
 	qcom,swr-num-dev = <2>;
-	swr_haptics: swr_haptics@f0170220 {
-		status = "okay";
-	};
+};
+
+&swr_haptics {
+	status = "okay";
 };
 
 &swr2 {

@@ -8,7 +8,7 @@
 #include "lpass-audio-bt-swr.dtsi"
 #include "lpass-cdc-gpio.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 

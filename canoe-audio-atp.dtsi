@@ -9,7 +9,7 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 
 &canoe_snd {
 	qcom,model = "canoe-cdp-snd-card";

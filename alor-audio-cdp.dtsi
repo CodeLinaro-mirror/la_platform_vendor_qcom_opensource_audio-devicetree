@@ -8,7 +8,7 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "alor-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 
 &lpi_tlmm {
 	hap_swr_slave_reg: hap_swr_slave_reg {

@@ -130,10 +130,10 @@
 				"lpass_audio_hw_vote";
 		clocks = <&lpass_core_hw_vote 0>,
 				<&lpass_audio_hw_vote 0>;
-		lpass-cdc-clk-rsc-mngr {
+		lpass_clk_rsc: lpass-cdc-clk-rsc-mngr {
+			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 			qcom,rx_mclk_mode_muxsel = <0x06BEC0D8>;
 			qcom,wsa_mclk_mode_muxsel = <0x06BEA110>;
-			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 		};
 
 		va_macro: va-macro@7660000 {
