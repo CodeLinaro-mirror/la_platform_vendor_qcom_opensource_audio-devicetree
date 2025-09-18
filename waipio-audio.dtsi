@@ -47,15 +47,21 @@
 };
 
 &spf_core_platform {
-
+	#address-cells = <2>;
+	#size-cells = <2>;
 	msm_audio_ion: qcom,msm-audio-ion {
 		compatible = "qcom,msm-audio-ion";
 		qcom,smmu-version = <2>;
 		qcom,smmu-enabled;
 		iommus = <&apps_smmu 0x1801 0x0>;
-		qcom,iommu-dma-addr-pool = <0x10000000 0x10000000>;
+		memory-region = <&audio_cnss_resv_region>;
+
 		qcom,smmu-sid-mask = /bits/ 64 <0xf>;
 		dma-coherent;
+		audio_cnss_resv_region: audio_cnss_resv_region {
+			iommu-addresses = <&msm_audio_ion 0x0 0x0 0x0 0x10000000>;
+		};
+
 	};
 
 	msm_audio_ion_cma: qcom,msm-audio-ion-cma {

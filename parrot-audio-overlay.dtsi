@@ -38,6 +38,7 @@
 		qcom,va-swr-gpios = <&va_swr_gpios>;
 		swr2: va_swr_master {
 			compatible = "qcom,swr-mstr";
+			qcom,swr-master-version = <0x01070000>;
 			#address-cells = <2>;
 			#size-cells = <0>;
 			clock-names = "lpass_core_hw_vote",
@@ -95,6 +96,7 @@
 		clocks = <&clock_audio_rx_mclk2_2x_clk 0>;
 		swr1: rx_swr_master {
 			compatible = "qcom,swr-mstr";
+			qcom,swr-master-version = <0x01070000>;
 			#address-cells = <2>;
 			#size-cells = <0>;
 			clock-names = "lpass_core_hw_vote",
@@ -138,6 +140,7 @@
 		#cooling-cells = <2>;
 		swr0: wsa_swr_master {
 			compatible = "qcom,swr-mstr";
+			qcom,swr-master-version = <0x01070000>;
 			#address-cells = <2>;
 			#size-cells = <0>;
 			clock-names = "lpass_core_hw_vote",
@@ -197,6 +200,7 @@
 		status = "disabled";
 		swr3: wsa2_swr_master {
 			compatible = "qcom,swr-mstr";
+			qcom,swr-master-version = <0x01070000>;
 			#address-cells = <2>;
 			#size-cells = <0>;
 			clock-names = "lpass_core_hw_vote",
@@ -369,8 +373,8 @@
 		qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>;
 		qcom,mi2s-tdm-is-hw-vote-needed = <1>, <0>, <1>, <0>, <0>, <0>;
 		qcom,tdm-max-slots = <8>;
-		qcom,wcn-btfm = <1>;
-		qcom,ext-disp-audio-rx = <1>;
+		qcom,wcn-btfm = <0>;
+		qcom,ext-disp-audio-rx = <0>;
 		qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 		qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 		qcom,audio-routing =
@@ -637,6 +641,7 @@
 };
 
 &adsp_loader {
+	status = "okay";
 	nvmem-cells = <&adsp_variant>;
 	nvmem-cell-names = "adsp_variant";
 	adsp-fw-names = "adsp2.mdt";
