@@ -132,6 +132,7 @@
 				reg = <0x01 0xf0170220>;
 				/*swr-slave-supply = <&hap_swr_slave_reg>;*/
 				qcom,rx_swr_ch_map = <0 0x01 0x01 0 PCM_OUT1>;
+				qcom,hap-visense-supported = <0>;
 			};
 
 			wcd938x_rx_slave: wcd938x-rx-slave {
