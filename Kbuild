@@ -54,7 +54,8 @@ dtbo-y += kera-audio.dtbo \
                 kera-audio-mtp-qmp1000.dtbo \
                 kera-audio-qrd.dtbo \
                 kera-audio-rcm.dtbo \
-                kera-audio-rcm-orne.dtbo
+                kera-audio-rcm-orne.dtbo \
+                kera-audio-mtp-wcn7750.dtbo
 
 endif
 
