@@ -1,0 +1,16 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
+*/
+
+/dts-v1/;
+/plugin/;
+
+#include "art-audio-mtp.dtsi"
+ / {
+	model = "Qualcomm Technologies, Inc. Art MTP";
+	compatible = "qcom,art-mtp", "qcom,art", "qcom,artp-mtp", "qcom,artp",
+			   "qcom,mtp";
+	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
+	qcom,board-id = <8 0>;
+};
