@@ -21,10 +21,10 @@
 	wsa885x_i2c: wsa885x-i2c-codec@c {
 		compatible = "qcom,wsa885x-i2c";
 		reg = <0x0c>;
-		pinctrl-0 = <&pndr_spkr_sd_n>;
 		pinctrl-names = "default";
-		powerdown-gpios = <&pmh0110_f_gpios 11 GPIO_ACTIVE_LOW>;
+		pinctrl-0 = <&spkr_interrupt_active>, <&pndr_spkr_sd_n>;
 		interrupt-gpios = <&tlmm 77 GPIO_ACTIVE_HIGH>;
+		powerdown-gpios = <&pmh0110_f_gpios 11 GPIO_ACTIVE_LOW>;
 		vdd-1p8-supply = <&L2G>;
 		vdd-io-supply = <&L1G>;
 		qcom,codec-name = "wsa885x_i2c";

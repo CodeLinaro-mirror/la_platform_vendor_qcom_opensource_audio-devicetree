@@ -9,8 +9,8 @@
 #include "art-audio-rumi.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Canoe RUMI";
-	compatible = "qcom,canoe-rumi", "qcom,canoe", "qcom,rumi";
-	qcom,msm-id = <660 0x10000>, <660 0x20000>;
+	model = "Qualcomm Technologies, Inc. Art RUMI";
+	compatible = "qcom,art-rumi", "qcom,art", "qcom,rumi";
+	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
 	qcom,board-id = <15 0>;
 };

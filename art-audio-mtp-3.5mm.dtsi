@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: BSD-3-Clause-Clear
 */
 
-#include "art-audio-mtp.dtsi"
+#include "art-audio-mtp-qmp.dtsi"
 
 &art_snd {
 	qcom,msm-mbhc-usbc-audio-supported = <0>;

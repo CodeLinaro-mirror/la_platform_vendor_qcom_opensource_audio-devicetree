@@ -690,7 +690,7 @@
 		};
 	};
 
-	wsa_swr_data0_active: wsa_swr_data0_active {
+	wsa_swr_data_active: wsa_swr_data_active {
 		mux {
 			pins = "gpio11";
 			function = "func2";
@@ -704,7 +704,7 @@
 		};
 	};
 
-	wsa_swr_data0_sleep: wsa_swr_data0_sleep {
+	wsa_swr_data_sleep: wsa_swr_data_sleep {
 		mux {
 			pins = "gpio11";
 			function = "func2";
@@ -1034,7 +1034,7 @@
 		};
 	};
 
-	wsa2_swr_data0_active: wsa2_swr_data0_active {
+	wsa2_swr_data_active: wsa2_swr_data_active {
 		mux {
 			pins = "gpio16";
 			function = "func2";
@@ -1048,7 +1048,7 @@
 		};
 	};
 
-	wsa2_swr_data0_sleep: wsa2_swr_data0_sleep {
+	wsa2_swr_data_sleep: wsa2_swr_data_sleep {
 		mux {
 			pins = "gpio16";
 			function = "func2";
