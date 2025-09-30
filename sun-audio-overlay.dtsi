@@ -414,8 +414,8 @@
 		qcom,model = "sun-mtp-snd-card";
 		qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 		qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-		qcom,wcn-bt = <0>;
-		qcom,ext-disp-audio-rx = <0>;
+		qcom,wcn-bt = <1>;
+		qcom,ext-disp-audio-rx = <1>;
 		qcom,tdm-max-slots = <8>;
 		qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 		qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
@@ -556,16 +556,6 @@
 		#gpio-cells = <0>;
 	};
 
-	cdc_sec_mi2s_gpios: sec_mi2s_pinctrl {
-		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&tdm1_clk_active &tdm1_ws_active
-				&tdm1_sd0_active &tdm1_sd1_active>;
-		pinctrl-1 = <&tdm1_clk_sleep &tdm1_ws_sleep
-				&tdm1_sd0_sleep &tdm1_sd1_sleep>;
-		#gpio-cells = <0>;
-	};
-
 	fm_i2s1_gpios: fm_i2s1_pinctrl {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
@@ -573,6 +563,17 @@
 				&i2s1_sd0_active>;
 		pinctrl-1 = <&i2s1_sck_sleep &i2s1_ws_sleep
 				&i2s1_sd0_sleep>;
+		#gpio-cells = <0>;
+	};
+
+	cdc_sec_mi2s_gpios: sec_mi2s_pinctrl {
+		status = "disabled";
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&tdm1_clk_active &tdm1_ws_active
+				&tdm1_sd0_active &tdm1_sd1_active>;
+		pinctrl-1 = <&tdm1_clk_sleep &tdm1_ws_sleep
+				&tdm1_sd0_sleep &tdm1_sd1_sleep>;
 		#gpio-cells = <0>;
 	};
 
