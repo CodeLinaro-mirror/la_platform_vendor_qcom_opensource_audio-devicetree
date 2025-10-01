@@ -18,7 +18,6 @@
 		pinctrl-1 = <&spkr_13_sd_n_sleep>;
 		qcom,lpi-gpios;
 	};
-
 };
 
 &swr0 {
@@ -78,8 +77,6 @@
 		qcom,cdc-static-supplies = "cdc-vdd-1p8";
 		sound-name-prefix = "SpkrRight";
 	};
-
-
 };
 
 &swr3 {

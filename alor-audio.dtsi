@@ -130,7 +130,7 @@
 				"lpass_audio_hw_vote";
 		clocks = <&lpass_core_hw_vote 0>,
 				<&lpass_audio_hw_vote 0>;
-		lpass-cdc-clk-rsc-mngr {
+		lpass_clk_rsc: lpass-cdc-clk-rsc-mngr {
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 		};
 
@@ -152,6 +152,10 @@
 			};
 		};
 
+		wsa2_macro: wsa2-macro@6AA0000 {
+			swr3: wsa2_swr_master {
+			};
+		};
 	};
 
 	lpass_bt_swr: lpass_bt_swr@6CA0000 {

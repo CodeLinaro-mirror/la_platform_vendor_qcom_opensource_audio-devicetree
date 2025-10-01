@@ -3,9 +3,13 @@
  *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
+&lpass_clk_rsc {
+	qcom,rx_mclk_mode_muxsel = <0x06BEC0D8>;
+	qcom,wsa_mclk_mode_muxsel = <0x06BEA110>;
+};
+
 &wsa2_macro {
 	reg = <0x6AA0000 0x0>;
-
 	/*Check IPCAT for below details*/
 	wsa_data_fs_ctl_reg = <0x6B6F000>;
 	qcom,wsa-bat-cfgs= <1>, <1>;
@@ -25,14 +29,12 @@
 
 &rx_macro {
 	reg = <0x6AC0000 0x0>;
-
 	/*Check IPCAT for address*/
 	qcom,rx_mclk_mode_muxsel = <0x06BEC0D8>;
 };
 
 &lpi_tlmm {
 	reg = <0x07760000 0x0>;
-
 	/*Check IPCAT for below details*/
 	qcom,gpios-count = <23>;
 	qcom,slew-reg = <0x07760000 0x0>;
@@ -50,7 +52,6 @@
 
 &wsa_macro {
 	reg = <0x6B00000 0x0>;
-
 	/*Check IPCAT for below details*/
 	qcom,wsa-bat-cfgs= <1>, <1>;
 	qcom,wsa-rloads= <2>, <2>;

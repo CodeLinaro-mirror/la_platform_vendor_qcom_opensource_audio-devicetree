@@ -5,6 +5,7 @@
 
 &swr1 {
 	wcd939x_rx_slave: wcd939x-rx-slave {
+		status = "disabled";
 		compatible = "qcom,wcd939x-slave";
 		reg = <0x0E 0x01170224>;
 	};
@@ -21,12 +22,11 @@
 		compatible = "qcom,pmih010x-swr-haptics";
 		qcom,rx_swr_ch_map = <0 0x01 0x01 0 PCM_OUT1>;
 	};
-
 };
 
 &swr2 {
-
 	wcd939x_tx_slave: wcd939x-tx-slave {
+		status = "disabled";
 		compatible = "qcom,wcd939x-slave";
 		reg = <0x0E 0x01170223>;
 	};
@@ -35,11 +35,9 @@
 		compatible = "qcom,wcd9378-slave";
 		reg = <0x10 0x01170223>;
 	};
-
 };
 
 &lpass_cdc {
-
 	wcd939x_codec: wcd939x-codec {
 		compatible = "qcom,wcd939x-codec";
 		status = "disabled";
@@ -192,6 +190,4 @@
 					   "cdc-vdd-io";
 		qcom,cdc-on-demand-supplies = "cdc-vdd-buck";
 	};
-
-
 };

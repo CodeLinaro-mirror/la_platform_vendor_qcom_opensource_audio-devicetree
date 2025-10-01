@@ -9,30 +9,25 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 
 &wsa_macro {
 	qcom,wsa-bat-cfgs= <1>, <1>;
 	wsa_data_fs_ctl_reg = <0x6B6F000>;
-	qcom,wsa-bat-cfgs= <1>, <1>;
 	qcom,wsa-rloads= <2>, <2>;
 	qcom,wsa-system-gains= <0 9>, <0 9>;
 };
 
-&swr3 {
-	swr_haptics: swr_haptics@f0170220 {
-		status = "okay";
-	};
+&swr_haptics {
+	status = "okay";
 };
 
-&swr0 {
-	wsa884x_0220: wsa884x@02170220 {
-		status = "okay";
-	};
+&wsa884x_0220 {
+	status = "okay";
+};
 
-	wsa884x_0221: wsa884x@02170221 {
-		status = "okay";
-	};
+&wsa884x_0221 {
+	status = "okay";
 };
 
 &wcd939x_tx_slave {
@@ -60,7 +55,6 @@
 	qcom,usbcss-hs-lin-k-aud = <13>;
 	qcom,usbcss-hs-lin-k-gnd = <13>;
 };
-
 
 &canoe_snd {
 		qcom,model = "canoe-mtp-wsa884x-snd-card";
@@ -196,5 +190,4 @@
 		 * qcom,upd_lpass_reg_addr = <0x6AC0418 0x7634020>;
 		 * qcom,upd_ear_pa_reg_addr = <0x300A>;
 		 */
-
 };

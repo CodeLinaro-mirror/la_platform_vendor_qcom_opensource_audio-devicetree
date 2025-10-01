@@ -9,7 +9,7 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
 &swr_tx_clk_active {
@@ -36,10 +36,8 @@
 	};
 };
 
-&swr3 {
-	swr_haptics: swr_haptics@f0170220 {
-		status = "okay";
-	};
+&swr_haptics {
+	status = "okay";
 };
 
 &wcd939x_tx_slave {
