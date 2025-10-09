@@ -3,6 +3,13 @@
  * SPDX-License-Identifier: BSD-3-Clause-Clear
 */
 
+&cdc_tert_mi2s_gpios {
+	pinctrl-0 = <&va_lpi_i2s0_clk_active &va_lpi_i2s0_ws_active
+			&va_lpi_i2s0_data0_active &va_lpi_i2s0_data1_active>;
+	pinctrl-1 = <&va_lpi_i2s0_clk_sleep &va_lpi_i2s0_ws_sleep
+			&va_lpi_i2s0_data0_sleep &va_lpi_i2s0_data1_sleep>;
+};
+
 &lpass_cdc {
 	qcom,num-macros = <4>;
 };
@@ -18,7 +25,10 @@
 	wsa_data_fs_ctl_reg = <0x736F000>;
 };
 
-/* WSA_SWR */
+/* WSA_SWR
+ * vector# is within ESPI range (4096-5119) and use GIC_ESPI
+ * vector# - 4096
+ */
 &swr0 {
 	status = "disabled";
 	swrm-io-base = <0x7310000 0x0>;
@@ -29,6 +39,15 @@
 &swr3 {
 	swrm-io-base = <0x72B0000 0x0>;
 	interrupts = <GIC_ESPI 235 IRQ_TYPE_LEVEL_HIGH>;
+
+	swr_haptics: swr_haptics@f0170220 {
+		status = "disabled";
+		compatible = "qcom,pmih010x-swr-haptics";
+		reg = <0x03 0xf0170220>;
+		swr-slave-supply = <&hap_swr_slave_reg>;
+		qcom,rx_swr_ch_map = <0 0x01 0x01 0 OCPM>;
+		qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SPKR_L_VI>;
+	};
 };
 
 &rx_macro  {
@@ -52,8 +71,10 @@
 	status = "disabled";
 };
 
-/* TX_SWR */
-/* #TODO need to check and update */
+/* TX_SWR
+ * vector# is within SPI range (32-992) and Use GIC_SPI
+ * To get the interrupt vector# - 32
+ */
 &swr2 {
 	swrm-io-base = <0x7E90000 0x0>;
 	interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>,
