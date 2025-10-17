@@ -149,3 +149,7 @@
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 				<&lpass_cdc>, <&lpass_bt_swr>;
 };
+
+&wsa885x_i2c {
+	qcom,battery_config = <2>;
+}
