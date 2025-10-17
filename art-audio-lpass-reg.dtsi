@@ -11,7 +11,7 @@
 };
 
 &lpass_cdc {
-	qcom,num-macros = <4>;
+	qcom,num-macros = <3>;
 };
 
 &lpass_clk_rsc {
@@ -19,7 +19,13 @@
 	qcom,wsa_mclk_mode_muxsel = <0x73EA110>;
 };
 
+&wsa_macro {
+	status = "disabled";
+	reg = <0x7300000 0x0>;
+};
+
 &wsa2_macro {
+	status = "disabled";
 	reg = <0x72A0000 0x0>;
 	/*Check IPCAT for below details*/
 	wsa_data_fs_ctl_reg = <0x736F000>;
@@ -37,17 +43,9 @@
 
 /* WSA2_SWR */
 &swr3 {
+	status = "disabled";
 	swrm-io-base = <0x72B0000 0x0>;
 	interrupts = <GIC_ESPI 235 IRQ_TYPE_LEVEL_HIGH>;
-
-	swr_haptics: swr_haptics@f0170220 {
-		status = "disabled";
-		compatible = "qcom,pmih010x-swr-haptics";
-		reg = <0x03 0xf0170220>;
-		swr-slave-supply = <&hap_swr_slave_reg>;
-		qcom,rx_swr_ch_map = <0 0x01 0x01 0 OCPM>;
-		qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SPKR_L_VI>;
-	};
 };
 
 &rx_macro  {
@@ -60,15 +58,28 @@
 &swr1 {
 	swrm-io-base = <0x72D0000 0x0>;
 	interrupts = <GIC_ESPI 219 IRQ_TYPE_LEVEL_HIGH>;
+	qcom,swr-num-dev = <2>;
+	qcom,swr-num-ports = <15>;
+	qcom,swr-port-mapping = <1 HPH_L 0x1>, <1 HPH_R 0x2>,
+				 <2 CLSH 0x3>, <3 COMP_L 0x1>,
+				 <3 COMP_R 0x2>, <4 LO 0x1>, <5 DSD_L 0x1>,
+				 <5 DSD_R 0x2>, <6 HIFI_PCM_L 0x01>, <6 HIFI_PCM_R 0x2>,
+				 <7 HAPT 0x1>, <8 UT_A 0xF>, <9 PCM_OUT1 0x1>, <10 GPPO 0x3>,
+				 <11 MM_A 0xF>, <12 UT_A 0xF>, <13 VO_A 0xF>,
+				 <14 PCMI 0xF>, <15 SWRM_RX_TX1 0x3>;
+
+	swr_haptics: swr_haptics@f0170220 {
+		status = "disabled";
+		compatible = "qcom,pmih010x-swr-haptics";
+		reg = <0x03 0xf0170220>;
+		swr-slave-supply = <&hap_swr_slave_reg>;
+		qcom,rx_swr_ch_map = <0 0x01 0x01 0 HAPT>;
+		qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SWRM_RX_TX1>;
+	};
 };
 
 &tx_macro  {
 	reg = <0x72E0000 0x0>;
-};
-
-&wsa_macro {
-	reg = <0x7300000 0x0>;
-	status = "disabled";
 };
 
 /* TX_SWR
@@ -90,6 +101,3 @@
 &va_macro {
 	reg = <0x7EC0000 0x0>;
 };
-
-
-

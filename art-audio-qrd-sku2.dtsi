@@ -35,10 +35,6 @@
 	};
 };
 
-&swr_haptics {
-	status = "okay";
-};
-
 &wcd939x_tx_slave {
 	status = "okay";
 };
@@ -82,11 +78,9 @@
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&swr_haptics>,
-			<&wsa885x_i2c>;
+			<&wcd939x_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wcd939x_codec", "swr-haptics",
-			"wsa885x_i2c";
+			"wcd939x_codec", "wsa885x_i2c";
 	qcom,dedicated-wsa2;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
@@ -112,7 +106,7 @@
 		"IN1_HPHL", "HPHL_OUT",
 		"IN2_HPHR", "HPHR_OUT",
 		"IN3_EAR", "AUX_OUT",
-		"HAP_IN", "WSA2_HAPT OUT",
+		"HAP_IN", "PCM_OUT",
 		"RX_TX DEC0_INP", "TX DEC0 MUX",
 		"RX_TX DEC1_INP", "TX DEC1 MUX",
 		"RX_TX DEC2_INP", "TX DEC2 MUX",

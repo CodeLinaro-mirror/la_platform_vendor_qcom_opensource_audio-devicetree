@@ -11,22 +11,6 @@
 #include "wcd.dtsi"
 #include "art-audio-lpass-reg.dtsi"
 
-&swr1 {
-	status = "disabled";
-};
-
-&swr_haptics {
-	status = "okay";
-};
-
-&rx_macro {
-	qcom,is-used-swr-gpio = <0>;
-};
-
-&rx_swr_gpios {
-	status = "disabled";
-};
-
 &wcd_rst_gpio {
 	status = "disabled";
 };
@@ -110,6 +94,7 @@
 
 &art_snd {
 	qcom,model = "art-qrd-qmp-snd-card";
+	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <0>;
@@ -121,14 +106,14 @@
 	qcom,audio-core-list = <0>, <1>;
 	qcom,qmp-mic = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&swr_haptics>, <&wsa885x_i2c>, <&qmp01>, <&qmp02>,
+			<&wsa885x_i2c>, <&qmp01>, <&qmp02>,
 			<&qmp03>, <&qmp04>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-		"swr-haptics", "wsa885x_i2c", "qmp-dmic.01", "qmp-dmic.02",
+		"wsa885x_i2c", "qmp-dmic.01", "qmp-dmic.02",
 		"qmp-dmic.03", "qmp-dmic.04";
 	qcom,dedicated-wsa2;
 	qcom,audio-routing =
-		"HAP_IN", "WSA2_HAPT OUT",
+		"HAP_IN", "PCM_OUT",
 		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC02 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC03 NORMAL_OUTPUT",
@@ -152,4 +137,4 @@
 
 &wsa885x_i2c {
 	qcom,battery_config = <2>;
-}
+};
