@@ -16,7 +16,6 @@
 / {
 	model = "Qualcomm Technologies, Inc. Art";
 	compatible = "qcom,art";
-	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>,
-		      <708 0x20000>;
+	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
 	qcom,board-id = <0 0>;
 };

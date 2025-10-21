@@ -12,6 +12,6 @@
 	compatible = "qcom,art-mtp", "qcom,canoe", "qcom,canoep-mtp",
 			"qcom,artp", "qcom,mtp";
 	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
-	qcom,board-id = <0x60008 0>;
+	qcom,board-id = <0x10208 0>;
 }
 ;
