@@ -1,9 +1,14 @@
-// SPDX-License-Identifier: BSD-3-Clause
-/*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "canoe-audio-overlay.dtsi"
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "canoe-lpi.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+#include "wsa884x.dtsi"
+#include "wcd939x.dtsi"
 #include "canoe-audio-lpass-reg.dtsi"
 #include "canoe-audio-simple-amp.dtsi"
 
@@ -31,12 +36,31 @@
 	status = "disabled";
 };
 
-&fm_i2s1_gpios {
-	status = "ok";
+&wcd939x_tx_slave {
+	status = "okay";
 };
 
-&swr_haptics {
-	status = "disabled";
+&wcd939x_rx_slave {
+	status = "okay";
+};
+
+&wcd939x_codec {
+	status = "okay";
+	/* 0 for digital crosstalk disabled,
+	 * 1 for digital crosstalk with local sensed a-xtalk enabled, and
+	 * 2 for digital crosstalk with remote sensed a-xtalk enabled.
+	 */
+	qcom,usbcss-hs-xtalk-config = <0>;
+	qcom,usbcss-hs-rdson = <600>;
+	qcom,usbcss-hs-r2 = <7550>;
+	qcom,usbcss-hs-r3 = <1>;
+	qcom,usbcss-hs-r4 = <330>;
+	qcom,usbcss-hs-r5 = <5>;
+	qcom,usbcss-hs-r6 = <1>;
+	qcom,usbcss-hs-r7 = <5>;
+	qcom,usbcss-hs-lin-k-aud = <13>;
+	qcom,usbcss-hs-lin-k-gnd = <13>;
+
 };
 
 &canoe_snd {
@@ -114,6 +138,9 @@
 		"VA DMIC5", "VA MIC BIAS4",
 		"VA DMIC6", "VA MIC BIAS3",
 		"VA DMIC7", "VA MIC BIAS4";
+	qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
+	qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
+	qcom,cdc-dmic45-gpios = <&cdc_dmic45_gpios>;
 	qcom,cdc-dmic67-gpios = <&cdc_dmic67_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
@@ -133,4 +160,6 @@
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+				  <&lpass_cdc>, <&lpass_bt_swr>;
 };
