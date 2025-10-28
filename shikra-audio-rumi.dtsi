@@ -1,0 +1,29 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+#include "shikra-audio-qcs.dtsi"
+
+&shikra_snd {
+	qcom,model = "shikra-rumi-snd-card";
+	compatible = "qcom,shikra-asoc-snd-stub";
+	asoc-codec = <&stub_codec>;
+	asoc-codec-names = "msm-stub-codec.1";
+};
+
+&lpass_cdc {
+	status = "okay";
+};
+
+&swr1{
+	status = "disabled";
+};
+
+&swr0{
+	status = "disabled";
+};
+
+&rouleur_codec {
+	status = "disabled";
+};
