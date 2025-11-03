@@ -55,8 +55,8 @@ dtbo-y += kera-audio.dtbo \
                 kera-audio-qrd.dtbo \
                 kera-audio-rcm.dtbo \
                 kera-audio-rcm-orne.dtbo \
-                kera-audio-idp.dtbo
-
+                kera-audio-idp.dtbo \
+                kera-audio-mtp-wcn7750.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
