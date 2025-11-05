@@ -111,7 +111,6 @@
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 		"wsa885x_i2c", "qmp-dmic.01", "qmp-dmic.02",
 		"qmp-dmic.03", "qmp-dmic.04";
-	qcom,dedicated-wsa2;
 	qcom,audio-routing =
 		"HAP_IN", "PCM_OUT",
 		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",

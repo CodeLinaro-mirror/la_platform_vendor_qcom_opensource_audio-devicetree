@@ -41,11 +41,6 @@
 	qcom,usbcss-hs-lin-k-gnd = <13>;
 };
 
-&swr3 {
-	qcom,swr-num-dev = <1>;
-};
-
-
 &swr2 {
 	qmp01: qmp@04170232 {
 		/*
@@ -126,7 +121,6 @@
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
 		"AMIC1", "MIC BIAS1",
-//TODO MIC BIAS for QMP
 		"AMIC2", "Analog Mic2",
 		"AMIC2", "MIC BIAS2",
 		"AMIC3", "Analog Mic3",
@@ -194,10 +188,4 @@
 	wcd939x-i2c-handle = <&wcd_usbss>;
 	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 				  <&lpass_cdc>, <&lpass_bt_swr>;
-	/*
-	 * Add this property,
-	 * To Enable swr haptics through OPCM port.
-	 * This will include wsa2 dailinks.
-	 */
-	qcom,dedicated-wsa2;
 };

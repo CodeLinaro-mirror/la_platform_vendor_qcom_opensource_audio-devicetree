@@ -81,7 +81,6 @@
 			<&wcd939x_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd939x_codec", "wsa885x_i2c";
-	qcom,dedicated-wsa2;
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
 		"AMIC1", "MIC BIAS1",

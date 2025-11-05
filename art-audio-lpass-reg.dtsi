@@ -62,11 +62,11 @@
 	qcom,swr-num-ports = <15>;
 	qcom,swr-port-mapping = <1 HPH_L 0x1>, <1 HPH_R 0x2>,
 				 <2 CLSH 0x3>, <3 COMP_L 0x1>,
-				 <3 COMP_R 0x2>, <4 LO 0x1>, <5 DSD_L 0x1>,
-				 <5 DSD_R 0x2>, <6 HIFI_PCM_L 0x01>, <6 HIFI_PCM_R 0x2>,
-				 <7 HAPT 0x1>, <8 UT_A 0xF>, <9 PCM_OUT1 0x1>, <10 GPPO 0x3>,
-				 <11 MM_A 0xF>, <12 UT_A 0xF>, <13 VO_A 0xF>,
-				 <14 PCMI 0xF>, <15 SWRM_RX_TX1 0x3>;
+				 <3 COMP_R 0x2>, <4 LO 0x1>, <5 HAPT 0x1>,
+				 <6 HIFI_PCM_L 0x01>, <6 HIFI_PCM_R 0x2>,
+				 <7 UT_A 0xF>, <8 PCM_OUT1 0x1>, <9 GPPO 0x3>,
+				 <10 MM_A 0xF>, <11 UT_A 0xF>, <12 VO_A 0xF>,
+				 <13 PCMI 0xF>, <14 SWRM_RX_TX1 0x3>;
 
 	swr_haptics: swr_haptics@f0170220 {
 		status = "disabled";
