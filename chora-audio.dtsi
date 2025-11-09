@@ -24,6 +24,7 @@
 		#clock-cells = <1>;
 	};
 };
+
 &remoteproc_adsp_glink {
 	audio_gpr: qcom,gpr {
 		compatible = "qcom,gpr";
@@ -71,6 +72,59 @@
 	msm_audio_ion_cma: qcom,msm-audio-ion-cma {
 		compatible = "qcom,msm-audio-ion-cma";
 	};
+
+	lpi_tlmm: lpi_pinctrl@3440000 {
+		compatible = "qcom,lpi-pinctrl";
+		reg = <0x3440000 0x0>;
+		qcom,gpios-count = <23>;
+		qcom,slew-reg = <0x34DA000 0x0>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		qcom,lpi-offset-tbl = <0x00000000>, <0x00001000>,
+					<0x00002000>, <0x00003000>,
+					<0x00004000>, <0x00005000>,
+					<0x00006000>, <0x00007000>,
+					<0x00008000>, <0x00009000>,
+					<0x0000A000>, <0x0000B000>,
+					<0x0000C000>, <0x0000D000>,
+					<0x0000E000>, <0x0000F000>,
+					<0x00010000>, <0x00011000>,
+					<0x00012000>, <0x00013000>,
+					<0x00014000>, <0x00015000>,
+					<0x00016000>;
+
+		qcom,lpi-slew-offset-tbl = <0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>, <0x0000000B>,
+					<0x0000000B>;
+
+		qcom,lpi-slew-base-tbl = <0x3440000>, <0x3441000>,
+					<0x3442000>, <0x3443000>,
+					<0x3444000>, <0x3445000>,
+					<0x3446000>, <0x3447000>,
+					<0x3448000>, <0x3449000>,
+					<0x344A000>, <0x344B000>,
+					<0x344C000>, <0x344D000>,
+					<0x344E000>, <0x344F000>,
+					<0x3450000>, <0x3451000>,
+					<0x3452000>, <0x3453000>,
+					<0x3454000>, <0x3455000>,
+					<0x3456000>;
+
+		clock-names = "lpass_core_hw_vote",
+				"lpass_audio_hw_vote";
+		clocks = <&lpass_core_hw_vote 0>,
+				<&lpass_audio_hw_vote 0>;
+	};
+
 	lpass_cdc: lpass-cdc {
 		compatible = "qcom,lpass-cdc";
 		clock-names = "lpass_core_hw_vote",
@@ -101,6 +155,7 @@
 		};
 	};
 };
+
 &aliases {
 	swr1 = "/soc/spf_core_platform/lpass-cdc/rx-macro@3200000/rx_swr_master";
 	swr2 = "/soc/spf_core_platform/lpass-cdc/va-macro@33F0000/va_swr_master";
@@ -110,5 +165,4 @@
 &adsp_loader {
 	/delete-property/ qcom,adsp-state;
 };
-
 

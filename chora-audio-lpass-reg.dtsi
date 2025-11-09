@@ -3,3 +3,10 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+&lpi_tlmm {
+	reg = <0x3440000 0x0>;
+	/*Check IPCAT for below details*/
+	qcom,gpios-count = <23>;
+	qcom,slew-reg = <0x3440000 0x0>;
+};
+
