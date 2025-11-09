@@ -31,4 +31,7 @@
 	qcom,gpios-count = <23>;
 	qcom,slew-reg = <0x3440000 0x0>;
 };
+&va_swr_gpios {
+	qcom,chip-wakeup-reg = <0xF175008>;
+}
 
