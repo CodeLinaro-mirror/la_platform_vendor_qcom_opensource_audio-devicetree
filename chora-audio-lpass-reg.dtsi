@@ -3,6 +3,13 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+&rx_macro {
+	reg = <0x3200000 0x0>;
+	qcom,rx-swr-gpios = <&rx_swr_gpios>;
+		/*Check IPCAT for address*/
+	qcom,rx_mclk_mode_muxsel = <0x33A40D8>;
+};
+
 &tx_macro {
 	reg = <0x3220000 0x0>;
 };
@@ -31,7 +38,12 @@
 	qcom,gpios-count = <23>;
 	qcom,slew-reg = <0x3440000 0x0>;
 };
+
 &va_swr_gpios {
 	qcom,chip-wakeup-reg = <0xF175008>;
 }
+
+&va_swr_gpios {
+	qcom,chip-wakeup-reg = <0xF175008>;
+};
 
