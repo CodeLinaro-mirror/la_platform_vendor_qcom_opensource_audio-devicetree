@@ -3,6 +3,28 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
+&tx_macro {
+	reg = <0x3220000 0x0>;
+};
+
+&va_macro {
+	reg = <0x33F0000 0x0>;
+	qcom,va-swr-gpios = <&va_swr_gpios>;
+};
+
+&swr1 {
+	swrm-io-base = <0x3210000 0x0>;
+	/*Check IPCAT for GIC NUM*/
+	interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+};
+
+&swr2 {
+	swrm-io-base = <0x33B0000 0x0>;
+		/*Check IPCAT for GIC Number*/
+	interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+};
+
 &lpi_tlmm {
 	reg = <0x3440000 0x0>;
 	/*Check IPCAT for below details*/
