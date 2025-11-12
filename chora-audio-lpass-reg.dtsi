@@ -25,11 +25,20 @@
 	interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
 };
 
+
 &swr2 {
 	swrm-io-base = <0x33B0000 0x0>;
 		/*Check IPCAT for GIC Number*/
 	interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
 		<GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+};
+
+
+&swr4 {
+	swrm-io-base = <0x031E0000 0x0>;
+	/*Check IPCAT for GIC Number*/
+
+	interrupts = <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
 };
 
 &lpi_tlmm {
