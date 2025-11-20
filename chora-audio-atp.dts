@@ -6,7 +6,7 @@
 /dts-v1/;
 /plugin/;
 
-#include "chora-atp.dtsi"
+#include "chora-audio-atp.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Chora ATP evros";
