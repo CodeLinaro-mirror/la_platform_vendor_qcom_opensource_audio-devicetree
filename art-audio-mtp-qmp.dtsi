@@ -51,7 +51,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC01";
 		qcom,codec-name = "qmp-dmic.01";
-		qmp-vdd-supply = <&wcd_mb3_reg>;
+		qmp-vdd-supply = <&L10B>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
@@ -64,7 +64,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC02";
 		qcom,codec-name = "qmp-dmic.02";
-		qmp-vdd-supply = <&wcd_mb1_reg>;
+		qmp-vdd-supply = <&L10B>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL2 LANE0>, <OFFSET1_VAL1 LANE0>,
 				<OFFSET1_VAL2 LANE0>, <OFFSET1_VAL1 LANE0>,
@@ -77,7 +77,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC03";
 		qcom,codec-name = "qmp-dmic.03";
-		qmp-vdd-supply = <&wcd_mb3_reg>;
+		qmp-vdd-supply = <&L10B>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL3 LANE0>, <OFFSET1_VAL2 LANE0>,
 				<OFFSET1_VAL3 LANE0>, <OFFSET1_VAL2 LANE0>,
@@ -90,7 +90,7 @@
 		compatible = "qcom,qmp-sdca-dmic";
 		sound-name-prefix = "QMP_MIC04";
 		qcom,codec-name = "qmp-dmic.04";
-		qmp-vdd-supply = <&wcd_mb1_reg>;
+		qmp-vdd-supply = <&L10B>;
 		qcom,swr-tx-port-params =
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
 				<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
@@ -104,8 +104,8 @@
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
 	qcom,ext-disp-audio-rx = <0>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&qmp01>, <&qmp02>,
