@@ -119,18 +119,14 @@
 					<0x3454000>, <0x3455000>,
 					<0x3456000>;
 
-		clock-names = "lpass_core_hw_vote",
-				"lpass_audio_hw_vote";
-		clocks = <&lpass_core_hw_vote 0>,
-				<&lpass_audio_hw_vote 0>;
+		clock-names = "lpass_audio_hw_vote";
+		clocks = <&lpass_audio_hw_vote 0>;
 	};
 
 	lpass_cdc: lpass-cdc {
 		compatible = "qcom,lpass-cdc";
-		clock-names = "lpass_core_hw_vote",
-				"lpass_audio_hw_vote";
-		clocks = <&lpass_core_hw_vote 0>,
-				<&lpass_audio_hw_vote 0>;
+		clock-names = "lpass_audio_hw_vote";
+		clocks = <&lpass_audio_hw_vote 0>;
 		lpass-cdc-clk-rsc-mngr {
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 		};
