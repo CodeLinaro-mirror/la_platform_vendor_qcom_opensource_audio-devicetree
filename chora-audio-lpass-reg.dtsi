@@ -1,0 +1,58 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+&rx_macro {
+	reg = <0x3200000 0x0>;
+	qcom,rx-swr-gpios = <&rx_swr_gpios>;
+		/*Check IPCAT for address*/
+	qcom,rx_mclk_mode_muxsel = <0x33A40D8>;
+};
+
+&tx_macro {
+	reg = <0x3220000 0x0>;
+};
+
+&va_macro {
+	reg = <0x33F0000 0x0>;
+	qcom,va-swr-gpios = <&va_swr_gpios>;
+};
+
+&swr1 {
+	swrm-io-base = <0x3210000 0x0>;
+	/*Check IPCAT for GIC NUM*/
+	interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+};
+
+
+&swr2 {
+	swrm-io-base = <0x33B0000 0x0>;
+		/*Check IPCAT for GIC Number*/
+	interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+		<GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+};
+
+
+&swr4 {
+	swrm-io-base = <0x031E0000 0x0>;
+	/*Check IPCAT for GIC Number*/
+
+	interrupts = <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
+};
+
+&lpi_tlmm {
+	reg = <0x3440000 0x0>;
+	/*Check IPCAT for below details*/
+	qcom,gpios-count = <23>;
+	qcom,slew-reg = <0x3440000 0x0>;
+};
+
+&va_swr_gpios {
+	qcom,chip-wakeup-reg = <0xF175008>;
+}
+
+&va_swr_gpios {
+	qcom,chip-wakeup-reg = <0xF175008>;
+};
+
