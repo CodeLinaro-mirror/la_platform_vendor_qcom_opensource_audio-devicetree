@@ -244,7 +244,7 @@
 		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-buck-current = <361011>;
 
-		cdc-vdd-mic-bias-supply = <&BOB_B>;
+		cdc-vdd-mic-bias-supply = <&BOB1>;
 		qcom,cdc-vdd-mic-bias-voltage = <3296000 3296000>;
 		qcom,cdc-vdd-mic-bias-current = <6076>;
 
