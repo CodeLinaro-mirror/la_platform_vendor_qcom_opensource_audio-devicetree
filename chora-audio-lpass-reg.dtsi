@@ -37,6 +37,12 @@
 		/*Check IPCAT for GIC Number*/
 	interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
 		<GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+	qcom,swr-port-mapping = <1 SWRM_TX1_CH1 0x1>, <1 SWRM_TX1_CH2 0x2>,
+				<1 SWRM_TX1_CH3 0x4>, <1 SWRM_TX1_CH4 0x8>,
+				<2 SWRM_TX2_CH1 0x1>, <2 SWRM_TX2_CH2 0x2>,
+				<2 SWRM_TX2_CH3 0x4>, <2 SWRM_TX2_CH4 0x8>,
+				<3 SWRM_TX3_CH1 0x1>, <3 SWRM_TX3_CH2 0x2>,
+				<3 SWRM_TX3_CH3 0x4>, <3 SWRM_TX3_CH4 0x8>;
 	clock-names = "lpass_audio_hw_vote";
 	clocks = <&lpass_audio_hw_vote 0>;
 };
@@ -62,4 +68,3 @@
 &va_swr_gpios {
 	qcom,chip-wakeup-reg = <0xF175008>;
 };
-
