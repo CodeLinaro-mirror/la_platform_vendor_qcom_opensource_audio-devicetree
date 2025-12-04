@@ -167,7 +167,7 @@
 
 	art_snd: sound {
 		compatible = "qcom,art-asoc-snd";
-		qcom,mi2s-audio-intf = <1>;
+		qcom,mi2s-audio-intf = <0>;
 		qcom,tdm-audio-intf = <1>;
 		qcom,wsa885x-tdm = <1>;
 		qcom,wcn-bt = <0>;
