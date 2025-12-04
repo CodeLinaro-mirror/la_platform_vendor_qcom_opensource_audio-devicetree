@@ -47,6 +47,9 @@
 	/*Check IPCAT for GIC Number*/
 
 	interrupts = <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
+	qcom,swr-num-ports = <8>;
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
 };
 
 &lpi_tlmm {
