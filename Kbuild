@@ -44,6 +44,19 @@ dtbo-y += sun-audio.dtbo \
                 tuna7-audio-mtp.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_ART), y)
+dtbo-y += art-audio.dtbo \
+                art-audio-cdp.dtbo \
+                art-audio-mtp.dtbo \
+                art-audio-mtp-qmp.dtbo \
+                art-audio-mtp-3.5mm.dtbo \
+                art-audio-qrd.dtbo \
+                art-audio-qrd-sku2.dtbo \
+                art-audio-rumi.dtbo \
+                art-audio-rcm.dtbo \
+                art-audio-atp.dtbo
+endif
+
 ifeq ($(CONFIG_ARCH_CANOE), y)
 dtbo-y += canoe-audio.dtbo \
 		canoe-audio-rumi.dtbo \
