@@ -66,6 +66,17 @@ dtbo-y += canoe-audio.dtbo \
                 alor-audio-rumi.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_CHORA), y)
+dtbo-y += chora-audio.dtbo \
+          chora-audio-mtp.dtbo \
+          chora-audio-mtp-qmp.dtbo \
+          chora-audio-qrd.dtbo \
+          chora-audio-cdp.dtbo \
+          chora-audio-atp.dtbo \
+          chora-audio-rcm.dtbo \
+          chora-audio-rumi.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
