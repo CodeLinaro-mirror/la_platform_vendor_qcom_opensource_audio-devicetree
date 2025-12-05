@@ -4,41 +4,6 @@
  */
 #include <dt-bindings/gpio/gpio.h>
 &lpi_tlmm {
-	/* Need to have this entry as alor dont have this */
-	L1G: L1G {
-
-	};
-	wsa2_swr_data_active: wsa2_swr_data_active {
-		mux {
-		};
-
-		config {
-                };
-        };
-
-        wsa2_swr_data_sleep: wsa2_swr_data_sleep {
-                mux {
-                };
-
-                config {
-                };
-        };
-
-	wsa2_swr_clk_active: wsa2_swr_clk_active {
-		mux {
-		};
-
-		config {
-                };
-        };
-
-        wsa2_swr_clk_sleep: wsa2_swr_clk_sleep {
-                mux {
-                };
-
-                config {
-                };
-        };
 
 	swr_tx_clk_active: swr_tx_clk_active {
 		mux {
@@ -1086,37 +1051,6 @@
 
 		config {
 			pins = "gpio22";
-		};
-	};
-
-	/* Pandeiro speaker - north reset pins */
-	spkr_02_sd_n {
-		spkr_02_sd_n_sleep: spkr_02_sd_n_sleep {
-			mux {
-				pins = "gpio133";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio133";
-				drive-strength = <2>;   /* 2 mA */
-				bias-pull-down;
-				input-enable;
-			};
-		};
-
-		spkr_02_sd_n_active: spkr_02_sd_n_active {
-			mux {
-				pins = "gpio133";
-				function = "gpio";
-			};
-
-			config {
-				pins = "gpio133";
-				drive-strength = <16>;   /* 16 mA */
-				bias-disable;
-				output-high;
-			};
 		};
 	};
 
