@@ -13,6 +13,39 @@
 	qcom,num-macros = <3>;
 };
 
+&swr_tx_clk_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr_tx_data0_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr_tx_data1_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr_tx_data2_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr0{
+	status = "okay";
+	qcom,swr-num-dev = <1>;
+};
+
+&swr1 {
+	qcom,swr-num-dev = <2>;
+};
+
 &wcd939x_tx_slave {
 	status = "disabled";
 };
@@ -29,6 +62,18 @@
 	status = "disabled";
 };
 
+&wcd9378_rx_slave {
+	status = "okay";
+};
+
+&wcd9378_tx_slave {
+	status = "okay";
+};
+
+&wcd9378_codec {
+	status = "okay";
+};
+
 &malabar_snd {
 	qcom,model = "malabar-qrd-snd-card";
 	swr-haptics-unsupported;
@@ -41,10 +86,34 @@
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
-	asoc-codec  = <&stub_codec>, <&lpass_cdc>;
-
-	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc";
-
+	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
+	qcom,msm-mbhc-usbc-audio-supported = <0>;
+	qcom,msm-mbhc-hphl-swh = <1>;
+	qcom,msm-mbhc-gnd-swh = <1>;
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
+			<&wcd9378_codec>, <&wsa881x_i2c_e>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+			"wcd9378_codec", "wsa-codec0";
+	qcom,audio-routing =
+			"AMIC2", "Analog Mic2",
+			"AMIC2", "MIC BIAS2",
+			"VA AMIC2", "Analog Mic2",
+			"VA AMIC2", "VA MIC BIAS2",
+		
+			"IN1_HPHL", "HPHL_OUT",
+			"IN2_HPHR", "HPHR_OUT",
+			"IN3_AUX", "AUX_OUT",
+			"RX_TX DEC0_INP", "TX DEC0 MUX",
+			"RX_TX DEC1_INP", "TX DEC1 MUX",
+			"RX_TX DEC2_INP", "TX DEC2 MUX",
+			"RX_TX DEC3_INP", "TX DEC3 MUX",
+			"TX SWR_INPUT", "WCD_TX_OUTPUT",
+			"VA SWR_INPUT", "VA_SWR_CLK",
+			"VA SWR_INPUT", "WCD_TX_OUTPUT",
+			"VA_AIF1 CAP", "VA_SWR_CLK",
+			"VA_AIF2 CAP", "VA_SWR_CLK",
+			"VA_AIF3 CAP", "VA_SWR_CLK",
+		
 	qcom,wsa-max-devs = <0>;
 	/*
 	 * Add this property,
