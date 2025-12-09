@@ -3,3 +3,92 @@
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "malabar-lpi.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+#include "malabar-audio-lpass-reg.dtsi"
+#include "wcd939x.dtsi"
+
+&lpass_cdc {
+	qcom,num-macros = <3>;
+};
+
+&wcd939x_tx_slave {
+	status = "disabled";
+};
+
+&wcd939x_rx_slave {
+	status = "disabled";
+};
+
+&wcd939x_codec {
+	status = "disabled";
+};
+
+&wcd_usbss {
+	status = "disabled";
+};
+
+&malabar_snd {
+	qcom,model = "malabar-mtp-snd-card";
+	swr-haptics-unsupported;
+	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,wcn-bt = <0>;
+	qcom,wcn-bt-ext = <0>;
+	qcom,ext-disp-audio-rx = <0>;
+	qcom,tdm-max-slots = <8>;
+	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,audio-core-list = <0>, <1>;
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc";
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+				  <&lpass_cdc>;
+
+		/*
+		 * ====================
+		 * UPD backend - WSA
+		 * ====================
+		 *
+		 * Mute/Unmute the interpolator
+		 * ------------------------------
+		 * Register:Â LPASS_WSA_CDC_RX0_RX_PATH_MIX_CTL - 0x6B00418
+		 *
+		 * Send control commands to the peripheral from the soundwire controller
+		 * -----------------------------------------------------------------------
+		 * Register: LPASS_WSA_SWR_MSTR_WSA_SWRM_CPUn_CMD_FIFO_WR_CMD - 0x6B14020
+		 *
+		 * Enable/Disable ear piece
+		 * --------------------------
+		 * Register:Â DIG_CTRL0_PA_FSM_EN - 0x3430
+		 *
+		 *
+		 *	qcom,upd_backends_used = "wsa";
+		 *	qcom,upd_lpass_reg_addr = <0x6B00418 0x6B14020>;
+		 *	qcom,upd_ear_pa_reg_addr = <0x3430>;
+		 *
+		 *
+		 * ====================
+		 * UPD backend - WCD
+		 * ====================
+		 *
+		 * Mute/Unmute the interpolator
+		 * ------------------------------
+		 * Register: LPASS_WCD_CDC_RX0_RX_PATH_MIX_CTL - 0x6AC0418
+		 *
+		 * Send control commands to the wcd from the soundwire controller
+		 * ----------------------------------------------------------------
+		 * Register: LPASS_WCD_SWR_MSTR_WSA_SWRM_CPUn_CMD_FIFO_WR_CMD - 0x7634020
+		 *
+		 * Enable/Disable ear piece
+		 * --------------------------
+		 * Register:Â DIG_CTRL0_PA_FSM_EN - 0x300A
+		 *
+		 */
+//NEed this to update while review
+	qcom,upd_backends_used = "wcd";
+	qcom,upd_lpass_reg_addr = <0x6AC0418 0x7634020>;
+	qcom,upd_ear_pa_reg_addr = <0x300A>;
+};
