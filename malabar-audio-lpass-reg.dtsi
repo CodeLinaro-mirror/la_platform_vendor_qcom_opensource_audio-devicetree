@@ -4,29 +4,38 @@
  */
 
 
-&rx_macro:rx_macro@A600000  {
+&rx_macro {
 	reg = <0xA600000 0x0>;
+	qcom,rx-swr-gpios = <&rx_swr_gpios>;
+
 };
 
-&rx_swr {
+&swr1 {
 	swrm-io-base = <0xA610000 0x0>;
 	interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>;
 };
 
-&tx_macro:tx_macro@A620000  {
+&tx_macro {
 	reg = <0xA620000 0x0>;
 };
 
-&va_macro:va_macro@A730000  {
+&va_macro {
 	reg = <0xA730000 0x0>;
+	qcom,va-swr-gpios = <&va_swr_gpios>;
 };
 
-&tx_swr {
+&swr2 {
 	swrm-io-base = <0xA740000 0x0>;
 	interrupts = <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>;
 };
 
-&tlmm:tlmm@A7C0000  {
+&lpi_tlmm{
+	qcom,gpios-count = <18>;
 	reg = <0xA7C0000 0x0>;
+	qcom,slew-reg = <0xA7C0000 0x0>;
+};
+
+&va_swr_gpios {
+	qcom,chip-wakeup-reg = <0x558008>;
 };
 
