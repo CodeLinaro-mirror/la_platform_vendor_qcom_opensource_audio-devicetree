@@ -1054,4 +1054,103 @@
 		};
 	};
 
+	L1G: L1G {
+	};
+
+	i2s1_ws_sleep: i2s1_ws_sleep {
+	};
+
+	i2s1_ws_active: i2s1_ws_active {
+	};
+
+	i2s1_sd0_sleep: i2s1_sd0_sleep {
+	};
+
+	i2s1_sd0_active: i2s1_sd0_active {
+	};
+
+	i2s1_sd1_sleep: i2s1_sd1_sleep {
+	};
+
+	i2s1_sd1_active: i2s1_sd1_active {
+	};
+
+	i2s1_sck_sleep: i2s1_sck_sleep {
+	};
+
+	i2s1_sck_active: i2s1_sck_active {
+	};
+
+	lpi_i2s4_data1_sleep: lpi_i2s4_data1_sleep {
+	};
+
+	lpi_i2s4_data1_active: lpi_i2s4_data1_active {
+	};
+
+	lpi_i2s4_data0_active: lpi_i2s4_data0_active {
+	};
+
+	lpi_i2s4_data0_sleep: lpi_i2s4_data0_sleep {
+	};
+
+	lpi_i2s4_clk_active: lpi_i2s4_clk_active {
+	};
+
+	lpi_i2s4_clk_sleep: lpi_i2s4_clk_sleep {
+	};
+
+	lpi_i2s4_ws_active: lpi_i2s4_ws_active {
+	};
+
+	lpi_i2s4_ws_sleep: lpi_i2s4_ws_sleep {
+	};
+
+	wsa_swr_data_sleep: wsa_swr_data_sleep {
+	};
+
+	wsa_swr_data_active: wsa_swr_data_active {
+	};
+
+	wsa_swr_clk_active: wsa_swr_clk_active {
+	};
+
+	wsa_swr_clk_sleep: wsa_swr_clk_sleep {
+	};
+
+
+	wsa2_swr_data_sleep: wsa2_swr_data_sleep {
+	};
+
+	wsa2_swr_data_active: wsa2_swr_data_active {
+	};
+
+	wsa2_swr_clk_active: wsa2_swr_clk_active {
+	};
+
+	wsa2_swr_clk_sleep: wsa2_swr_clk_sleep {
+	};
+
+	lpi_i2s3_data1_sleep: lpi_i2s3_data1_sleep {
+	};
+
+	lpi_i2s3_data1_active: lpi_i2s3_data1_active {
+	};
+
+	lpi_i2s3_data0_active: lpi_i2s3_data0_active {
+	};
+
+	lpi_i2s3_data0_sleep: lpi_i2s3_data0_sleep {
+	};
+
+	lpi_i2s3_clk_active: lpi_i2s3_clk_active {
+	};
+
+	lpi_i2s3_clk_sleep: lpi_i2s3_clk_sleep {
+	};
+
+	lpi_i2s3_ws_active: lpi_i2s3_ws_active {
+	};
+
+	lpi_i2s3_ws_sleep: lpi_i2s3_ws_sleep {
+	};
 };

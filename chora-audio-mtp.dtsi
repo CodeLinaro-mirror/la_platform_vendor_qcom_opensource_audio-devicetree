@@ -9,7 +9,6 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "chora-audio-lpass-reg.dtsi"
 #include "wcd939x.dtsi"
-#include "canoe-audio-simple-amp.dtsi"
 
 &lpass_cdc {
 	qcom,num-macros = <3>;
@@ -39,20 +38,8 @@
 	status = "okay";
 };
 
-&wcd_usbss {
-	status = "disabled";
-};
-
-&cdc_quin_mi2s_gpio {
+&cdc_quin_mi2s_gpios {
 	status = "okay";
-};
-
-&swr0 {
-	qcom,swr-num-dev = <0>;
-};
-
-&wsa8855_0230 {
-	status = "disabled";
 };
 
 &chora_snd {
@@ -74,7 +61,7 @@
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd937x_codec>, <&wsa8855_i2c>;
+			<&wcd937x_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd937x_codec", "wsa885x_i2c";
 	qcom,audio-routing =
