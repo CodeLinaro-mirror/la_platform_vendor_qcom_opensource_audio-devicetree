@@ -119,24 +119,21 @@
 					<0x3454000>, <0x3455000>,
 					<0x3456000>;
 
-		clock-names = "lpass_core_hw_vote",
-				"lpass_audio_hw_vote";
-		clocks = <&lpass_core_hw_vote 0>,
-				<&lpass_audio_hw_vote 0>;
+		clock-names = "lpass_audio_hw_vote";
+		clocks = <&lpass_audio_hw_vote 0>;
 	};
 
 	lpass_cdc: lpass-cdc {
 		compatible = "qcom,lpass-cdc";
-		clock-names = "lpass_core_hw_vote",
-				"lpass_audio_hw_vote";
-		clocks = <&lpass_core_hw_vote 0>,
-				<&lpass_audio_hw_vote 0>;
+		clock-names = "lpass_audio_hw_vote";
+		clocks = <&lpass_audio_hw_vote 0>;
 		lpass-cdc-clk-rsc-mngr {
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 		};
 
 		va_macro: va-macro@33F0000 {
 			swr2: va_swr_master {
+				qcom,swr-master-version = <0x01070000>;
 			};
 		};
 
@@ -145,6 +142,7 @@
 
 		rx_macro: rx-macro@3200000 {
 			swr1: rx_swr_master {
+				qcom,swr-master-version = <0x01070000>;
 			};
 		};
 	};
@@ -152,8 +150,21 @@
 	lpass_bt_swr: lpass_bt_swr@31E0000 {
 		compatible = "qcom,lpass-bt-swr";
 		swr4: bt_swr_mstr {
+				qcom,swr-master-version = <0x02000000>;
 		};
 	};
+
+	chora_snd: sound {
+		compatible = "qcom,canoe-asoc-snd";
+		qcom,mi2s-audio-intf = <1>;
+		qcom,tdm-audio-intf = <0>;
+		qcom,auxpcm-audio-intf = <1>;
+		qcom,wcn-bt = <0>;
+		qcom,ext-disp-audio-rx = <0>;
+		clock-names = "lpass_audio_hw_vote";
+		clocks = <&lpass_audio_hw_vote 0>;
+	};
+
 };
 
 &aliases {

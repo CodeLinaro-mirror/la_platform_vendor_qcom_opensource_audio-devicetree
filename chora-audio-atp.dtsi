@@ -6,6 +6,7 @@
 #include "chora-audio-cdp.dtsi"
 
 &chora_snd {
+	qcom,model = "chora-atp-snd-card";
 	qcom,wcn-btfm = <0>;
 	qcom,ext-disp-audio-rx = <0>;
 	qcom,wcd-disabled =<1>;
