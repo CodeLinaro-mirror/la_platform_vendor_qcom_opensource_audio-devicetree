@@ -40,4 +40,5 @@
 		<7 BT_AUDIO_TX3 0x3>, <8 FM_AUDIO_TX1 0x3>;
 	qcom,swr-num-dev = <1>;
 	qcom,swr-master-version = <0x02000000>;
+	qcom,swr-port-wordlength = <0xf>, <0xf>, <0xf>, <0xf>, <0xf>, <0xf>, <0xf>;
 };
