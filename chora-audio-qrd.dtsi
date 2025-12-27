@@ -67,16 +67,30 @@
 
 &wcd9378_codec {
 	status = "okay";
+
+	cdc-vdd-rxtx-supply = <&L7B>;
+	qcom,cdc-vdd-rxtx-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-rxtx-current = <30000>;
+	qcom,cdc-vdd-rxtx-lpm-supported = <1>;
+
+	cdc-vdd-io-supply = <&L7B>;
+	qcom,cdc-vdd-io-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-io-current = <20000>;
+	qcom,cdc-vdd-io-lpm-supported = <1>;
+
+	cdc-vdd-buck-supply = <&L7B>;
+	qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-buck-current = <650000>;
+	qcom,cdc-vdd-buck-lpm-supported = <1>;
 };
 
-
-&cdc_quin_mi2s_gpios {
+&cdc_sen_mi2s_gpios {
 	status = "okay";
 };
 
 &chora_snd {
 	qcom,model = "chora-qrd-snd-card";
-	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
