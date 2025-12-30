@@ -14,7 +14,11 @@
 		compatible = "qcom,wcd9378-slave";
 		reg = <0x10 0x01170224>;
 	};
-
+	wcd937x_rx_slave: wcd937x-rx-slave {
+		status = "disabled";
+		compatible = "qcom,wcd937x-slave";
+		reg = <0x0A 0x01170224>;
+	};
 	rx_swr_haptics: swr_haptics@f0170220 {
 		status = "disabled";
 		reg = <0x03 0xf0170220>;
@@ -34,6 +38,11 @@
 		status = "disabled";
 		compatible = "qcom,wcd9378-slave";
 		reg = <0x10 0x01170223>;
+	};
+	wcd937x_tx_slave: wcd937x-tx-slave {
+		status = "disabled";
+		compatible = "qcom,wcd937x-slave";
+		reg = <0x0A 0x01170223>;
 	};
 
 };
@@ -193,5 +202,60 @@
 		qcom,cdc-on-demand-supplies = "cdc-vdd-buck";
 	};
 
+	wcd937x_codec: wcd937x-codec {
+		status = "disabled";
+		compatible = "qcom,wcd937x-codec";
+		qcom,split-codec = <1>;
+		qcom,rx_swr_ch_map = <0 HPH_L 0x1 0 HPH_L>,
+			<0 HPH_R 0x2 0 HPH_R>, <1 CLSH 0x1 0 CLSH>,
+			<2 COMP_L 0x1 0 COMP_L>, <2 COMP_R 0x2 0 COMP_R>,
+			<3 LO 0x1 0 LO>, <4 DSD_L 0x1 0 DSD_L>,
+			<4 DSD_R 0x2 0 DSD_R>;
+		qcom,tx_swr_ch_map = <0 ADC1 0x1 4800000 SWRM_TX1_CH1>,
+			<1 ADC2 0x1 4800000 SWRM_TX2_CH1>,
+			<1 ADC3 0x2 4800000 SWRM_TX2_CH2>,
+			<2 DMIC0 0x1 0 SWRM_TX1_CH4>,
+			<2 DMIC1 0x2 0 SWRM_TX2_CH1>,
+			<2 MBHC 0x4 4800000 SWRM_TX2_CH2>,
+			<3 DMIC2 0x1 0 SWRM_TX2_CH3>,
+			<3 DMIC3 0x2 0 SWRM_TX2_CH4>,
+			<3 DMIC4 0x4 0 SWRM_TX3_CH1>,
+			<3 DMIC5 0x8 0 SWRM_TX3_CH2>;
+
+		qcom,swr-tx-port-params =
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL0 LANE1>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
+			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
+			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL2 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>;
+
+		qcom,wcd-rst-gpio-node = <&wcd939x_rst_gpio>;
+		qcom,rx-slave = <&wcd937x_rx_slave>;
+		qcom,tx-slave = <&wcd937x_tx_slave>;
+
+		cdc-vdd-rxtx-supply = <&L7B>;
+		qcom,cdc-vdd-rxtx-voltage = <1800000 1800000>;
+		qcom,cdc-vdd-rxtx-current = <13089>;
+
+		cdc-vddpx-supply = <&L7B>;
+		qcom,cdc-vddpx-voltage = <1800000 1800000>;
+		qcom,cdc-vddpx-current = <13089>;
+
+		cdc-vdd-buck-supply = <&L7B>;
+		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
+		qcom,cdc-vdd-buck-current = <361011>;
+
+		cdc-vdd-mic-bias-supply = <&BOB1>;
+		qcom,cdc-vdd-mic-bias-voltage = <3296000 3296000>;
+		qcom,cdc-vdd-mic-bias-current = <6076>;
+
+		qcom,cdc-micbias1-mv = <1800>;
+		qcom,cdc-micbias2-mv = <1800>;
+		qcom,cdc-micbias3-mv = <1800>;
+
+		qcom,cdc-static-supplies = "cdc-vdd-rxtx",
+					   "cdc-vddpx",
+					"cd-vdd-mic-bias";
+		qcom,cdc-on-demand-supplies = "cdc-vdd-buck";
+	};
 
 };
