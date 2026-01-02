@@ -19,7 +19,7 @@
 				<&lpass_audio_hw_vote 0>;
 		qcom,num-macros = <5>;
 		qcom,lpass-cdc-version = <7>;
-		lpass-cdc-clk-rsc-mngr {
+		lpass_clk_mngr: lpass-cdc-clk-rsc-mngr {
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 			qcom,fs-gen-sequence = <0x3000 0x1 0x1>, <0x3004 0x3 0x3>,
 					<0x3004 0x3 0x1>, <0x3080 0x2 0x2>;
