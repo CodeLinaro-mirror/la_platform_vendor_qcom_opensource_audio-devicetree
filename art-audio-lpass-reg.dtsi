@@ -63,8 +63,9 @@
 	qcom,swr-port-mapping = <1 HPH_L 0x1>, <1 HPH_R 0x2>,
 				 <2 CLSH 0x3>, <3 COMP_L 0x1>,
 				 <3 COMP_R 0x2>, <4 LO 0x1>, <5 HAPT 0x1>,
-				 <6 HIFI_PCM_L 0x01>, <6 HIFI_PCM_R 0x2>,
-				 <7 UT_A 0xF>, <8 PCM_OUT1 0x1>, <9 GPPO 0x3>,
+				 <6 PCM_OUT1 0x1>, <7 UT_A 0xF>,
+				 <8 HIFI_PCM_L 0x01>, <8 HIFI_PCM_R 0x2>,
+				 <9 GPPO 0x3>,
 				 <10 MM_A 0xF>, <11 UT_A 0xF>, <12 VO_A 0xF>,
 				 <13 PCMI 0xF>, <14 SWRM_RX_TX1 0x3>;
 

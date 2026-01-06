@@ -13,7 +13,9 @@
 	pndr_spkr_sd_n: pndr_spkr_sd_n {
 		pins = "gpio11";
 		function = "normal";
-		power-source = <2>;
+		input-disable;
+		output-enable;
+		power-source = <1>;
 	};
 };
 
@@ -22,7 +24,7 @@
 		compatible = "qcom,wsa885x-i2c";
 		reg = <0x0c>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&spkr_interrupt_active>, <&pndr_spkr_sd_n>;
+		pinctrl-0 = <&pndr_spkr_sd_n>;
 		interrupt-gpios = <&tlmm 77 GPIO_ACTIVE_HIGH>;
 		powerdown-gpios = <&pmh0110_f_gpios 11 GPIO_ACTIVE_LOW>;
 		vdd-1p8-supply = <&L2G>;

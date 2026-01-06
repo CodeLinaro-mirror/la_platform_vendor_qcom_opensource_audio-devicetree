@@ -105,6 +105,7 @@
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	qcom,qmp-mic = <1>;
+	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wsa885x_i2c>, <&qmp01>, <&qmp02>,
 			<&qmp03>, <&qmp04>;
@@ -112,7 +113,6 @@
 		"wsa885x_i2c", "qmp-dmic.01", "qmp-dmic.02",
 		"qmp-dmic.03", "qmp-dmic.04";
 	qcom,audio-routing =
-		"HAP_IN", "PCM_OUT",
 		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC02 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC03 NORMAL_OUTPUT",
