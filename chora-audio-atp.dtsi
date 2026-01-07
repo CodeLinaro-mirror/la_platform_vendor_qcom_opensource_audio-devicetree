@@ -3,20 +3,31 @@
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
-#include "chora-audio-cdp.dtsi"
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "chora-lpi.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+#include "chora-audio-lpass-reg.dtsi"
+#include "wcd939x.dtsi"
 
 &chora_snd {
 	qcom,model = "chora-atp-snd-card";
-	qcom,wcn-btfm = <0>;
-	qcom,ext-disp-audio-rx = <0>;
-	qcom,wcd-disabled =<1>;
-	qcom,audio-routing =
-		"TX DMIC0", "Digital Mic0",
-		"TX DMIC1", "Digital Mic1",
-		"TX DMIC2", "Digital Mic2",
-		"TX DMIC3", "Digital Mic3";
-	qcom,wsa-max-devs = <0>;
-	asoc-codec  = <&stub_codec>, <&lpass_cdc>;
-	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc";
+	compatible = "qcom,canoe-asoc-snd-stub";
+	asoc-codec  = <&stub_codec>;
+	asoc-codec-names = "msm-stub-codec.1";
+};
+
+&lpi_tlmm {
+
+	status = "disabled";
+
+};
+
+&lpass_cdc {
+	status = "disabled";
+};
+
+&lpass_bt_swr {
+	status = "disabled";
 };
 
