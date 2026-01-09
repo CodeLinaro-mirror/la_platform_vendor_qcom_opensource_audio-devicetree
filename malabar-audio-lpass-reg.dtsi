@@ -3,16 +3,31 @@
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
+&lpass_cdc {
+	va_top_csr_core_regs = < 0xA7300C0 0xA7300C4 0xA7300C8 >;
+};
+
+&lpass_clk_mngr {
+	clock-names = "tx_core_clk", "rx_core_clk", "va_core_clk";
+	npl-clock-names = "tx_npl_clk", "rx_npl_clk", "va_npl_clk";
+	clocks = <&clock_audio_tx_1 0>, <&clock_audio_tx_2 0>,
+		<&clock_audio_rx_1 0>, <&clock_audio_rx_2 0>,
+		<&clock_audio_va_1 0>, <&clock_audio_va_2 0>;
+};
 
 &rx_macro {
 	reg = <0xA600000 0x0>;
 	qcom,rx-swr-gpios = <&rx_swr_gpios>;
-
+	qcom,rx_mclk_mode_muxsel = <0x0A5640D8>;
+	qcom,default-clk-id = <TX_CORE_CLK>;
 };
 
 &swr1 {
 	swrm-io-base = <0xA610000 0x0>;
 	interrupts = <GIC_SPI 297 IRQ_TYPE_LEVEL_HIGH>;
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+	qcom,swr-master-version = <0x01060000>;
 };
 
 &tx_macro {
@@ -26,16 +41,30 @@
 
 &swr2 {
 	swrm-io-base = <0xA740000 0x0>;
-	interrupts = <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>;
+	interrupts = <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
+		     <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+	qcom,swr-master-version = <0x01060000>;
 };
 
-&lpi_tlmm{
+&swr0 {
+	status = "disabled";
+};
+
+&swr3 {
+	status = "disabled";
+};
+
+&lpi_tlmm {
 	qcom,gpios-count = <18>;
 	reg = <0xA7C0000 0x0>;
 	qcom,slew-reg = <0xA7C0000 0x0>;
 };
 
 &va_swr_gpios {
-	qcom,chip-wakeup-reg = <0x558008>;
+	qcom,tlmm-pins = <88>;
+	qcom,chip-wakeup-reg = <0x558008>, <0x58D000>, <0x58D000>;
+	qcom,chip-wakeup-maskbit = <8>, <5>, <6>;
+	qcom,chip-wakeup-default-val = <0x1>, <0x1>, <0x1>;
 };
-

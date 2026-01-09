@@ -672,7 +672,7 @@
 		};
 	};
 
-	lpi_dmic3_clk_active: lpi_dmic3_clk_active {
+	lpi_dmic2_clk_active: lpi_dmic2_clk_active {
 		mux {
 			pins = "gpio12";
 			function = "func1";
@@ -686,7 +686,7 @@
 		};
 	};
 
-	lpi_dmic3_clk_sleep: lpi_dmic3_clk_sleep {
+	lpi_dmic2_clk_sleep: lpi_dmic2_clk_sleep {
 		mux {
 			pins = "gpio12";
 			function = "func1";
@@ -723,7 +723,7 @@
 			pins = "gpio12";
 		};
 	};
-	lpi_dmic3_data_active: lpi_dmic3_data_active {
+	lpi_dmic2_data_active: lpi_dmic2_data_active {
 		mux {
 			pins = "gpio13";
 			function = "func1";
@@ -736,7 +736,7 @@
 		};
 	};
 
-	lpi_dmic3_data_sleep: lpi_dmic3_data_sleep {
+	lpi_dmic2_data_sleep: lpi_dmic2_data_sleep {
 		mux {
 			pins = "gpio13";
 			function = "func1";
@@ -1019,7 +1019,9 @@
 
 		config {
 			pins = "gpio18";
-
+			drive-strength = <16>;   /* 16 mA */
+			bias-disable;
+			output-high;
 		};
 	};
 
@@ -1031,6 +1033,8 @@
 
 		config {
 			pins = "gpio18";
+			drive-strength = <2>;   /* 2 mA */
+			bias-pull-down;
 		};
 	};
 
@@ -1056,4 +1060,151 @@
 			pins = "gpio18";
 		};
 	};
+	L1F: L1F {
+	};
 
+	L1G: LIG {
+	};
+
+	BOB1: BOB1 {
+	};
+
+	lpi_i2s4_data1_sleep: lpi_i2s4_data1_sleep {
+	};
+
+
+	lpi_i2s4_data1_active: lpi_i2s4_data1_active {
+	};
+
+
+	lpi_i2s4_data0_active: lpi_i2s4_data0_active {
+	};
+
+
+	lpi_i2s4_data0_sleep: lpi_i2s4_data0_sleep {
+	};
+
+
+	lpi_i2s4_clk_active: lpi_i2s4_clk_active {
+	};
+
+
+	lpi_i2s4_clk_sleep: lpi_i2s4_clk_sleep {
+	};
+
+
+	lpi_i2s4_ws_active: lpi_i2s4_ws_active {
+	};
+
+
+	lpi_i2s4_ws_sleep: lpi_i2s4_ws_sleep {
+	};
+
+
+	wsa_swr_data_sleep: wsa_swr_data_sleep {
+	};
+
+
+	wsa_swr_data_active: wsa_swr_data_active {
+	};
+
+
+	wsa_swr_clk_active: wsa_swr_clk_active {
+	};
+
+
+	wsa_swr_clk_sleep: wsa_swr_clk_sleep {
+	};
+
+
+	wsa2_swr_data_sleep: wsa2_swr_data_sleep {
+	};
+
+
+	wsa2_swr_data_active: wsa2_swr_data_active {
+	};
+
+
+	wsa2_swr_clk_active: wsa2_swr_clk_active {
+	};
+
+
+	wsa2_swr_clk_sleep: wsa2_swr_clk_sleep {
+	};
+
+
+	lpi_dmic3_clk_active: lpi_dmic3_clk_active {
+	};
+
+
+	lpi_dmic3_clk_sleep: lpi_dmic3_clk_sleep {
+	};
+
+
+	lpi_dmic3_data_active: lpi_dmic3_data_active {
+	};
+
+
+	lpi_dmic3_data_sleep: lpi_dmic3_data_sleep {
+	};
+
+
+	i2s0_sck_active: i2s0_sck_active {
+	};
+
+
+	i2s0_ws_active: i2s0_ws_active {
+	};
+
+
+	i2s0_sd0_active: i2s0_sd0_active {
+	};
+
+
+	i2s0_sd1_active: i2s0_sd1_active {
+	};
+
+
+	i2s0_sck_sleep: i2s0_sck_sleep {
+	};
+
+
+	i2s0_ws_sleep: i2s0_ws_sleep {
+	};
+
+
+	i2s0_sd0_sleep: i2s0_sd0_sleep {
+	};
+
+
+	i2s0_sd1_sleep: i2s0_sd1_sleep {
+	};
+
+
+	i2s1_sck_active: i2s1_sck_active {
+	};
+
+
+	i2s1_ws_active: i2s1_ws_active {
+	};
+
+
+	i2s1_sd0_active: i2s1_sd0_active {
+	};
+
+
+	i2s1_sck_sleep: i2s1_sck_sleep {
+	};
+
+
+	i2s1_ws_sleep: i2s1_ws_sleep {
+	};
+
+
+	i2s1_sd0_sleep: i2s1_sd0_sleep {
+	};
+
+
+	lpass_core_hw_vote: vote_lpass_core_hw {
+	};
+};

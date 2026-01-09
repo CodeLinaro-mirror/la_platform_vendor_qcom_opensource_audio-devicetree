@@ -18,7 +18,7 @@
 	};
 };
 
-&remoteproc_adsp_glink {
+&glink_edge {
 	audio_gpr: qcom,gpr {
 		compatible = "qcom,gpr";
 		qcom,glink-channels = "adsp_apps";
@@ -55,7 +55,6 @@
 		iommus = <&apps_smmu 0x0221 0x0>;
 		memory-region = <&audio_cnss_resv_region>;
 		qcom,smmu-sid-mask = /bits/ 64 <0xf>;
-		dma-coherent;
 
 		audio_cnss_resv_region: audio_cnss_resv_region {
 			iommu-addresses = <&msm_audio_ion 0x0 0x0 0x0 0x18000000>;
@@ -92,15 +91,13 @@
 						<0x0000000B>, <0x0000000B>,
 						<0x0000000B>, <0x0000000B>,
 						<0x0000000B>, <0x0000000B>,
-						<0x0000000B>, <0x0000000B>,
-						<0x0000000B>, <0x0000000B>,
 						<0x0000000B>;
 
 		qcom,lpi-slew-base-tbl = <0xA7C00000>, <0xA7C1000>,
 						<0xA7C2000>, <0xA7C3000>,
 						<0xA7C4000>, <0xA7C5000>,
 						<0xA7C6000>, <0xA7C7000>,
-						<0xA7C8000>, <0xA7C9000>, <0x7769000>,
+						<0xA7C8000>, <0xA7C9000>,
 						<0xA7CA000>, <0xA7CB000>,
 						<0xA7CC000>, <0xA7CD000>,
 						<0xA7CE000>, <0xA7CF000>,
@@ -116,7 +113,7 @@
 		clock-names = "lpass_audio_hw_vote";
 		clocks = <&lpass_audio_hw_vote 0>;
 		qcom,lpass-cdc-version = <5>;
-		lpass-cdc-clk-rsc-mngr {
+		lpass_clk_mngr: lpass-cdc-clk-rsc-mngr {
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 			qcom,fs-gen-sequence = <0x3000 0x1 0x1>, <0x3004 0x3 0x3>,
 					<0x3004 0x3 0x1>, <0x3080 0x2 0x2>;
@@ -124,15 +121,15 @@
 			qcom,va_mclk_mode_muxsel = <0x0A7A0000>;
 		};
 
-		va_macro: va-macro@0x0A730000 {
+		va_macro: va-macro@7660000 {
 			swr2: va_swr_master {
 			};
 		};
 
-		tx_macro: tx-macro@0x0A620000 {
+		tx_macro: tx-macro@6AE0000 {
 		};
 
-		rx_macro: rx-macro@0x0A600000 {
+		rx_macro: rx-macro@6AC0000 {
 			swr1: rx_swr_master {
 			};
 		};

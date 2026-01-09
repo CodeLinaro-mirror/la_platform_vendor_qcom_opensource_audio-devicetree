@@ -4,7 +4,6 @@
  */
 #include "lpass-audio-cdc-1.0.dtsi"
 #include "malabar-lpi.dtsi"
-#include "lpass-audio-bt-swr.dtsi"
 #include "lpass-cdc-gpio.dtsi"
 #include "malabar-audio-lpass-reg.dtsi"
 #include "wcd939x.dtsi"
@@ -21,9 +20,5 @@
 };
 
 &lpass_cdc {
-	status = "disabled";
-};
-
-&lpass_bt_swr {
 	status = "disabled";
 };
