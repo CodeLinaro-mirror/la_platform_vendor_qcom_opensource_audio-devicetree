@@ -36,19 +36,34 @@ endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
 dtbo-y += canoe-audio.dtbo \
+                canoe-audio-rumi.dtbo \
                 canoe-audio-mtp.dtbo \
                 canoe-audio-atp.dtbo \
                 canoe-audio-mtp-wsa885x.dtbo \
                 canoe-audio-cdp-wsa885x.dtbo \
+                canoe-audio-cdp-pandeiro-i2s.dtbo \
                 canoe-audio-cdp.dtbo \
                 canoe-audio-qrd.dtbo \
+                canoe-audio-hdk.dtbo \
                 canoe-audio-qrd-sku2.dtbo \
                 canoe-audio-rcm.dtbo \
                 canoe-audio-mtp-qmp.dtbo \
                 canoe-audio-mtp-3.5mm.dtbo \
+                canoe-audio-mtp-pictor.dtbo \
                 canoe-audio-hamilton-mtp.dtbo \
                 canoe-audio-hamilton-cdp.dtbo \
-                canoe-audio-hamilton-rcm.dtbo
+                canoe-audio-hamilton-rcm.dtbo \
+                alor-interposer-audio-mtp.dtbo \
+                alor-interposer-audio-rcm.dtbo \
+                alor-interposer-audio-qrd.dtbo \
+                alor-audio.dtbo \
+                alor-audio-mtp.dtbo \
+                alor-audio-mtp-wcd939x.dtbo \
+                alor-audio-qrd.dtbo \
+                alor-audio-cdp.dtbo \
+                alor-audio-atp.dtbo \
+                alor-audio-rcm.dtbo \
+                alor-audio-rumi.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_VIENNA), y)
