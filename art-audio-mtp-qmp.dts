@@ -11,6 +11,7 @@
 	model = "Qualcomm Technologies, Inc. Art MTP";
 	compatible = "qcom,art-mtp", "qcom,art", "qcom,artp-mtp", "qcom,artp",
 			   "qcom,mtp";
-	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
+	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>
+			, <755 0x10000>;
 	qcom,board-id = <0x30108 0>;
 };
