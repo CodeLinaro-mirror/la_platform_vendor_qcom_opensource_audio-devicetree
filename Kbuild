@@ -109,6 +109,13 @@ dtbo-$(CONFIG_ARCH_PARROT) += parrot-audio.dtbo \
                  parrot-audio-qrd-wcn6755.dts \
                  parrot-audio-atp.dtbo
 
+ifeq ($(CONFIG_ARCH_SHIKRA), y)
+dtbo-y += shikra-audio.dtbo \
+                shikra-audio-rumi.dtbo\
+                shikra-audio-qcs.dtbo\
+                shikra-audio-qcm.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
