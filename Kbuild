@@ -57,6 +57,11 @@ dtbo-y += art-audio.dtbo \
                 art-audio-atp.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_X1E80100), y)
+dtbo-y += x1e80100-audio.dtbo \
+            x1e80100-audio-crd.dtbo
+endif
+
 ifeq ($(CONFIG_ARCH_CANOE), y)
 dtbo-y += canoe-audio.dtbo \
 		canoe-audio-rumi.dtbo \
