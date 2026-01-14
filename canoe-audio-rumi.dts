@@ -1,0 +1,16 @@
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "canoe-audio-rumi.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Canoe RUMI";
+	compatible = "qcom,canoe-rumi", "qcom,canoe", "qcom,rumi";
+	qcom,msm-id = <660 0x10000>, <660 0x20000>;
+	qcom,board-id = <15 0>;
+};
