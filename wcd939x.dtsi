@@ -17,7 +17,7 @@
 	wcd937x_rx_slave: wcd937x-rx-slave {
 		status = "disabled";
 		compatible = "qcom,wcd937x-slave";
-		reg = <0x10 0x01170224>;
+		reg = <0x0A 0x01170224>;
 	};
 	rx_swr_haptics: swr_haptics@f0170220 {
 		status = "disabled";
@@ -42,7 +42,7 @@
 	wcd937x_tx_slave: wcd937x-tx-slave {
 		status = "disabled";
 		compatible = "qcom,wcd937x-slave";
-		reg = <0x10 0x01170223>;
+		reg = <0x0A 0x01170223>;
 	};
 
 };
@@ -244,7 +244,7 @@
 		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-buck-current = <361011>;
 
-		cdc-vdd-mic-bias-supply = <&BOB_B>;
+		cdc-vdd-mic-bias-supply = <&BOB1>;
 		qcom,cdc-vdd-mic-bias-voltage = <3296000 3296000>;
 		qcom,cdc-vdd-mic-bias-current = <6076>;
 

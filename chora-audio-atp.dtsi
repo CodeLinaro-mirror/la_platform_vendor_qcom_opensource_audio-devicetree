@@ -6,6 +6,7 @@
 #include "chora-audio-cdp.dtsi"
 
 &chora_snd {
+	qcom,model = "chora-atp-snd-card";
 	qcom,wcn-btfm = <0>;
 	qcom,ext-disp-audio-rx = <0>;
 	qcom,wcd-disabled =<1>;
@@ -19,38 +20,3 @@
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc";
 };
 
-&rx_macro {
-	qcom,is-used-swr-gpio = <0>;
-};
-
-&rx_swr_gpios {
-	status = "disabled";
-};
-
-&wcd939x_rst_gpio {
-	status = "disabled";
-};
-
-&wcd939x_tx_slave {
-	status = "disabled";
-};
-
-&wcd939x_rx_slave {
-	status = "disabled";
-};
-
-&swr0 {
-	qcom,swr-num-dev = <0>;
-};
-
-&wsa884x_0220 {
-	status = "disabled";
-};
-
-&wsa884x_0221 {
-	status = "disabled";
-};
-
-&wcd939x_codec {
-	status = "disabled";
-};
