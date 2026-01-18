@@ -7,6 +7,10 @@
 	va_top_csr_core_regs = < 0x33F00C0 0x33F00C4 0x33F00C8 >;
 };
 
+&lpass_clk_mngr {
+	qcom,rx_mclk_mode_muxsel = <0x33A40D8>;
+};
+
 &rx_macro {
 	reg = <0x3200000 0x0>;
 	qcom,rx-swr-gpios = <&rx_swr_gpios>;
