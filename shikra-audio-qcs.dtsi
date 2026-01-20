@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+#include <bindings/qcom,gpr.h>
+#include "msm-audio-lpass.dtsi"
+
+&adsp_loader{
+	status = "okay";
+	qcom,rproc-handle = <&modem_pas>;
+	qcom,adsp-state = <0>;
+	qcom,proc-img-to-load = "modem";
+};
+
+&adsp_notify{
+	status = "okay";
+	qcom,rproc-handle = <&modem_pas>;
+};
+
+&glink_edge {
+	audio_gpr: qcom,gpr {
+		compatible = "qcom,gpr";
+		qcom,glink-channels = "modem_apps";
+		qcom,intents = <0x200 20>;
+		reg = <GPR_DOMAIN_MODEM>;
+
+		spf_core {
+			compatible = "qcom,spf_core";
+			reg = <GPR_SVC_ADSP_CORE>;
+		};
+
+		audio-pkt {
+			compatible = "qcom,audio-pkt";
+			qcom,audiopkt-ch-name = "apr_audio_svc";
+			reg = <GPR_SVC_MAX>;
+		};
+
+		audio_prm {
+			compatible = "qcom,audio_prm";
+			reg = <GPR_SVC_ASM>;
+		};
+	};
+};
+
+&soc {
+	spf_core_platform: spf_core_platform {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "qcom,spf-core-platform";
+
+		lpass_cdc: lpass-cdc {
+			compatible = "qcom,lpass-cdc";
+		};
+
+		shikra_snd: sound {
+			compatible = "qcom,shikra-asoc-snd";
+			qcom,mi2s-audio-intf = <0>;
+			qcom,tdm-audio-intf = <0>;
+			qcom,wcn-bt = <0>;
+			qcom,ext-disp-audio-rx = <0>;
+			clock-names = "lpass_audio_hw_vote";
+			clocks = <&lpass_audio_hw_vote 0>;
+		};
+	};
+};
+
+#include "shikra-audio-overlay.dtsi"
+
+&shikra_snd{
+	qcom,model = "shikra-dsp-snd-card";
+};
+
+&aliases {
+	swr0 = "/soc/spf_core_platform/lpass-cdc/rx-macro@A040000/rx_swr_master";
+	swr1 = "/soc/spf_core_platform/lpass-cdc/va-macro@A078000/va_swr_master";
+};
+

@@ -1,0 +1,31 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+&soc {
+	lpass_cdc: lpass-cdc {
+		compatible = "qcom,lpass-cdc";
+	};
+
+	shikra_snd: sound {
+		compatible = "qcom,shikra-asoc-snd";
+		qcom,mi2s-audio-intf = <0>;
+		qcom,tdm-audio-intf = <0>;
+		qcom,wcn-bt = <0>;
+		qcom,ext-disp-audio-rx = <0>;
+		clock-names = "lpass_audio_hw_vote";
+		clocks = <&lpass_audio_hw_vote 0>;
+	};
+};
+
+#include "shikra-audio-overlay.dtsi"
+
+&shikra_snd{
+	qcom,model = "shikra-cpu-snd-card";
+};
+
+&aliases {
+	swr0 = "/soc/lpass-cdc/rx-macro@A040000/rx_swr_master";
+	swr1 = "/soc/lpass-cdc/va-macro@A078000/va_swr_master";
+};

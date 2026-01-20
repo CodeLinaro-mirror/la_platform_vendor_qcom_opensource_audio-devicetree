@@ -1,0 +1,19 @@
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause
+ */
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,x1e80100-gcc.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,x1p42100.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
+#include "x1e80100-audio.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. X1P42100 SoC";
+	compatible = "qcom,x1p42100-crd", "qcom,x1p42100", "qcom,crd";
+	qcom,msm-id = <635 0x10000>, <635 0x20000>;
+	qcom,board-id = <0 0>;
+};

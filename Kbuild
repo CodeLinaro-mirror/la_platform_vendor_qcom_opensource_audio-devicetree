@@ -57,6 +57,11 @@ dtbo-y += art-audio.dtbo \
                 art-audio-atp.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_X1E80100), y)
+dtbo-y += x1e80100-audio.dtbo \
+            x1e80100-audio-crd.dtbo
+endif
+
 ifeq ($(CONFIG_ARCH_CANOE), y)
 dtbo-y += canoe-audio.dtbo \
 		canoe-audio-rumi.dtbo \
@@ -103,6 +108,13 @@ dtbo-$(CONFIG_ARCH_PARROT) += parrot-audio.dtbo \
                  parrot-audio-qrd-wcn6750.dtbo \
                  parrot-audio-qrd-wcn6755.dts \
                  parrot-audio-atp.dtbo
+
+ifeq ($(CONFIG_ARCH_SHIKRA), y)
+dtbo-y += shikra-audio.dtbo \
+                shikra-audio-rumi.dtbo\
+                shikra-audio-qcs.dtbo\
+                shikra-audio-qcm.dtbo
+endif
 
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
