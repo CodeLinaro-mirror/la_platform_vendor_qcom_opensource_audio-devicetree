@@ -11,6 +11,7 @@
 	model = "Qualcomm Technologies, Inc. Art RCM";
 	compatible = "qcom,art-rcm", "qcom,art", "qcom,artp-rcm", "qcom,artp",
 			   "qcom,rcm";
-	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>;
+	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>, <708 0x20000>
+			, <760 0x10000>;
 	qcom,board-id = <0x10015 0>, <0x20015 0>;
 };
