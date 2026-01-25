@@ -35,10 +35,12 @@
 
 &wcd937x_codec {
 	status = "okay";
-	cdc-vdd-mic-bias-supply = <>;
 	cdc-vdd-buck-supply = <&L20B>;
 	cdc-vdd-rxtx-supply = <&L21B>;
 	cdc-vddpx-supply = <&L21B>;
+	cdc-vdd-mic-bias-supply = <>;
+	qcom,cdc-static-supplies = "cdc-vdd-rxtx",
+				"cdc-vddpx";
 };
 
 &wsa881x_analog_reset_gpio {
@@ -49,6 +51,13 @@
 &wsa881x_analog_clk_gpio {
 	pinctrl-0 = <&ext_mclk1_a_active>;
 	pinctrl-1 = <&ext_mclk1_a_sleep>;
+};
+
+&va_swr_gpios {
+	pinctrl-0 = <&swr_tx_clk_active &swr_tx_data0_active
+		&swr_tx_data1_active>;
+	pinctrl-1 = <&swr_tx_clk_sleep &swr_tx_data0_sleep
+		&swr_tx_data1_sleep>;
 };
 
 &qupv3_se1_i2c {
@@ -110,6 +119,7 @@
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
+	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd937x_codec>, <&wsa881x_i2c_e>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
