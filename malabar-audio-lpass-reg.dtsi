@@ -5,14 +5,17 @@
 
 &lpass_cdc {
 	va_top_csr_core_regs = < 0xA7300C0 0xA7300C4 0xA7300C8 >;
+        clock-names = "lpass_audio_hw_vote";
+        clocks = <&lpass_audio_hw_vote 0>;
 };
 
 &lpass_clk_mngr {
-	clock-names = "tx_core_clk", "rx_core_clk", "va_core_clk";
+	clock-names = "tx_core_clk", "rx_core_clk", "va_core_clk",
+			"tx_npl_clk", "rx_npl_clk", "va_npl_clk";
 	npl-clock-names = "tx_npl_clk", "rx_npl_clk", "va_npl_clk";
-	clocks = <&clock_audio_tx_1 0>, <&clock_audio_tx_2 0>,
-		<&clock_audio_rx_1 0>, <&clock_audio_rx_2 0>,
-		<&clock_audio_va_1 0>, <&clock_audio_va_2 0>;
+	clocks = <&clock_audio_tx_1 0>, <&clock_audio_rx_1 0>,
+		<&clock_audio_va_1 0>, <&clock_audio_tx_2 0>,
+		<&clock_audio_rx_2 0>, <&clock_audio_va_2 0>;
 };
 
 &rx_macro {
@@ -57,9 +60,8 @@
 };
 
 &lpi_tlmm {
-	qcom,gpios-count = <18>;
 	reg = <0xA7C0000 0x0>;
-	qcom,slew-reg = <0xA7C0000 0x0>;
+	qcom,slew-reg = <0x0a95a000 0x0>;
 };
 
 &va_swr_gpios {

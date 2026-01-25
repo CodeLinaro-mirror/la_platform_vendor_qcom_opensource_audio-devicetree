@@ -69,6 +69,10 @@
 	status = "okay";
 	cdc-vdd-rxtx-supply = <&L21B>;
 	cdc-vdd-io-supply = <&L21B>;
+	qcom,cdc-vdd-io-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-io-current = <20000>;
+	qcom,cdc-vdd-io-lpm-supported = <1>;
+
 	cdc-vdd-buck-supply = <&L20B>;
 	cdc-vdd-mic-bias-supply = <>;
 };
@@ -81,6 +85,13 @@
 &wsa881x_analog_clk_gpio {
 	pinctrl-0 = <&ext_mclk1_a_active>;
 	pinctrl-1 = <&ext_mclk1_a_sleep>;
+};
+
+&va_swr_gpios {
+	pinctrl-0 = <&swr_tx_clk_active &swr_tx_data0_active
+		&swr_tx_data1_active>;
+	pinctrl-1 = <&swr_tx_clk_sleep &swr_tx_data0_sleep
+		&swr_tx_data1_sleep>;
 };
 
 &qupv3_se1_i2c {
@@ -142,6 +153,7 @@
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
+	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd9378_codec>, <&wsa881x_i2c_e>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
@@ -167,9 +179,13 @@
 			"RX_TX DEC2_INP", "TX DEC2 MUX",
 			"RX_TX DEC3_INP", "TX DEC3 MUX",
 			"SpkrMono WSA_IN", "AUX",
-			"TX SWR_INPUT", "WCD_TX_OUTPUT",
+			"TX SWR_INPUT", "ADC1_OUTPUT",
+			"TX SWR_INPUT", "ADC2_OUTPUT",
+			"TX SWR_INPUT", "ADC3_OUTPUT",
 			"VA SWR_INPUT", "VA_SWR_CLK",
-			"VA SWR_INPUT", "WCD_TX_OUTPUT",
+			"VA SWR_INPUT", "ADC1_OUTPUT",
+			"VA SWR_INPUT", "ADC2_OUTPUT",
+			"VA SWR_INPUT", "ADC3_OUTPUT",
 			"VA_AIF1 CAP", "VA_SWR_CLK",
 			"VA_AIF2 CAP", "VA_SWR_CLK",
 			"VA_AIF3 CAP", "VA_SWR_CLK";

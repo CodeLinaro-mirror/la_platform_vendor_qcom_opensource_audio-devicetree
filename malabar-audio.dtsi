@@ -11,6 +11,12 @@
 		compatible = "qcom,spf-core-platform";
 	};
 
+	lpass_core_hw_vote: vote_lpass_core_hw {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_CORE_HW_VOTE>;
+		#clock-cells = <1>;
+	};
+
 	lpass_audio_hw_vote: vote_lpass_audio_hw {
 		compatible = "qcom,audio-ref-clk";
 		qcom,codec-ext-clk-src = <AUDIO_LPASS_AUDIO_HW_VOTE>;
@@ -93,7 +99,7 @@
 						<0x0000000B>, <0x0000000B>,
 						<0x0000000B>;
 
-		qcom,lpi-slew-base-tbl = <0xA7C00000>, <0xA7C1000>,
+		qcom,lpi-slew-base-tbl = <0xA7C0000>, <0xA7C1000>,
 						<0xA7C2000>, <0xA7C3000>,
 						<0xA7C4000>, <0xA7C5000>,
 						<0xA7C6000>, <0xA7C7000>,
