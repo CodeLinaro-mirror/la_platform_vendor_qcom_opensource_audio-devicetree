@@ -3,6 +3,9 @@
  * SPDX-License-Identifier: BSD-3-Clause
 */
 
+#include <bindings/qcom,audio-ext-clk.h>
+#include <dt-bindings/clock/qcom,shikra-audiocorecc.h>
+
 &soc {
 	lpass_cdc: lpass-cdc {
 		compatible = "qcom,lpass-cdc";
@@ -14,8 +17,6 @@
 		qcom,tdm-audio-intf = <0>;
 		qcom,wcn-bt = <0>;
 		qcom,ext-disp-audio-rx = <0>;
-		clock-names = "lpass_audio_hw_vote";
-		clocks = <&lpass_audio_hw_vote 0>;
 	};
 };
 
@@ -23,6 +24,12 @@
 
 &shikra_snd{
 	qcom,model = "shikra-cpu-snd-card";
+	qcom,msm_audio_ssr_devs = <&lpass_cdc>;
+};
+
+&lpass_clk_rsc {
+	clocks = <&audiocorecc AUDIO_CORE_CC_RX_MCLK_CLK>,
+				<&audiocorecc AUDIO_CORE_CC_TX_MCLK_CLK>;
 };
 
 &aliases {
