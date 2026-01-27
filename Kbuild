@@ -58,6 +58,11 @@ dtbo-y +=  lemans-vm-lv-audio.dtbo
 dtbo-y +=  lemans-vm-la-audio.dtbo
 dtbo-y +=  monaco-vm-la-audio.dtbo
 dtbo-y +=  monaco-vm-lv-audio.dtbo
+dtbo-y +=  monaco-vm-lv-flex-audio.dtbo
+dtbo-y +=  monaco-vm-la-flex-audio.dtbo
+dtbo-y +=  lemans-vm-la-flex-audio.dtbo
+dtbo-y +=  lemans-vm-lv-flex-audio.dtbo
+
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
