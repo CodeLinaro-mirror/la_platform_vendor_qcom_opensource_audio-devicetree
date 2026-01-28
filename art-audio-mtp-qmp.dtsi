@@ -106,7 +106,7 @@
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <1>;
 	qcom,wcn-bt-ext = <1>;
-	qcom,ext-disp-audio-rx = <0>;
+	qcom,ext-disp-audio-rx = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&qmp01>, <&qmp02>,
 			<&qmp03>, <&qmp04>, <&wsa885x_i2c>;
