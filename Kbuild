@@ -77,6 +77,16 @@ dtbo-y += chora-audio.dtbo \
           chora-audio-rumi.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_MALABAR), y)
+dtbo-y += malabar-audio.dtbo \
+                malabar-audio-mtp.dtbo \
+		malabar-audio-qrd.dtbo \
+		malabar-audio-atp.dtbo \
+		malabar-audio-rcm.dtbo \
+		malabar-audio-cdp.dtbo \
+		malabar-audio-rumi.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
