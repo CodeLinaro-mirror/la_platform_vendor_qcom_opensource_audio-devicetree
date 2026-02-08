@@ -1,6 +1,7 @@
 /dts-v1/;
 /plugin/;
 
+#include "ravelin-audio.dts"
 #include "ravelin-audio-qrd.dtsi"
 
 / {
