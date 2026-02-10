@@ -92,6 +92,13 @@
 	};
 };
 
+&rx_swr_haptics {
+	status = "okay";
+	swr-slave-supply = <&hap_swr_slave_reg>;
+	qcom,rx_swr_ch_map = <0 0x01 0x01 0 HAPT>;
+	qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SWRM_RX_TX1>;
+};
+
 &art_snd {
 	qcom,model = "art-qrd-qmp-snd-card";
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
@@ -105,13 +112,12 @@
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,audio-core-list = <0>, <1>;
 	qcom,qmp-mic = <1>;
-	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wsa885x_i2c>, <&qmp01>, <&qmp02>,
-			<&qmp03>, <&qmp04>;
+			<&qmp03>, <&qmp04>, <&rx_swr_haptics>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 		"wsa885x_i2c", "qmp-dmic.01", "qmp-dmic.02",
-		"qmp-dmic.03", "qmp-dmic.04";
+		"qmp-dmic.03", "qmp-dmic.04", "swr-haptics";
 	qcom,audio-routing =
 		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",
 		"TX SWR_INPUT", "QMP_MIC02 NORMAL_OUTPUT",
@@ -126,6 +132,7 @@
 		"VA SWR_INPUT", "QMP_MIC02 VA_NORMAL_OUTPUT",
 		"VA SWR_INPUT", "QMP_MIC03 VA_NORMAL_OUTPUT",
 		"VA SWR_INPUT", "QMP_MIC04 VA_NORMAL_OUTPUT",
+		"HAP_IN", "PCM_OUT",
 		"VA_AIF1 CAP", "VA_SWR_CLK",
 		"VA_AIF2 CAP", "VA_SWR_CLK",
 		"VA_AIF3 CAP", "VA_SWR_CLK";
