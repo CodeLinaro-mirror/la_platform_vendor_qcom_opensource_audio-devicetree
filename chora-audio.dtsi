@@ -132,23 +132,23 @@
 			compatible = "qcom,lpass-cdc-clk-rsc-mngr";
 		};
 
-		va_macro: va-macro@33F0000 {
+		va_macro: va-macro@7660000 {
 			swr2: va_swr_master {
 				qcom,swr-master-version = <0x01070000>;
 			};
 		};
 
-		tx_macro: tx-macro@3220000 {
+		tx_macro: tx-macro@6AE0000 {
 		};
 
-		rx_macro: rx-macro@3200000 {
+		rx_macro: rx-macro@6AC0000 {
 			swr1: rx_swr_master {
 				qcom,swr-master-version = <0x01070000>;
 			};
 		};
 	};
 
-	lpass_bt_swr: lpass_bt_swr@31E0000 {
+	lpass_bt_swr: lpass_bt_swr@6CA0000 {
 		compatible = "qcom,lpass-bt-swr";
 		swr4: bt_swr_mstr {
 				qcom,swr-master-version = <0x02000000>;
@@ -169,9 +169,9 @@
 };
 
 &aliases {
-	swr1 = "/soc/spf_core_platform/lpass-cdc/rx-macro@3200000/rx_swr_master";
-	swr2 = "/soc/spf_core_platform/lpass-cdc/va-macro@33F0000/va_swr_master";
-	swr4 = "/soc/spf_core_platform/lpass_bt_swr@31E0000/bt_swr_mstr";
+	swr1 = "/soc/spf_core_platform/lpass-cdc/rx-macro@6AC0000/rx_swr_master";
+	swr2 = "/soc/spf_core_platform/lpass-cdc/va-macro@7660000/va_swr_master";
+	swr4 = "/soc/spf_core_platform/lpass_bt_swr@6CA0000/bt_swr_mstr";
 };
 
 &adsp_loader {
@@ -179,6 +179,7 @@
 };
 
 &qupv3_se7_i2c {
+	status = "okay";
 	wsa885x_i2c: wsa885x-i2c-codec@c {
 		compatible = "qcom,wsa885x-i2c";
 		reg = <0x0c>;
@@ -190,7 +191,8 @@
 		qcom,wsa-prefix = "WSA885X_I2C";
 		qcom,battery_config = <1>;
 		wsa885x-init-table =
-			<0x8606 0x24  /* CDC_RX0_RX_PATH_CTL - CLK_EN(1) */
+			<0x8418 0x01
+			0x8606 0x24  /* CDC_RX0_RX_PATH_CTL - CLK_EN(1) */
 			0x8626 0x24  /* CDC_RX1_RX_PATH_CTL - CLK_EN(1) */
 			0x8613 0x1   /* RX0_RX_PATH_DSMDEM_CTL - DSMDEM_CLK_EN(1) */
 			0x8633 0x1   /* RX1_RX_PATH_DSMDEM_CTL - DSMDEM_CLK_EN(1) */
@@ -243,6 +245,7 @@
 			0x8435 0x47 /* PANDEIRO_DIG_CTRL0_PA1_FSM_CTL1 - SILENT_STATE_IVS_EN */
 			0x8647 0x34 /* CDC_COMPANDER0_CTL7 - AGAIN_DELAY */
 			0x8667 0x34 /* CDC_COMPANDER1_CTL7 - AGAIN_DELAY */
-			0x8458 0x79>; /* PANDEIRO_DIG_CTRL0_VBAT_THRM_FLT_CTL - VBAT_COEF_SEL */
+			0x8458 0x79 /* PANDEIRO_DIG_CTRL0_VBAT_THRM_FLT_CTL - VBAT_COEF_SEL */
+			0x800D 0x08>;
 	};
 };

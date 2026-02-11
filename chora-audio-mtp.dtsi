@@ -38,20 +38,20 @@
 	status = "okay";
 };
 
-&cdc_quin_mi2s_gpios {
+&cdc_sen_mi2s_gpios {
 	status = "okay";
 };
 
 &chora_snd {
 	qcom,model = "chora-mtp-snd-card";
-	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	swr-haptics-unsupported;
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
 	qcom,ext-disp-audio-rx = <0>;
 	qcom,tdm-audio-intf = <1>;
 	qcom,wsa885x-tdm = <1>;
@@ -67,8 +67,6 @@
 	qcom,audio-routing =
 			"AMIC2", "Analog Mic2",
 			"AMIC2", "MIC BIAS2",
-			"VA AMIC2", "Analog Mic2",
-			"VA AMIC2", "VA MIC BIAS2",
 			"TX DMIC0", "Digital Mic0",
 			"TX DMIC0", "MIC BIAS3",
 			"TX DMIC1", "Digital Mic1",
