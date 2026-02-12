@@ -152,4 +152,5 @@
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1680>;
+	qcom,ext-hdmi-audio-rx = <1>;
 };
