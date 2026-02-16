@@ -9,6 +9,7 @@
 	clocks = <&lpass_audio_hw_vote 0>;
 	qcom,rx_mclk_mode_muxsel = <0x0A5640D8>;
 	qcom,va_mclk_mode_muxsel = <0x0A7A0000>;
+
 };
 
 &lpass_clk_mngr {
@@ -18,6 +19,8 @@
 	clocks = <&clock_audio_tx_1 0>, <&clock_audio_rx_1 0>,
 		<&clock_audio_va_1 0>, <&clock_audio_tx_2 0>,
 		<&clock_audio_rx_2 0>, <&clock_audio_va_2 0>;
+	qcom,rx_mclk_mode_muxsel = <0x0A5640D8>;
+	qcom,va_mclk_mode_muxsel = <0x0A7A0000>;
 };
 
 &rx_macro {
