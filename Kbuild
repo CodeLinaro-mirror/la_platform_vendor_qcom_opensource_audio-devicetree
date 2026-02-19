@@ -116,6 +116,16 @@ dtbo-y += shikra-audio.dtbo \
                 shikra-audio-qcm.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_KERA), y)
+dtbo-y += kera-audio.dtbo \
+                kera-audio-atp.dtbo \
+                kera-audio-cdp.dtbo \
+                kera-audio-mtp.dtbo \
+                kera-audio-mtp-qmp1000.dtbo \
+                kera-audio-qrd.dtbo \
+                kera-audio-rcm.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
