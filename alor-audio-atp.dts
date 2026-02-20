@@ -10,7 +10,7 @@
 / {
 	model = "Qualcomm Technologies, Inc. Alor ATP ";
 	compatible = "qcom,alor-atp", "qcom,alor", "qcom,atp", "qcom,alorp-atp", "qcom,alorp";
-	qcom,msm-id = <685 0x10000>, <727 0x10000>;
+	qcom,msm-id = <685 0x10000>, <727 0x10000>, <764 0x10000>;
 	qcom,board-id = <0x10021 0>;
 };
 
