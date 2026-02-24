@@ -168,7 +168,7 @@
 		qcom,cdc-vdd-rxtx-current = <30000>;
 		qcom,cdc-vdd-rxtx-lpm-supported = <1>;
 
-		cdc-vdd-io-supply = <&L1F>;
+		//cdc-vdd-io-supply = <&L1F>;
 		qcom,cdc-vdd-io-voltage = <1200000 1200000>;
 		qcom,cdc-vdd-io-current = <20000>;
 		qcom,cdc-vdd-io-lpm-supported = <1>;
