@@ -48,13 +48,15 @@ ifeq ($(CONFIG_ARCH_ART), y)
 dtbo-y += art-audio.dtbo \
                 art-audio-cdp.dtbo \
                 art-audio-mtp.dtbo \
+                arth-audio-mtp.dtbo \
                 art-audio-mtp-qmp.dtbo \
                 art-audio-mtp-3.5mm.dtbo \
                 art-audio-qrd.dtbo \
                 art-audio-qrd-sku2.dtbo \
                 art-audio-rumi.dtbo \
                 art-audio-rcm.dtbo \
-                art-audio-atp.dtbo
+                art-audio-atp.dtbo \
+                arth-audio-qrd.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_X1E80100), y)
