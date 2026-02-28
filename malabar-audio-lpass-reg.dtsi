@@ -60,6 +60,8 @@
 
 	clock-names = "lpass_audio_hw_vote";
 	clocks = <&lpass_audio_hw_vote 0>;
+	qcom,swr-num-ports = <3>;
+        qcom,swrm-hctl-reg = <0x0A7EC100>;
 	qcom,swr-master-version = <0x01060000>;
 };
 
