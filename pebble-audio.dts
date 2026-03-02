@@ -1,0 +1,21 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
+*/
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,art-gcc.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,art.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
+#include "art-audio.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Pebble SoC";
+	compatible = "qcom,pebble";
+	qcom,msm-id = <735 0x10000>, <741 0x10000>;
+	qcom,board-id = <0 0>;
+};
