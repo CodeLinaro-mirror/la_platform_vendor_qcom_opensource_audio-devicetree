@@ -71,6 +71,7 @@
 
 &canoe_snd {
 	qcom,model = "canoe-qrd-snd-card";
+	qcom,slc-model = "canoe-qrd-slc-snd-card";
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <1>;

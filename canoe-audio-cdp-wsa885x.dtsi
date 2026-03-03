@@ -65,6 +65,7 @@
 
 &canoe_snd {
 	qcom,model = "canoe-cdp-snd-card";
+	qcom,slc-model = "canoe-cdp-slc-snd-card";
 	qcom,wsa8855-supported;
 	swr-haptics-unsupported;
 	qcom,audio-routing =
