@@ -27,7 +27,7 @@
 };
 
 &lpass_bt_swr {
-	status = "disabled";
+	status = "okay";
 };
 
 &wcd9378_codec {
@@ -141,4 +141,6 @@
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1680>;
+	qcom,wcn-bt = <0>;
+	qcom,wcn-btfm-proxy = <1>;
 };
