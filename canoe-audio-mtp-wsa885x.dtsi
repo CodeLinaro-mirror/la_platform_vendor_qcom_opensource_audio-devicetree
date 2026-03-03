@@ -73,6 +73,7 @@
 
 &canoe_snd {
 	qcom,model = "canoe-mtp-snd-card";
+	qcom,slc-model = "canoe-mtp-slc-snd-card";
 	qcom,wsa8855-supported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&swr_haptics>,
