@@ -1,7 +1,7 @@
+// SPDX-License-Identifier: BSD-3-Clause
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- * SPDX-License-Identifier: BSD-3-Clause-Clear
-*/
+ */
 
 /dts-v1/;
 /plugin/;
@@ -10,6 +10,8 @@
 
 &wcd939x_codec {
 	cdc-vdd-px-supply = <&L3F>;
+	qcom,cdc-vdd-rx-current = <45000>;
+	qcom,cdc-vdd-tx-current = <45000>;
 };
 
 &wsa885x_i2c {

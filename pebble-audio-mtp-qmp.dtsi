@@ -6,7 +6,7 @@
 /dts-v1/;
 /plugin/;
 
-#include "art-audio-mtp.dtsi"
+#include "art-audio-mtp-qmp.dtsi"
 
 &wsa885x_i2c {
 	interrupt-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
@@ -15,7 +15,7 @@
 };
 
 &art_snd {
-	qcom,model = "pebble-mtp-snd-card";
+	qcom,model = "pebble-mtp-qmp-snd-card";
 	qcom,wcn-bt = <0>;
 	qcom,wcn-bt-ext = <0>;
 	qcom,ext-disp-audio-rx = <0>;
@@ -52,11 +52,11 @@
 		"TX DMIC0", "Digital Mic0",
 		"TX DMIC0", "MIC BIAS1",
 		"TX DMIC1", "Digital Mic1",
-		"TX DMIC1", "MIC BIAS1",
+		"TX DMIC1", "MIC BIAS3",
 		"TX DMIC2", "Digital Mic2",
 		"TX DMIC2", "MIC BIAS3",
 		"TX DMIC3", "Digital Mic3",
-		"TX DMIC3", "MIC BIAS3",
+		"TX DMIC3", "MIC BIAS1",
 		"IN1_HPHL", "HPHL_OUT",
 		"IN2_HPHR", "HPHR_OUT",
 		"IN3_EAR", "AUX_OUT",
@@ -65,8 +65,20 @@
 		"RX_TX DEC2_INP", "TX DEC2 MUX",
 		"RX_TX DEC3_INP", "TX DEC3 MUX",
 		"TX SWR_INPUT", "WCD_TX_OUTPUT",
+		"TX SWR_INPUT", "QMP_MIC01 NORMAL_OUTPUT",
+		"TX SWR_INPUT", "QMP_MIC02 NORMAL_OUTPUT",
+		"TX SWR_INPUT", "QMP_MIC03 NORMAL_OUTPUT",
+		"TX SWR_INPUT", "QMP_MIC04 NORMAL_OUTPUT",
 		"VA SWR_INPUT", "VA_SWR_CLK",
 		"VA SWR_INPUT", "WCD_TX_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC01 LP_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC02 LP_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC03 LP_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC04 LP_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC01 VA_NORMAL_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC02 VA_NORMAL_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC03 VA_NORMAL_OUTPUT",
+		"VA SWR_INPUT", "QMP_MIC04 VA_NORMAL_OUTPUT",
 		"VA_AIF1 CAP", "VA_SWR_CLK",
 		"VA_AIF2 CAP", "VA_SWR_CLK",
 		"VA_AIF3 CAP", "VA_SWR_CLK",
@@ -74,8 +86,8 @@
 		"VA DMIC1", "Digital Mic1",
 		"VA DMIC2", "Digital Mic2",
 		"VA DMIC3", "Digital Mic3",
-		"VA DMIC0", "VA MIC BIAS1",
-		"VA DMIC1", "VA MIC BIAS1",
-		"VA DMIC2", "VA MIC BIAS3",
-		"VA DMIC3", "VA MIC BIAS3";
+		"VA DMIC0", "VA MIC BIAS3",
+		"VA DMIC1", "VA MIC BIAS3",
+		"VA DMIC2", "VA MIC BIAS1",
+		"VA DMIC3", "VA MIC BIAS1";
 };
