@@ -14,13 +14,20 @@
 	vdd-io-supply = <&L4G>;
 };
 
+&wcd939x_codec {
+	cdc-vdd-px-supply = <&L3F>;
+};
+
+&rx_swr_haptics {
+	status = "disabled";
+};
+
 &art_snd {
 	qcom,model = "pebble-qrd-snd-card";
 	qcom,wcn-bt = <0>;
 	qcom,wcn-bt-ext = <0>;
 	qcom,ext-disp-audio-rx = <0>;
 	swr-haptics-unsupported;
-	/delete-property/ wcd939x-i2c-handle;
 
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			<&wcd939x_codec>, <&wsa885x_i2c>;

@@ -10,8 +10,6 @@
 
 &wcd939x_codec {
 	cdc-vdd-px-supply = <&L3F>;
-	qcom,cdc-vdd-rx-current = <45000>;
-	qcom,cdc-vdd-tx-current = <45000>;
 };
 
 &wsa885x_i2c {
@@ -20,12 +18,15 @@
 	vdd-io-supply = <&L4G>;
 };
 
+&rx_swr_haptics {
+	status = "disabled";
+};
+
 &art_snd {
 	qcom,model = "pebble-cdp-snd-card";
 	qcom,wcn-bt = <0>;
 	qcom,wcn-bt-ext = <0>;
 	qcom,ext-disp-audio-rx = <0>;
-	/delete-property/ wcd939x-i2c-handle;
 	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 		      <&wcd939x_codec>, <&wsa885x_i2c>;
