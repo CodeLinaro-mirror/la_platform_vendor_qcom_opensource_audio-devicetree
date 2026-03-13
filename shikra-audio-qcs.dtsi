@@ -31,10 +31,8 @@
 		qcom,rproc-handle = <&modem_pas>;
 	};
 
-	msm_audio_ion_cma: qcom,msm-audio-ion-cma {
-		compatible = "qcom,msm-audio-ion-cma";
-		qcom,scm-mp-enabled;
-		memory-region = <&audio_heap_mem>;
+	msm_audio_ion: qcom,msm-audio-ion {
+		compatible = "qcom,msm-audio-ion";
 	};
 
 	clock_audio_rx_1: rx_core_clk {
