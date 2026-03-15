@@ -4,21 +4,56 @@
 */
 
 #include <bindings/qcom,gpr.h>
-#include "msm-audio-lpass.dtsi"
+#include <bindings/qcom,audio-ext-clk.h>
 
-&adsp_loader{
-	status = "okay";
-	qcom,rproc-handle = <&modem_pas>;
-	qcom,adsp-state = <0>;
-	qcom,proc-img-to-load = "modem";
+&soc {
+	lpass_audio_hw_vote: vote_lpass_audio_hw {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_AUDIO_HW_VOTE>;
+		#clock-cells = <1>;
+	};
+
+	audio_pkt_core_platform: qcom,audio-pkt-core-platform {
+		compatible = "qcom,audio-pkt-core-platform";
+	};
+
+	adsp_loader: qcom,msm-adsp-loader {
+		status = "okay";
+		compatible = "qcom,adsp-loader";
+		qcom,rproc-handle = <&modem_pas>;
+		qcom,adsp-state = <0>;
+		qcom,proc-img-to-load = "modem";
+	};
+
+	adsp_notify: qcom,msm-adsp-notify {
+		status = "okay";
+		compatible = "qcom,adsp-notify";
+		qcom,rproc-handle = <&modem_pas>;
+	};
+
+	msm_audio_ion: qcom,msm-audio-ion {
+		compatible = "qcom,msm-audio-ion";
+	};
+
+	clock_audio_rx_1: rx_core_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_4>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30E>;
+		#clock-cells = <1>;
+	};
+
+	clock_audio_tx_1: tx_core_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_6>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30C>;
+		#clock-cells = <1>;
+	};
 };
 
-&adsp_notify{
-	status = "okay";
-	qcom,rproc-handle = <&modem_pas>;
-};
 
-&glink_edge {
+&remoteproc_modem_glink {
 	audio_gpr: qcom,gpr {
 		compatible = "qcom,gpr";
 		qcom,glink-channels = "modem_apps";
@@ -69,10 +104,35 @@
 
 &shikra_snd{
 	qcom,model = "shikra-dsp-snd-card";
+	qcom,msm_audio_ssr_devs = <&audio_gpr>,
+					<&lpass_cdc>;
+};
+
+&lpass_cdc {
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&lpass_clk_rsc {
+	clocks = <&clock_audio_rx_1 0>, <&clock_audio_tx_1 0>;
+};
+
+&va_macro{
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&swr1{
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&swr0 {
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
 };
 
 &aliases {
 	swr0 = "/soc/spf_core_platform/lpass-cdc/rx-macro@A040000/rx_swr_master";
 	swr1 = "/soc/spf_core_platform/lpass-cdc/va-macro@A078000/va_swr_master";
 };
-

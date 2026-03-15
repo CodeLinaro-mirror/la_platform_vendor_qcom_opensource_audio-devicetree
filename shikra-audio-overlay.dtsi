@@ -7,35 +7,11 @@
 #include <bindings/qcom,lpass-cdc-clk-rsc.h>
 #include <bindings/audio-codec-port-types.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include "shikra-audio-lpass-reg.dtsi"
-#include "wsa8855-i2c.dtsi"
+#include <dt-bindings/gpio/gpio.h>
 
 &soc {
-	clock_audio_rx_1: rx_core_clk {
-		compatible = "qcom,audio-ref-clk";
-		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_4>;
-		qcom,codec-lpass-ext-clk-freq = <19200000>;
-		qcom,codec-lpass-clk-id = <0x30E>;
-		#clock-cells = <1>;
-	};
-
-	clock_audio_tx_1: tx_core_clk {
-		compatible = "qcom,audio-ref-clk";
-		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_6>;
-		qcom,codec-lpass-ext-clk-freq = <19200000>;
-		qcom,codec-lpass-clk-id = <0x30C>;
-		#clock-cells = <1>;
-	};
-
-	cdc_pri_mi2s_gpios: pri_mi2s_pinctrl {
-		status = "disabled";
-		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&i2s0_sck_active &i2s0_ws_active
-				&i2s0_sd0_active &i2s0_sd1_active>;
-		pinctrl-1 = <&i2s0_sck_sleep &i2s0_ws_sleep
-				&i2s0_sd0_sleep &i2s0_sd1_sleep>;
-		#gpio-cells = <0>;
+	stub_codec: qcom,msm-stub-codec {
+		compatible = "qcom,msm-stub-codec";
 	};
 
 	cdc_quat_mi2s_gpios: quat_mi2s_pinctrl {
@@ -87,24 +63,21 @@
 	rx_swr_gpios: rx_swr_clk_data_pinctrl {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&swr_rx_clk_active &swr_rx_data0_active
-				&swr_rx_data1_active>;
-		pinctrl-1 = <&swr_rx_clk_sleep &swr_rx_data0_sleep
-				&swr_rx_data1_sleep>;
+		pinctrl-0 = <&tlmm_swr_rx_clk_active &tlmm_swr_rx_data0_active
+				&tlmm_swr_rx_data1_active>;
+		pinctrl-1 = <&tlmm_swr_rx_clk_sleep &tlmm_swr_rx_data0_sleep
+				&tlmm_swr_rx_data1_sleep>;
 		#gpio-cells = <0>;
 	};
 
 	va_swr_gpios: tx_swr_clk_data_pinctrl {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&swr_tx_clk_active &swr_tx_data0_active
-				&swr_tx_data1_active &swr_tx_data2_active>;
-		pinctrl-1 = <&swr_tx_clk_sleep &swr_tx_data0_sleep
-				&swr_tx_data1_sleep &swr_tx_data2_sleep>;
+		pinctrl-0 = <&tlmm_swr_tx_clk_active &tlmm_swr_tx_data0_active>;
+		pinctrl-1 = <&tlmm_swr_tx_clk_sleep &tlmm_swr_tx_data0_sleep>;
 		qcom,chip-wakeup-reg = <0xf1a4008>;
 		qcom,chip-wakeup-maskbit = <7>;
 		qcom,chip-wakeup-default-val = <0x1>;
-		//qcom,lpi-gpios;
 		#gpio-cells = <0>;
 	};
 
@@ -125,10 +98,7 @@
 	};
 };
 
-
 &lpass_cdc {
-	clock-names = "lpass_audio_hw_vote";
-	clocks = <&lpass_audio_hw_vote 0>;
 	qcom,num-macros = <2>;
 	status = "okay";
 	qcom,lpass-cdc-version = <7>;
@@ -138,40 +108,21 @@
 		qcom,fs-gen-sequence = <0x3000 0x1 0x1>, <0x3004 0x3 0x3>,
 			<0x3004 0x3 0x1>, <0x3080 0x2 0x2>;
 		clock-names = "rx_core_clk", "tx_core_clk";
-		clocks = <&clock_audio_rx_1 0>, <&clock_audio_tx_1 0>;
 	};
 
 	va_macro: va-macro@A078000 {
 		compatible = "qcom,lpass-cdc-va-macro";
-		clock-names = "lpass_audio_hw_vote";
-		clocks = <&lpass_audio_hw_vote 0>;
-		/*
-		* Clk divding factors for each DMIC pair.
-		* Valid entries for each DMIC pair:
-		*	2, 3, 4, 6, 8, 16
-		*
-		* These factors are translated to corresponding config values
-		*  for the following registers,
-		*   -- LPASS_VA_TOP_CSR_DMIC0_CTL,
-		*   -- LPASS_VA_TOP_CSR_DMIC1_CTL,
-		*   -- LPASS_VA_TOP_CSR_DMIC2_CTL,
-		*   -- LPASS_VA_TOP_CSR_DMIC3_CTL,
-		*/
 		qcom,va-dmic-clk-div-factor = <16 16 16 16>;
-		/* Property to override the qcom,va-dmic-clk-div-factor
-		* for sampling rates hgher than 16kHz.
-		*/
 		qcom,va-dmic-override-clk-div-factor = <4 4 4 4>;
 		qcom,default-clk-id = <TX_CORE_CLK>;
 		qcom,use-clk-id = <TX_CORE_CLK>;
 		qcom,is-used-swr-gpio = <1>;
 		qcom,va-swr-gpios = <&va_swr_gpios>;
+		reg = <0x0A078000 0x0>;
 		swr1: va_swr_master {
 			compatible = "qcom,swr-mstr";
 			#address-cells = <2>;
 			#size-cells = <0>;
-			clock-names = "lpass_audio_hw_vote";
-			clocks = <&lpass_audio_hw_vote 0>;
 			qcom,swr_master_id = <3>;
 			qcom,mipi-sdw-block-packing-mode = <1>;
 			qcom,swr-wakeup-required = <1>;
@@ -188,7 +139,9 @@
 			qcom,swr-clock-stop-mode0 = <1>;
 			qcom,swr-mstr-irq-wakeup-capable = <1>;
 			qcom,is-always-on = <1>;
-
+			swrm-io-base = <0x0A080000 0x0>;
+			interrupts = <GIC_SPI 328 IRQ_TYPE_LEVEL_HIGH>,
+						<GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
 			rouleur_tx_slave: rouleur-tx-slave {
 				compatible = "qcom,rouleur-slave";
 				reg = <0x0C 0x01170223>;
@@ -202,17 +155,18 @@
 		qcom,rx-swr-gpios = <&rx_swr_gpios>;
 		qcom,rx-bcl-pmic-params = /bits/ 8 <0x00 0x03 0x48>;
 		qcom,default-clk-id = <RX_CORE_CLK>;
+		reg = <0x0A040000 0x0>;
 		swr0: rx_swr_master {
 			compatible = "qcom,swr-mstr";
 			#address-cells = <2>;
 			#size-cells = <0>;
-			clock-names = "lpass_audio_hw_vote";
-			clocks = <&lpass_audio_hw_vote 0>;
 			qcom,swr_master_id = <2>;
 			qcom,swr-num-dev = <1>;
 			qcom,mipi-sdw-block-packing-mode = <1>;
 			interrupt-names = "swr_master_irq";
 			qcom,swr-num-ports = <12>;
+			swrm-io-base = <0x0A060000 0x0>;
+			interrupts = <GIC_SPI 330 IRQ_TYPE_LEVEL_HIGH>;
 			qcom,swr-port-mapping = <1 HPH_L 0x1>,
 				<1 HPH_R 0x2>, <2 CLSH 0x3>,
 				<3 COMP_L 0x1>, <3 COMP_R 0x2>,
@@ -231,72 +185,118 @@
 	};
 };
 
-&shikra_snd {
-	qcom,model = "shikra-qcs-snd-card";
-	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
-	qcom,ext-disp-audio-rx = <0>;
-	qcom,tdm-max-slots = <8>;
-	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
-	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
-	qcom,audio-core-list = <0>, <1>;
-	swr-haptics-unsupported;
-	qcom,audio-routing =
-		"VA AMIC1", "Analog Mic1",
-		"VA AMIC1", "VA MIC BIAS1",
-		"VA AMIC2", "Analog Mic2",
-		"VA AMIC2", "VA MIC BIAS2",
-		"VA AMIC3", "Analog Mic3",
-		"VA AMIC3", "VA MIC BIAS1",
-		"IN1_HPHL", "HPHL_OUT",
-		"IN2_HPHR", "HPHR_OUT",
-		"RX_TX DEC0_INP", "TX DEC0 MUX",
-		"RX_TX DEC1_INP", "TX DEC1 MUX",
-		"RX_TX DEC2_INP", "TX DEC2 MUX",
-		"RX_TX DEC3_INP", "TX DEC3 MUX",
-		"TX SWR_INPUT", "WCD_TX_OUTPUT",
-		"VA SWR_INPUT", "VA_SWR_CLK",
-		"VA SWR_INPUT", "WCD_TX_OUTPUT",
-		"VA_AIF1 CAP", "VA_SWR_CLK",
-		"VA_AIF2 CAP", "VA_SWR_CLK",
-		"VA_AIF3 CAP", "VA_SWR_CLK",
-		"VA DMIC0", "Digital Mic0",
-		"VA DMIC1", "Digital Mic1",
-		"VA DMIC2", "Digital Mic2",
-		"VA DMIC3", "Digital Mic3",
-		"VA DMIC0", "VA MIC BIAS1",
-		"VA DMIC1", "VA MIC BIAS1",
-		"VA DMIC2", "VA MIC BIAS2",
-		"VA DMIC3", "VA MIC BIAS3";
-	qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
-	qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
-	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
-	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
-	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
-	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
-	qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
-	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wsa885x_i2c>, <&rouleur_codec>;
-	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wsa885x_i2c", "rouleur_codec";
-//	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1680>;
-	qcom,msm-mbhc-usbc-audio-supported = <0>;
-	qcom,msm-mbhc-hphl-swh = <1>;
-	qcom,msm-mbhc-gnd-swh = <1>;
-	qcom,wsa-max-devs = <1>;
-	qcom,msm_audio_ssr_devs = <&audio_gpr>,
-					<&lpass_cdc>;
+&cdc_quin_mi2s_gpios {
+	status = "okay";
 };
 
+&i2c3 {
+	status = "okay";
+	wsa885x_i2c: wsa885x-i2c-codec@c {
+		compatible = "qcom,wsa885x-i2c";
+		reg = <0x0c>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&pndr_spkr_sd_n>;
+		interrupt-gpios = <&tlmm 77 GPIO_ACTIVE_HIGH>;
+		powerdown-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+		vdd-1p8-supply = <&L15A>;
+		vdd-io-supply = <&L15A>;
+		qcom,codec-name = "wsa885x_i2c";
+		qcom,wsa-prefix = "WSA885X_I2C";
+		qcom,battery_config = <1>;
+		qcom,wsa885x-v2;
+		wsa885x-init-table =
+			<0x8606 0x24  /* CDC_RX0_RX_PATH_CTL - CLK_EN(1) */
+			0x8626 0x24  /* CDC_RX1_RX_PATH_CTL - CLK_EN(1) */
+			0x8613 0x1   /* RX0_RX_PATH_DSMDEM_CTL - DSMDEM_CLK_EN(1) */
+			0x8633 0x1   /* RX1_RX_PATH_DSMDEM_CTL - DSMDEM_CLK_EN(1) */
+			0x8640 0x1   /* CDC_COMPANDER0_CTL0 - CLK_EN(1) */
+			0x8660 0x1   /* CDC_COMPANDER1_CTL0 - CLK_EN(1) */
+			0x86A1 0x14  /* CDC_VSENSE0_SPKR_PROT_PATH_CTL - CLK_EN(1) */
+			0x86B1 0x14  /* CDC_VSENSE1_SPKR_PROT_PATH_CTL - CLK_EN(1)*/
+			0x86A9 0x14  /* CDC_ISENSE0_SPKR_PROT_PATH_CTL - CLK_EN(1) */
+			0x86B9 0x14  /* CDC_ISENSE1_SPKR_PROT_PATH_CTL - CLK_EN(1) */
+			0x841C 0xF   /* DIG_CTRL0_CDC_CLK_CTL  - SYS_CLOCK_EN(1) */
+			0x841C 0x4F  /* DIG_CTRL0_CDC_CLK_CTL - FSM_INTP_CG_DISABLE */
+			0x8470 0x2   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_CLR(1) */
+			0x8470 0x0   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_CLR(0) */
+			0x8470 0x1   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_EN(1) */
+			0x0004 0x1   /* SMP_AMP_CTRL_STEREO_CMT_GRP_MASK - CMT_GRP_MASK(1) */
+			0x8602 0x60  /* CDC_RX0_RX_PATH_CFG1 - HPF_EN(0) */
+			0x8622 0x60  /* CDC_RX1_RX_PATH_CFG1 - HPF_EN(0) */
+			0x8108 0xA5  /* PANDEIRO_ANA_TOP_SPK_TOP_PWRSTG_CH1_CTRL3 */
+			0x810E 0xA5  /* PANDEIRO_ANA_TOP_SPK_TOP_PWRSTG_CH2_CTRL3 */
+			0x80CA 0x85  /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL2 - SPARE_BITS_0(Sets LDO to 1.6V) */
+			0x80CB 0xC   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL3 - ADC_VREF_VCTL_I(Sets VREF_I to 1.35V) */
+			0x80CB 0xE   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL3 - ADC_VREF_VCTL_I(Sets VREF_I to 1.35V) */
+			0x80CC 0xC   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_REF_CTL - ADC_VREF_VCTL_V(Sets VREF_V to 1.35V) */
+			0x84B4 0x1   /* PANDEIRO_DIG_CTRL0_GAIN_RAMP0_CTL1 - ANA_BYPASS(1) */
+			0x84B7 0x1   /* PANDEIRO_DIG_CTRL0_GAIN_RAMP1_CTL1 - ANA_BYPASS(1) */
+			0x8601 0x88  /* CDC_RX0_RX_PATH_CFG0 - DLY_ZN_EN(1) */
+			0x8601 0x89  /* CDC_RX0_RX_PATH_CFG0 - PH_EQ_EN */
+			0x8621 0x88  /* CDC_RX1_RX_PATH_CFG0 - DLY_ZN_EN(1) */
+			0x8621 0x89  /* CDC_RX1_RX_PATH_CFG0 - PH_EQ_EN */
+			0x805B 0x82  /* PANDEIRO_ANA_TOP_BOOST_STB_CTRL2 */
+			0x805C 0x34  /* PANDEIRO_ANA_TOP_BOOST_STB_CTRL3 */
+			0x8065 0x41  /* PANDEIRO_ANA_TOP_BOOST_PWRSTAGE_CTRL2 */
+			0x8067 0x7F  /* PANDEIRO_ANA_TOP_BOOST_PWRSTAGE_CTRL4 */
+			0x86CD 0x50  /* CDC_CLSH_V1P8_BP_CTL1 */
+			0x86CC 0x6C  /* CDC_CLSH_V1P8_BP_CTL0 */
+			0x86C7 0xD   /* CDC_CLSH_CLSH_SIG_DP_CTL0 */
+			0x86C3 0x3   /* CDC_CLSH_CLSH_V_HD_PA */
+			0x8423 0x5   /* PANDEIRO_DIG_CTRL0_POWER_FSM_CTL0 */
+			0x800D 0x20   /* PANDEIRO_DIG_CTRL0_POWER_FSM_CTL0 BST_CLK_FLIP_EN(Boost enable FSM issue(Work around for I2S mode, flip boost div2 clk)) */
+			0x810B 0x45  /* PANDEIRO_ANA_TOP_SPK_TOP_PWRSTG_CH1_TUNE3 */
+			0x8111 0x45  /* PANDEIRO_ANA_TOP_SPK_TOP_PWRSTG_CH2_TUNE3 */
+			0x86CE 0x5   /* CDC_CLSH_V1P8_BP_CTL2 - BP_CNT  */
+			0x8024 0x35  /* PANDEIRO_ANA_TOP_BG_TVP_UVLO1_PROG - VTH 2.1v */
+			0x8025 0x21  /* PANDEIRO_ANA_TOP_BG_TVP_UVLO2_PROG - VTH 2.0v */
+			0x805E 0xC7  /* PANDEIRO_ANA_TOP_BOOST_BYP_CTRL2 */
+			0x805F 0x11  /* PANDEIRO_ANA_TOP_BOOST_BYP_CTRL3 */
+			0x80D0 0x80 /* PANDEIRO_ANA_TOP_IVSENSE_ADC_CDAC_CAL_CTL2 */
+			0x813C 0x08 /* PANDEIRO_ANA_TOP_SPK_TOP_SPARE3 */
+			0x842B 0x47 /* PANDEIRO_DIG_CTRL0_PA0_FSM_CTL1 - SILENT_STATE_IVS_EN */
+			0x8435 0x47 /* PANDEIRO_DIG_CTRL0_PA1_FSM_CTL1 - SILENT_STATE_IVS_EN */
+			0x8647 0x34 /* CDC_COMPANDER0_CTL7 - AGAIN_DELAY */
+			0x8667 0x34 /* CDC_COMPANDER1_CTL7 - AGAIN_DELAY */
+			0x8458 0x79>; /* PANDEIRO_DIG_CTRL0_VBAT_THRM_FLT_CTL - VBAT_COEF_SEL */
+
+		wsa885x-init-table-v2 =
+			<0x8470 0x2   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_CLR(1) */
+			0x8470 0x0   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_CLR(0) */
+			0x8470 0x1   /* DIG_CTRL0_CDC_RXTX_FSCNT_CTL - FS_CNT_EN(1) */
+			0x0004 0x1   /* SMP_AMP_CTRL_STEREO_CMT_GRP_MASK - CMT_GRP_MASK(1) */
+			0x8602 0x60  /* CDC_RX0_RX_PATH_CFG1 - HPF_EN(0) */
+			0x8622 0x60  /* CDC_RX1_RX_PATH_CFG1 - HPF_EN(0) */
+			0x8458 0x79  /* PANDEIRO_DIG_CTRL0_VBAT_THRM_FLT_CTL - VBAT_COEF_SEL */
+			0x810B 0xD9  /* PANDEIRO_ANA_TOP_SPK_TOP_PWRSTG_CH1_TUNE3 */
+			0x8111 0xD9  /* PANDEIRO_ANA_TOP_SPK_TOP_PWRSTG_CH2_TUNE3 */
+			0x813C 0x08  /* SPK_TOP_COMMON_CTRL4 - override_ctl*/
+			0x8102 0x04  /* PANDEIROI2S.TOP.PANDEIRO_ANA_TOP.SPK_TOP_COMMON_CTRL2.LDO_PROG */
+			0x811C 0x29  /* PANDEIROI2S.TOP.PANDEIRO_ANA_TOP.SPK_TOP_LF_CH1_CTRL11.PHASE90(Add 90 degree phase shift between PWM clock of CH1 and CH2.) */
+			0x811D 0x40  /* PANDEIRO_ANA_TOP_SPK_TOP_LF_CH1_TUNE1  - HIZ_DELAY_PROG*/
+			0x8129 0x40  /* PANDEIRO_ANA_TOP_SPK_TOP_LF_CH2_TUNE1  - HIZ_DELAY_PROG*/
+			0x811A 0x80  /* PANDEIRO_ANA_TOP_SPK_TOP_LF_CH1_CTRL9 - OCP_CLIP_T_CTRL_EXT */
+			0x8126 0x80  /* PANDEIRO_ANA_TOP_SPK_TOP_LF_CH2_CTRL9 -  OCP_CLIP_T_CTRL_EXT */
+			0x8103 0x6   /* PANDEIRO_ANA_TOP_SPK_TOP_COMMON_TUNE1 - GAIN_TUNE */
+			0x80CA 0x85  /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL2 - SPARE_BITS_0(Sets LDO to 1.6V) */
+			0x80CB 0xE   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_MODE_CTL3 - ADC_VREF_VCTL_I(Sets VREF_I to 1.35V) */
+			0x80CC 0xC   /* PANDEIRO_ANA_TOP_IVSENSE_ADC_REF_CTL - ADC_VREF_VCTL_V(Sets VREF_V to 1.35V) */
+			0x80D0 0x80 /* PANDEIRO_ANA_TOP_IVSENSE_ADC_CDAC_CAL_CTL2 */
+			0x80BA 0xC0 /* PANDEIROI2S.TOP.PANDEIRO_ANA_TOP.SPK_TOP_SPARE3(force the VDDSPK_LV_READY from analog to be high) */
+			0x841C 0x4E /* PANDEIROI2S.TOP.PANDEIRO_DIG_CTRL0_PANDEIRO_DIG_CTRL0.CDC_CLK_CTL.FSM_INTP_CG_DISABLE */
+			0x8435 0x47 /* PANDEIRO_DIG_CTRL0_PA1_FSM_CTL1 - SILENT_STATE_IVS_EN */
+			0x86CE 0x09 /* PANDEIROI2S.TOP.CDC_CLSH_CDC_CLSH.V1P8_BP_CTL2.BP_CNT */
+			0x8667 0x34 /* CDC_COMPANDER1_CTL7 - AGAIN_DELAY */
+			0x800D 0x08>; /* PANDEIROI2S.TOP.PANDEIRO_ANA_TOP.PON_CKSK_CTL_0 */
+	};
+};
 
 &lpass_cdc {
 	rouleur_codec: rouleur-codec {
 		status = "okay";
 		compatible = "qcom,rouleur-codec";
 		qcom,split-codec = <1>;
-		qcom,pmic-spmi-node = <&pm2250_cdc>;
+		qcom,pmic-spmi-node = <&pm4125_cdc>;
 		qcom,wcd-reset-reg = <0x0000F3DB>;
 		qcom,foundry-id-reg = <0x0000704D>;
 		qcom,rx_swr_ch_map = <0 HPH_L 0x1 0 HPH_L>,
@@ -322,18 +322,18 @@
 		qcom,cdc-vdd-io-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-io-current = <10000>;
 
-		cdc-vdd-cp-supply = <&S4A>;
+		cdc-vdd-cp-supply = <&S1A>;
 		qcom,cdc-vdd-cp-voltage = <2040000 2040000>;
 		qcom,cdc-vdd-cp-current = <300000>;
 
-		cdc-pa-vpos-supply = <&S4A>;
+		cdc-pa-vpos-supply = <&S1A>;
 		qcom,cdc-pa-vpos-voltage = <2040000 2040000>;
 		qcom,cdc-pa-vpos-current = <2400000>;
 
 		cdc-vdd-mic-bias-supply = <&L22A>;
 		qcom,cdc-vdd-mic-bias-voltage = <3000000 3304000>;
 		qcom,cdc-vdd-mic-bias-current = <50000>;
-		qcom,cdc-vdd-mic-bias-lpm-supported = <1>;	//found hpg for Audio-LPM.
+		qcom,cdc-vdd-mic-bias-lpm-supported = <1>;
 
 		qcom,cdc-micbias1-mv = <1800>;
 		qcom,cdc-micbias2-mv = <1800>;
@@ -344,4 +344,56 @@
 					"cdc-vdd-mic-bias";
 		qcom,cdc-on-demand-supplies = "cdc-pa-vpos";
 	};
+};
+
+&shikra_snd {
+	qcom,model = "shikra-qcs-snd-card";
+	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,wsa885x-tdm = <1>;
+	qcom,wcn-bt = <0>;
+	qcom,wcn-bt-ext = <0>;
+	qcom,ext-disp-audio-rx = <0>;
+	qcom,tdm-max-slots = <8>;
+	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,audio-core-list = <0>, <1>;
+	swr-haptics-unsupported;
+	qcom,audio-routing =
+		"VA AMIC1", "Analog Mic1",
+		"VA AMIC1", "MIC BIAS1",
+		"VA AMIC2", "Analog Mic2",
+		"VA AMIC2", "MIC BIAS2",
+		"VA AMIC3", "Analog Mic3",
+		"VA AMIC3", "MIC BIAS3",
+		"IN1_HPHL", "HPHL_OUT",
+		"IN2_HPHR", "HPHR_OUT",
+		"RX_TX DEC0_INP", "VA DEC0 MUX",
+		"RX_TX DEC1_INP", "VA DEC1 MUX",
+		"RX_TX DEC2_INP", "VA DEC2 MUX",
+		"RX_TX DEC3_INP", "VA DEC3 MUX",
+		"VA SWR_INPUT", "VA_SWR_CLK",
+		"VA SWR_INPUT", "WCD_TX_OUTPUT",
+		"VA_AIF1 CAP", "VA_SWR_CLK",
+		"VA_AIF2 CAP", "VA_SWR_CLK",
+		"VA_AIF3 CAP", "VA_SWR_CLK",
+		"VA DMIC0", "Digital Mic0",
+		"VA DMIC1", "Digital Mic1",
+		"VA DMIC2", "Digital Mic2",
+		"VA DMIC3", "Digital Mic3",
+		"VA DMIC0", "VA MIC BIAS",
+		"VA DMIC1", "VA MIC BIAS",
+		"VA DMIC2", "VA MIC BIAS",
+		"VA DMIC3", "VA MIC BIAS";
+	qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
+	qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
+	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
+	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
+	qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
+			 <&rouleur_codec>, <&wsa885x_i2c>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+			"rouleur_codec", "wsa885x_i2c";
+	qcom,wsa-max-devs = <0>;
 };
