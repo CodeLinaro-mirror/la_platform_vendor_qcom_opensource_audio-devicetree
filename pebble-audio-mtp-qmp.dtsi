@@ -8,10 +8,18 @@
 
 #include "art-audio-mtp-qmp.dtsi"
 
+&wcd939x_codec {
+	cdc-vdd-px-supply = <&L3F>;
+};
+
 &wsa885x_i2c {
 	interrupt-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
 	vdd-1p8-supply = <&L2D>;
 	vdd-io-supply = <&L4G>;
+};
+
+&rx_swr_haptics {
+	status = "disabled";
 };
 
 &art_snd {
@@ -22,7 +30,6 @@
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
-	/delete-property/ wcd939x-i2c-handle;
 	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 		      <&wcd939x_codec>,<&wsa885x_i2c>;

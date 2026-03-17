@@ -39,6 +39,10 @@
 	vdd-io-supply = <&L4G>;
 };
 
+&rx_swr_haptics {
+	status = "disabled";
+};
+
 &art_snd {
 	qcom,model = "pebble-mtp-wcd9378-snd-card";
 	qcom,wcn-bt = <0>;
