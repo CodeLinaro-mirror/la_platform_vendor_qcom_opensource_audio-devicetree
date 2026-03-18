@@ -1204,7 +1204,4 @@
 	i2s1_sd0_sleep: i2s1_sd0_sleep {
 	};
 
-
-	lpass_core_hw_vote: vote_lpass_core_hw {
-	};
 };

@@ -116,7 +116,7 @@
 
 	wsa881x_analog_clk: wsa_ana_clk {
 		compatible = "qcom,audio-ref-clk";
-		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_2>;
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_17>;
 		qcom,codec-lpass-ext-clk-freq = <9600000>;
 		qcom,codec-lpass-clk-id = <0x301>;
 		#clock-cells = <1>;

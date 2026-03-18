@@ -174,12 +174,6 @@
 		#gpio-cells = <0>;
 	};
 
-	wsa881x_analog_reset_gpio: wsa_reset_gpio {
-		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		#gpio-cells = <0>;
-	};
-
 	wsa881x_analog_clk_gpio: wsa_clk {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
@@ -187,4 +181,12 @@
 		#gpio-cells = <0>;
 	};
 
+};
+
+&soc {
+	 wsa881x_analog_reset_gpio: wsa_reset_gpio {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		#gpio-cells = <0>;
+	};
 };
