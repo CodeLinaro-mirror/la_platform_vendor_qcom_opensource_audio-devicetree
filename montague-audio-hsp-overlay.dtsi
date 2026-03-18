@@ -4,7 +4,3 @@
  */
 
 #include "ravelin-audio-idp.dtsi"
-
-&waipio_snd {
-	qcom,wcn-btfm = <0>;
-};

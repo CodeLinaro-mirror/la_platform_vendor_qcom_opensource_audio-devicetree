@@ -36,7 +36,7 @@ dtbo-$(CONFIG_ARCH_RAVELIN) += ravelin-audio.dtbo \
                  ravelin-audio-idp-4gb.dtbo \
                  ravelin-audio-qrd.dtbo \
                  ravelin-audio-atp.dtbo \
-                 montague-adrastea-overlay.dtbo \
+                 montague-audio-adrastea-overlay.dtbo \
                  montague-audio-hsp-overlay.dtbo \
                  montague-audio-apache-overlay.dtbo \
                  montague-audio-moselle-overlay.dtbo
