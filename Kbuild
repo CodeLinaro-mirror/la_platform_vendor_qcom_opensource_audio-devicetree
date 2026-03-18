@@ -79,7 +79,12 @@ dtbo-y += yupik-iot-audio.dtbo \
                 yupikp-iot-audio-hsp-overlay.dtbo \
                 yupikp-iot-audio-idp-overlay.dtbo \
                 yupikp-iot-audio-idps-amoled-overlay.dtbo \
-                yupikp-iot-audio-qrd-overlay.dtbo
+                yupikp-iot-audio-qrd-overlay.dtbo \
+                yupik-iot-audio-rb3-gen2-ck-overlay.dtbo \
+                yupik-iot-audio-rb3-gen2-vk-overlay.dtbo \
+                yupik-iot-audio-rb3-gen2-vc-overlay.dtbo \
+                katmaip-audio-rb3-gen2-vk-overlay.dtbo \
+                katmaip-audio-rb3-gen2-vc-overlay.dtbo
 endif
 
 
