@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "art-lpi.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+#include "art-audio-lpass-reg.dtsi"
+#include "wcd.dtsi"
+
+&wcd939x_codec {
+	cdc-vdd-px-supply = <&L3F>;
+	qcom,cdc-vdd-rx-current = <45000>;
+	qcom,cdc-vdd-tx-current = <45000>;
+};
+
+&wsa885x_i2c {
+	interrupt-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
+	vdd-1p8-supply = <&L2D>;
+	vdd-io-supply = <&L4G>;
+};
+
+&art_snd {
+	qcom,model = "pebble-cdp-snd-card";
+	compatible = "qcom,art-asoc-snd-stub";
+	asoc-codec = <&stub_codec>;
+	asoc-codec-names = "msm-stub-codec.1";
+};
+
+&lpi_tlmm {
+	status = "disabled";
+};
+
+&lpass_cdc {
+	status = "disabled";
+};
+
+&lpass_bt_swr {
+	status = "disabled";
+};
