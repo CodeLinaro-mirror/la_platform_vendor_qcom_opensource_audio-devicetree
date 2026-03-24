@@ -1,10 +1,6 @@
 #include "ravelin-audio-overlay.dtsi"
 
 &waipio_snd {
-	qcom,msm-mbhc-usbc-audio-supported = <0>;
-	qcom,ext-disp-audio-rx = <0>;
-	qcom,wcn-bt = <0>;
-	qcom,wcn-btfm = <0>;
 	asoc-codec = <&stub_codec>, <&lpass_cdc>,
 		     <&wcd937x_codec>,
 		     <&wsa883x_0221>, <&wsa883x_0222>;
