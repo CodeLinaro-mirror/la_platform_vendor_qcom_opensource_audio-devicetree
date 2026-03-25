@@ -41,6 +41,7 @@
 
 &rx_swr_haptics {
 	status = "disabled";
+	/delete-property/ swr-slave-supply;
 };
 
 &art_snd {
