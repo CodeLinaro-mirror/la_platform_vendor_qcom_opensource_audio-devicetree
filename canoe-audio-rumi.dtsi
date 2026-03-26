@@ -12,7 +12,7 @@
 #include "wcd939x.dtsi"
 
 &canoe_snd {
-	qcom,model = "canoe-cdp-snd-card";
+	qcom,model = "canoe-rumi-snd-card";
 	compatible = "qcom,canoe-asoc-snd-stub";
 	asoc-codec = <&stub_codec>;
 	asoc-codec-names = "msm-stub-codec.1";
