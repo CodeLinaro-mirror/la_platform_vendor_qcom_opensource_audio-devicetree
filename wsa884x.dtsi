@@ -18,6 +18,18 @@
 		pinctrl-1 = <&spkr_13_sd_n_sleep>;
 		qcom,lpi-gpios;
 	};
+
+	wsa_spkr_en002: wsa_spkr_en01_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		qcom,lpi-gpios;
+	};
+
+	wsa_spkr_en113: wsa_spkr_en02_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		qcom,lpi-gpios;
+	};
 };
 
 &swr0 {

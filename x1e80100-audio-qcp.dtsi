@@ -80,7 +80,7 @@
 
 &wsa884x_0221 {
 	status = "okay";
-	qcom,spkr-sd-n-node = <&wsa_spkr_en02>;
+	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;
 	cdc-vdd-1p8-supply = <&L15B>;
 	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 	qcom,cdc-vdd-1p8-current = <20000>;
@@ -91,7 +91,7 @@
 
 &wsa884x_2_0220 {
 	status = "okay";
-	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;
+	qcom,spkr-sd-n-node = <&wsa_spkr_en002>;
 	cdc-vdd-1p8-supply = <&L15B>;
 	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 	qcom,cdc-vdd-1p8-current = <20000>;
@@ -102,7 +102,7 @@
 
 &wsa884x_2_0221 {
 	status = "okay";
-	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;
+	qcom,spkr-sd-n-node = <&wsa_spkr_en113>;
 	cdc-vdd-1p8-supply = <&L15B>;
 	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 	qcom,cdc-vdd-1p8-current = <20000>;
@@ -196,4 +196,14 @@
 		qcom,wsa-max-devs = <4>;
 		qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 					<&lpass_cdc>;
+};
+
+&wsa_spkr_en002 {
+	pinctrl-0 = <&spkr_002_sd_n_active>;
+	pinctrl-1 = <&spkr_002_sd_n_sleep>;
+};
+
+&wsa_spkr_en113 {
+	pinctrl-0 = <&spkr_113_sd_n_active>;
+	pinctrl-1 = <&spkr_113_sd_n_sleep>;
 };
