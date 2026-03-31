@@ -68,13 +68,13 @@
 };
 
 &rx_swr_haptics {
-	status = "okay";
-	swr-slave-supply = <&hap_swr_slave_reg>;
+	status = "disabled";
 };
 
 
 &alor_snd {
 	qcom,model = "alor-mtp-wcd939x-snd-card";
+	swr-haptics-unsupported;
 	qcom,wsa8855-supported;
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
@@ -91,8 +91,7 @@
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&rx_swr_haptics>,
-			<&wsa8855_0230>;
+			<&wcd939x_codec>, <&wsa8855_0230>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			"wcd939x_codec", "swr-haptics",
 			"sdca-simple-amp.01";
