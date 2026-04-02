@@ -72,6 +72,20 @@
 	qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SWRM_RX_TX1>;
 };
 
+&tlmm {
+	interrupt_pullup: interrupt-pullup {
+		pins = "gpio77";
+		function = "gpio";
+		bias-pull-up;
+		drive-strength = <2>;
+	};
+};
+
+&wsa885x_i2c {
+	pinctrl-0 = <&pndr_spkr_sd_n
+		&interrupt_pullup>;
+};
+
 &art_snd {
 	qcom,model = "art-qrd-snd-card";
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
