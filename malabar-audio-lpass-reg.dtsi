@@ -84,3 +84,10 @@
 	qcom,chip-wakeup-maskbit = <8>, <3>, <4>, <6>;
 	qcom,chip-wakeup-default-val = <0x1>, <0x1>, <0x1>, <0x1>;
 };
+
+&malabar_snd {
+	qcom,lpaif-rxtx-clk-id = <0x106>;
+	qcom,lpaif-aud-pri-clk-id = <0x102>;
+	qcom,lpaif-aud-sec-clk-id = <0x104>;
+	qcom,lpaif-va-clk-id = <0x100>;
+};
