@@ -68,8 +68,7 @@
 };
 
 &rx_swr_haptics {
-	status = "okay";
-	swr-slave-supply = <&hap_swr_slave_reg>;
+	status = "disabled";
 };
 
 
@@ -80,7 +79,7 @@
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,wcn-bt = <0>;
 	qcom,wcn-bt-ext = <0>;
-	qcom,ext-disp-audio-rx = <0>;
+	qcom,ext-disp-audio-rx = <1>;
 	swr-haptics-unsupported;
 	qcom,tdm-max-slots = <8>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
@@ -91,11 +90,9 @@
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&rx_swr_haptics>,
-			<&wsa8855_0230>;
+			<&wcd939x_codec>, <&wsa8855_0230>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wcd939x_codec", "swr-haptics",
-			"sdca-simple-amp.01";
+			"wcd939x_codec", "sdca-simple-amp.01";
 	qcom,audio-routing =
 			"AMIC2", "Analog Mic2",
 			"AMIC2", "MIC BIAS2",
