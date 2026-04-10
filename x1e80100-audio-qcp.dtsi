@@ -1,0 +1,209 @@
+//
+/* Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ *  SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "x1e80100-lpi.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+#include "x1e80100-audio-lpass-reg.dtsi"
+#include "wsa884x.dtsi"
+#include "wcd939x.dtsi"
+
+/* Dummies for compilation as these entries in wsa-wcd dtsi */
+&lpi_tlmm {
+	hap_swr_slave_reg: hap_swr_slave_reg {
+
+	};
+
+	L1G: L1G {
+
+	};
+};
+
+&lpass_cdc {
+	qcom,num-macros = <5>;
+};
+
+&wsa_macro {
+	qcom,wsa-bat-cfgs= <3>, <3>;
+	qcom,wsa-rloads= <2>, <2>;
+	qcom,wsa-system-gains= <0 9>, <0 9>;
+	wsa_data_fs_ctl_reg = <0x6B6F000>;
+};
+
+&wsa2_macro {
+	qcom,wsa-bat-cfgs= <3>, <3>;
+	qcom,wsa-rloads= <2>, <2>;
+	qcom,wsa-system-gains= <0 9>, <0 9>;
+	wsa_data_fs_ctl_reg = <0x6B6F000>;
+};
+
+&wcd939x_tx_slave {
+	status = "disabled";
+};
+
+&wcd939x_rx_slave {
+	status = "disabled";
+};
+
+/* WSA */
+&swr0 {
+    qcom,swr-num-dev = <2>;
+};
+
+/* WSA2 */
+&swr3 {
+    qcom,swr-num-dev = <2>;
+};
+
+/* VA SWR */
+&swr2 {
+    qcom,swr-num-dev = <1>;
+};
+
+/* RX SWR */
+&swr1 {
+    qcom,swr-num-dev = <1>;
+};
+
+&wsa884x_0220 {
+	status = "okay";
+	qcom,spkr-sd-n-node = <&wsa_spkr_en02>;
+	cdc-vdd-1p8-supply = <&L15B>;
+	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-1p8-current = <20000>;
+	qcom,cdc-vdd-1p8-lpm-supported = <1>;
+	qcom,cdc-static-supplies = "cdc-vdd-1p8";
+	sound-name-prefix = "SpkrLeft";
+};
+
+&wsa884x_0221 {
+	status = "okay";
+	qcom,spkr-sd-n-node = <&wsa_spkr_en13>;
+	cdc-vdd-1p8-supply = <&L15B>;
+	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-1p8-current = <20000>;
+	qcom,cdc-vdd-1p8-lpm-supported = <1>;
+	qcom,cdc-static-supplies = "cdc-vdd-1p8";
+	sound-name-prefix = "SpkrRight";
+};
+
+&wsa884x_2_0220 {
+	status = "okay";
+	qcom,spkr-sd-n-node = <&wsa_spkr_en002>;
+	cdc-vdd-1p8-supply = <&L15B>;
+	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-1p8-current = <20000>;
+	qcom,cdc-vdd-1p8-lpm-supported = <1>;
+	qcom,cdc-static-supplies = "cdc-vdd-1p8";
+	sound-name-prefix = "Spkr2Left";
+};
+
+&wsa884x_2_0221 {
+	status = "okay";
+	qcom,spkr-sd-n-node = <&wsa_spkr_en113>;
+	cdc-vdd-1p8-supply = <&L15B>;
+	qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
+	qcom,cdc-vdd-1p8-current = <20000>;
+	qcom,cdc-vdd-1p8-lpm-supported = <1>;
+	qcom,cdc-static-supplies = "cdc-vdd-1p8";
+	sound-name-prefix = "Spkr2Right";
+};
+
+&wcd938x_tx_slave {
+	status = "okay";
+};
+
+&wcd938x_rx_slave {
+	status = "okay";
+};
+
+&wcd938x_codec {
+	status = "okay";
+	qcom,cdc-vdd-rx-current = <20000>;
+	qcom,cdc-vdd-tx-current = <20000>;
+	cdc-vdd-px-supply = <&L15B>;
+};
+
+&x1e80100_snd {
+	qcom,model = "hamoa-x1e80100-qcp-wsa884x-snd-card";
+	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,wcn-bt = <0>;
+	qcom,wcn-bt-ext = <0>;
+	swr-haptics-unsupported;
+	qcom,ext-disp-audio-rx = <0>;
+	qcom,tdm-max-slots = <8>;
+	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,audio-routing =
+		"AMIC2", "Analog Mic2",
+		"AMIC2", "MIC BIAS2",
+		"VA AMIC2", "Analog Mic2",
+		"VA AMIC2", "VA MIC BIAS2",
+		"TX DMIC0", "Digital Mic0",
+		"TX DMIC0", "MIC BIAS3",
+		"TX DMIC1", "Digital Mic1",
+		"TX DMIC1", "MIC BIAS3",
+		"TX DMIC2", "Digital Mic2",
+		"TX DMIC2", "MIC BIAS1",
+		"TX DMIC3", "Digital Mic3",
+		"TX DMIC3", "MIC BIAS1",
+		"IN1_HPHL", "HPHL_OUT",
+		"IN2_HPHR", "HPHR_OUT",
+		"IN3_AUX", "AUX_OUT",
+		"WSA SRC0_INP", "SRC0",
+		"WSA_TX DEC0_INP", "TX DEC0 MUX",
+		"WSA_TX DEC1_INP", "TX DEC1 MUX",
+		"WSA2 SRC0_INP", "SRC0",
+		"WSA2_TX DEC0_INP", "TX DEC0 MUX",
+		"WSA2_TX DEC1_INP", "TX DEC1 MUX",
+		"RX_TX DEC0_INP", "TX DEC0 MUX",
+		"RX_TX DEC1_INP", "TX DEC1 MUX",
+		"RX_TX DEC2_INP", "TX DEC2 MUX",
+		"RX_TX DEC3_INP", "TX DEC3 MUX",
+		"SpkrLeft IN", "WSA_SPK1 OUT",
+		"SpkrRight IN", "WSA_SPK2 OUT",
+		"Spkr2Left IN", "WSA2_SPK1 OUT",
+		"Spkr2Right IN", "WSA2_SPK2 OUT",
+		"TX SWR_INPUT", "WCD_TX_OUTPUT",
+		"VA SWR_INPUT", "VA_SWR_CLK",
+		"VA SWR_INPUT", "WCD_TX_OUTPUT",
+		"VA_AIF1 CAP", "VA_SWR_CLK",
+		"VA_AIF2 CAP", "VA_SWR_CLK",
+		"VA_AIF3 CAP", "VA_SWR_CLK",
+		"VA DMIC0", "Digital Mic0",
+		"VA DMIC1", "Digital Mic1",
+		"VA DMIC2", "Digital Mic2",
+		"VA DMIC3", "Digital Mic3",
+		"VA DMIC0", "VA MIC BIAS3",
+		"VA DMIC1", "VA MIC BIAS3",
+		"VA DMIC2", "VA MIC BIAS1",
+		"VA DMIC3", "VA MIC BIAS1";
+		qcom,msm-mbhc-usbc-audio-supported = <0>;
+		qcom,msm-mbhc-hphl-swh = <1>;
+		qcom,msm-mbhc-gnd-swh = <1>;
+		qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
+		qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
+		asoc-codec  = <&stub_codec>, <&lpass_cdc>,
+				<&wcd938x_codec>, <&wsa884x_0220>,
+				<&wsa884x_0221>, <&wsa884x_2_0220>,
+				<&wsa884x_2_0221>;
+		asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+				"wcd938x_codec", "wsa-codec1",
+				"wsa-codec2", "wsa-codec3", "wsa-codec4";
+		qcom,wsa-max-devs = <4>;
+		qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+					<&lpass_cdc>;
+};
+
+&wsa_spkr_en002 {
+	pinctrl-0 = <&spkr_002_sd_n_active>;
+	pinctrl-1 = <&spkr_002_sd_n_sleep>;
+};
+
+&wsa_spkr_en113 {
+	pinctrl-0 = <&spkr_113_sd_n_active>;
+	pinctrl-1 = <&spkr_113_sd_n_sleep>;
+};

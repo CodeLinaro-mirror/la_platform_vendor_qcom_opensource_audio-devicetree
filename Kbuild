@@ -48,18 +48,22 @@ ifeq ($(CONFIG_ARCH_ART), y)
 dtbo-y += art-audio.dtbo \
                 art-audio-cdp.dtbo \
                 art-audio-mtp.dtbo \
+                arth-audio-mtp.dtbo \
                 art-audio-mtp-qmp.dtbo \
                 art-audio-mtp-3.5mm.dtbo \
                 art-audio-qrd.dtbo \
                 art-audio-qrd-sku2.dtbo \
                 art-audio-rumi.dtbo \
                 art-audio-rcm.dtbo \
-                art-audio-atp.dtbo
+                art-audio-atp.dtbo \
+                arth-audio-qrd.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_X1E80100), y)
 dtbo-y += x1e80100-audio.dtbo \
-            x1e80100-audio-crd.dtbo
+          x1e80100-audio-crd.dtbo \
+	  x1e80100-audio-qcp.dtbo \
+          x1e80100-audio-qcb.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
@@ -110,8 +114,7 @@ dtbo-$(CONFIG_ARCH_PARROT) += parrot-audio.dtbo \
                  parrot-audio-atp.dtbo
 
 ifeq ($(CONFIG_ARCH_SHIKRA), y)
-dtbo-y += shikra-audio.dtbo \
-                shikra-audio-rumi.dtbo\
+dtbo-y += shikra-audio-rumi.dtbo\
                 shikra-audio-qcs.dtbo\
                 shikra-audio-qcm.dtbo
 endif

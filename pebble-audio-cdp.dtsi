@@ -1,7 +1,7 @@
+// SPDX-License-Identifier: BSD-3-Clause
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- * SPDX-License-Identifier: BSD-3-Clause-Clear
-*/
+ */
 
 /dts-v1/;
 /plugin/;
@@ -18,12 +18,15 @@
 	vdd-io-supply = <&L4G>;
 };
 
+&rx_swr_haptics {
+	status = "disabled";
+};
+
 &art_snd {
 	qcom,model = "pebble-cdp-snd-card";
 	qcom,wcn-bt = <0>;
 	qcom,wcn-bt-ext = <0>;
 	qcom,ext-disp-audio-rx = <0>;
-	/delete-property/ wcd939x-i2c-handle;
 	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 		      <&wcd939x_codec>, <&wsa885x_i2c>;

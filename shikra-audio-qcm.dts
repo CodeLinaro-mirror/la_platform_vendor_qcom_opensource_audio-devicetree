@@ -6,12 +6,15 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/clock/qcom,shikra-gcc.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,shikra.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include "shikra-audio-qcm.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Shikra QCM";
-	compatible = "qcom,shikra";
-	qcom,msm-id = <707 0x10000>, <707 0x20000>, <708 0x10000>,
-			<708 0x20000>;
-	qcom,board-id = <0 0>;  //@todo
+	compatible = "qcom,shikra-cqm";
+	qcom,msm-id = <756 0x10000>;
+	qcom,board-id = <0 0>;
 };

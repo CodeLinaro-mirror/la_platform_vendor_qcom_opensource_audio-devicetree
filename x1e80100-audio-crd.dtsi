@@ -8,7 +8,7 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "x1e80100-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 
 /* Dummies for compilation as these entries in wsa-wcd dtsi */
 &lpi_tlmm {
@@ -196,4 +196,14 @@
 		qcom,wsa-max-devs = <4>;
 		qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 					<&lpass_cdc>;
+};
+
+&wsa_spkr_en002 {
+	pinctrl-0 = <&spkr_002_sd_n_active>;
+	pinctrl-1 = <&spkr_002_sd_n_sleep>;
+};
+
+&wsa_spkr_en113 {
+	pinctrl-0 = <&spkr_113_sd_n_active>;
+	pinctrl-1 = <&spkr_113_sd_n_sleep>;
 };
