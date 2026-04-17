@@ -70,6 +70,7 @@
 	qcom,wcn-bt = <1>;
 	qcom,wcd-disabled = <1>;
 	qcom,msm-mi2s-master = <0>, <1>, <1>, <1>, <1>, <1>;
+	qcom,tdm-audio-intf = <1>;
 	qcom,audio-routing =
 		"TX DMIC0", "Digital Mic0",
 		"TX DMIC1", "Digital Mic1",
