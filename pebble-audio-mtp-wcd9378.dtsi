@@ -46,8 +46,8 @@
 
 &art_snd {
 	qcom,model = "pebble-mtp-wcd9378-snd-card";
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
 	qcom,ext-disp-audio-rx = <0>;
 	swr-haptics-unsupported;
 	qcom,msm-mbhc-usbc-audio-supported = <0>;

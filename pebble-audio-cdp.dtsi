@@ -25,8 +25,8 @@
 
 &art_snd {
 	qcom,model = "pebble-cdp-snd-card";
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
 	qcom,ext-disp-audio-rx = <0>;
 	swr-haptics-unsupported;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
