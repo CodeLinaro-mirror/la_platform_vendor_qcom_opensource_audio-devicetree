@@ -156,6 +156,7 @@
 	rx_macro: rx-macro@A040000 {
 		compatible = "qcom,lpass-cdc-rx-macro";
 		qcom,is-used-swr-gpio = <1>;
+		bypass-startup-pulse;
 		qcom,rx-swr-gpios = <&rx_swr_gpios>;
 		qcom,rx-bcl-pmic-params = /bits/ 8 <0x00 0x03 0x48>;
 		qcom,default-clk-id = <RX_CORE_CLK>;
