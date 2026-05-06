@@ -87,6 +87,13 @@ dtbo-y += malabar-audio.dtbo \
 		malabar-audio-rumi.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_RAVELIN), y)
+dtbo-y += ravelin-audio.dtbo \
+                ravelin-audio-idp-overlay.dtbo \
+                ravelin-audio-idp-4gb.dtbo \
+                ravelin-audio-qrd.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
