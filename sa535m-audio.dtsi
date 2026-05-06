@@ -471,7 +471,7 @@
 	tlv320aic3x_codec: tlv320aic3x@18 {
 		compatible = "ti,tlv320aic3x";
 		reg = <0x18>;
-		reset-gpios = <&pmx75_gpios 13 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&pmx75_gpios 13 GPIO_ACTIVE_LOW>;
 		AVDD-supply = <&codec_vreg>;
 		IOVDD-supply = <&codec_vreg>;
 		ai3x-ocmv = <1>;
