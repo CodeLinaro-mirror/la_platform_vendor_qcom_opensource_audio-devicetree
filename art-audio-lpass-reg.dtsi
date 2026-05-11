@@ -12,6 +12,8 @@
 
 &lpass_cdc {
 	qcom,num-macros = <3>;
+	qcom,rate-gen-base-addr = <0x7EED000>;
+	qcom,rate-gen-size = <0x1000>;
 };
 
 &lpass_clk_rsc {
