@@ -47,6 +47,7 @@ endif
 ifeq ($(CONFIG_ARCH_ART), y)
 dtbo-y += art-audio.dtbo \
                 art-audio-cdp.dtbo \
+                arth-audio-cdp.dtbo \
                 art-audio-mtp.dtbo \
                 arth-audio-mtp.dtbo \
                 art-audio-mtp-qmp.dtbo \
