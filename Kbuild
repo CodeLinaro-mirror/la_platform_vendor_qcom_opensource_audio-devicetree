@@ -62,8 +62,12 @@ dtbo-y += art-audio.dtbo \
                 pebble-audio-mtp.dtbo \
                 pebble-audio-mtp-qmp.dtbo \
                 pebble-audio-mtp-wcd9378.dtbo \
+                pebble-audio-mtp-hamilton.dtbo \
+                pebble-audio-mtp-qmp-hamilton.dtbo \
+                pebble-audio-mtp-wcd9378-hmt.dtbo \
                 pebble-audio-qrd.dtbo \
                 pebble-audio-rcm.dtbo \
+                pebble-audio-rcm-hamilton.dtbo \
                 pebble-audio-atp.dtbo
 endif
 
