@@ -8,3 +8,7 @@
 &lpass_bt_swr {
 	status = "okay";
 };
+
+&kera_snd {
+	qcom,tdm-audio-intf = <1>;
+};
