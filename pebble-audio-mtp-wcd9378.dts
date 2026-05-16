@@ -1,7 +1,7 @@
+// SPDX-License-Identifier: BSD-3-Clause
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
- * SPDX-License-Identifier: BSD-3-Clause-Clear
-*/
+ */
 
 /dts-v1/;
 /plugin/;
@@ -12,6 +12,5 @@
 	model = "Qualcomm Technologies, Inc. Pebble MTP + wcn7750 + Estoril";
 	compatible = "qcom,pebble-mtp", "qcom,pebblep-mtp", "qcom,mtp", "qcom,pebble", "qcom,pebblep";
 	qcom,msm-id = <735 0x10000>, <741 0x10000>;
-	qcom,board-id = <0x10008 0x0>, <0x10108 0x0>;
+	qcom,board-id = <0x10008 0x0>, <0x10108 0x0>, <0x10308 0x0>;
 };
-

@@ -20,12 +20,13 @@
 
 &rx_swr_haptics {
 	status = "disabled";
+	/delete-property/ swr-slave-supply;
 };
 
 &art_snd {
 	qcom,model = "pebble-mtp-snd-card";
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
 	qcom,ext-disp-audio-rx = <0>;
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;

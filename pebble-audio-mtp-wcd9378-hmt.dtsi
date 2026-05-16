@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "pebble-audio-mtp-wcd9378.dtsi"
+
+&lpass_bt_swr {
+	status = "disabled";
+};
+
+&art_snd {
+	qcom,model = "pebble-mtp-wcd9378-snd-card";
+	qcom,wcn-bt = <1>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+                               <&lpass_cdc>;
+	qcom,wcn-bt-ext = <0>;
+};
+

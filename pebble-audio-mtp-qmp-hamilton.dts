@@ -6,10 +6,10 @@
 /dts-v1/;
 /plugin/;
 
-#include "pebble-audio-mtp-qmp.dtsi"
+#include "pebble-audio-mtp-qmp-hamilton.dtsi"
 / {
 	model = "Qualcomm Technologies, Inc. Pebble MTP + Rf(P) + pandeiro";
 	compatible = "qcom,pebble-mtp", "qcom,pebblep-mtp", "qcom,mtp", "qcom,pebble", "qcom,pebblep";
 	qcom,msm-id = <735 0x10000>, <741 0x10000>;
-	qcom,board-id = <0x50008 0x0>, <0x60108 0x0>;
+	qcom,board-id = <0x60008 0x0>;
 };

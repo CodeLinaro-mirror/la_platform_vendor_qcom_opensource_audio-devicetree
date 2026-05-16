@@ -47,6 +47,7 @@ endif
 ifeq ($(CONFIG_ARCH_ART), y)
 dtbo-y += art-audio.dtbo \
                 art-audio-cdp.dtbo \
+                arth-audio-cdp.dtbo \
                 art-audio-mtp.dtbo \
                 arth-audio-mtp.dtbo \
                 art-audio-mtp-qmp.dtbo \
@@ -56,7 +57,19 @@ dtbo-y += art-audio.dtbo \
                 art-audio-rumi.dtbo \
                 art-audio-rcm.dtbo \
                 art-audio-atp.dtbo \
-                arth-audio-qrd.dtbo
+                arth-audio-qrd.dtbo \
+                pebble-audio.dtbo \
+                pebble-audio-cdp.dtbo \
+                pebble-audio-mtp.dtbo \
+                pebble-audio-mtp-qmp.dtbo \
+                pebble-audio-mtp-wcd9378.dtbo \
+                pebble-audio-mtp-hamilton.dtbo \
+                pebble-audio-mtp-qmp-hamilton.dtbo \
+                pebble-audio-mtp-wcd9378-hmt.dtbo \
+                pebble-audio-qrd.dtbo \
+                pebble-audio-rcm.dtbo \
+                pebble-audio-rcm-hamilton.dtbo \
+                pebble-audio-atp.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_X1E80100), y)
