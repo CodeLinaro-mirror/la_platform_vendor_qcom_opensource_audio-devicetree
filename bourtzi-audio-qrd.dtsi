@@ -13,15 +13,44 @@
 	wsa883x_0221: wsa883x@02170221 {
 		status = "okay";
 	};
-
 	wsa883x_0222: wsa883x@02170222 {
-		status = "okay";
+		status = "disabled";
 	};
+};
+
+&wcd9378_codec {
+	status = "disabled";
+};
+
+&wcd9378_tx_slave {
+	status = "disabled";
+};
+
+&wcd9378_rx_slave {
+	status = "disabled";
+};
+
+&wcd937x_codec {
+	status = "okay";
+
+	cdc-vdd-mic-bias-supply = <&BOB>;
+	qcom,cdc-vdd-mic-bias-voltage = <3700000 3700000>;
+	qcom,cdc-vdd-mic-bias-current = <6760>;
+
+	qcom,cdc-static-supplies = "cdc-vdd-rxtx",
+					"cdc-vddpx", "cdc-vdd-mic-bias";
+};
+
+&wcd937x_tx_slave {
+	status = "okay";
+};
+
+&wcd937x_rx_slave {
+	status = "okay";
 };
 
 &bourtzi_snd {
 	qcom,model = "bourtzi-qrd-wsa883x-snd-card";
-	/* TODO enable usbc-audio-supported later */
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
@@ -49,42 +78,18 @@
 			"RX_TX DEC1_INP", "TX DEC1 MUX",
 			"RX_TX DEC2_INP", "TX DEC2 MUX",
 			"RX_TX DEC3_INP", "TX DEC3 MUX",
-			"SpkrRight IN", "WSA_SPK1 OUT",
+			"SpkrLeft IN", "WSA_SPK1 OUT",
 			"TX SWR_INPUT", "WCD_TX_OUTPUT",
 			"VA SWR_INPUT", "VA_SWR_CLK",
 			"VA SWR_INPUT", "WCD_TX_OUTPUT",
 			"VA_AIF1 CAP", "VA_SWR_CLK",
 			"VA_AIF2 CAP", "VA_SWR_CLK",
 			"VA_AIF3 CAP", "VA_SWR_CLK";
-
+	qcom,wsa-max-devs = <1>;
+	/*fsa4480-i2c-handle = <&fsa4480>;*/
+	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
 	asoc-codec = <&stub_codec>, <&lpass_cdc>,
-                     <&wcd937x_codec>,
-                     <&wsa883x_0221>, <&wsa883x_0222>;
-        asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-                           "wcd937x_codec",
-                           "wsa-codec1", "wsa-codec2";
-};
-
-&wcd9378_codec {
-        status = "disabled";
-};
-
-&wcd9378_tx_slave {
-        status = "disabled";
-};
-
-&wcd9378_rx_slave {
-        status = "disabled";
-};
-
-&wcd937x_codec {
-        status = "okay";
-};
-
-&wcd937x_tx_slave {
-        status = "okay";
-};
-
-&wcd937x_rx_slave {
-        status = "okay";
+					<&wcd937x_codec>, <&wsa883x_0221>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+					"wcd937x_codec", "wsa-codec1";
 };
