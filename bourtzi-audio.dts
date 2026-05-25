@@ -18,5 +18,5 @@
 	model = "Qualcomm Technologies, Inc. Bourtzi SoC";
 	compatible = "qcom,bourtzi", "qcom,bourtzip";
 	qcom,msm-id = <776 0x10000>, <777 0x10000>;
-	qcom,board-id = <0 0>;
+	qcom,board-id = <0 0>, <0 0x600>;
 };
