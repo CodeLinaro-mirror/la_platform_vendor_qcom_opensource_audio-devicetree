@@ -96,6 +96,18 @@
 		pinctrl-1 = <&tlmm_dmic1_clk_sleep &tlmm_dmic1_data_sleep>;
 		#gpio-cells = <0>;
 	};
+
+	vreg_dmic_eldo: vreg-dmic-eldo {
+		compatible = "regulator-fixed";
+		regulator-name = "vreg_dmic_eldo";
+		gpio = <&tlmm 71 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-max-microamp = <100000>;
+	};
+
 };
 
 &lpass_cdc {
@@ -120,6 +132,10 @@
 		qcom,is-used-swr-gpio = <1>;
 		qcom,va-swr-gpios = <&va_swr_gpios>;
 		reg = <0x0A078000 0x0>;
+		va-vdd-micb-supply = <&vreg_dmic_eldo>;
+		qcom,va-vdd-micb-voltage = <1800000 1800000>;
+		qcom,va-vdd-micb-current = <5000>;
+
 		swr1: va_swr_master {
 			status = "okay";
 			compatible = "qcom,swr-mstr";
@@ -363,8 +379,6 @@
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <0>;
 	qcom,msm-mbhc-gnd-swh = <0>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&dmic_eldo_en_pin_default>;
 
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
