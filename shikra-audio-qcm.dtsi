@@ -107,7 +107,14 @@
 
 &lpass_clk_rsc {
 	clocks = <&audiocorecc AUDIO_CORE_CC_RX_MCLK_CLK>,
-				<&audiocorecc AUDIO_CORE_CC_TX_MCLK_CLK>;
+				<&audiocorecc AUDIO_CORE_CC_TX_MCLK_CLK>,
+				<&audiocorecc AUDIO_CORE_CC_RX_MCLK_2X_CLK>,
+				<&audiocorecc AUDIO_CORE_CC_TX_MCLK_2X_CLK>;
+};
+
+&rx_macro {
+	clocks = <&audiocorecc AUDIO_CORE_CC_RX_MCLK_2X_CLK>,
+			 <&audiocorecc AUDIO_CORE_CC_TX_MCLK_2X_CLK>;
 };
 
 &aliases {
