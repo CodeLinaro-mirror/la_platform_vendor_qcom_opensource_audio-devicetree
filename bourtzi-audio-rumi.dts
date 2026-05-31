@@ -6,7 +6,7 @@
 /dts-v1/;
 /plugin/;
 
-#include "bourtzi-audio-overlay.dtsi"
+#include "bourtzi-audio-mtp.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Bourtzi Rumi";
