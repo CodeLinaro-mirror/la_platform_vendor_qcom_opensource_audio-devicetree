@@ -33,12 +33,7 @@
 &wcd937x_codec {
 	status = "okay";
 
-	cdc-vdd-mic-bias-supply = <&BOB>;
-	qcom,cdc-vdd-mic-bias-voltage = <3700000 3700000>;
-	qcom,cdc-vdd-mic-bias-current = <6760>;
-
-	qcom,cdc-static-supplies = "cdc-vdd-rxtx",
-					"cdc-vddpx", "cdc-vdd-mic-bias";
+	cdc-vdd-mic-bias-supply = <>;
 };
 
 &wcd937x_tx_slave {
