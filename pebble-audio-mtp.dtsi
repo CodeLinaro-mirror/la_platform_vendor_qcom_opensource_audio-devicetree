@@ -29,7 +29,7 @@
 	qcom,model = "pebble-mtp-snd-card";
 	qcom,wcn-bt = <1>;
 	qcom,wcn-bt-ext = <1>;
-	qcom,ext-disp-audio-rx = <0>;
+	qcom,ext-disp-audio-rx = <1>;
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
