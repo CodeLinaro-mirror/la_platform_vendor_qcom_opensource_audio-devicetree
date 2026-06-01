@@ -99,7 +99,8 @@ dtbo-y += kera-audio.dtbo \
                 kera-audio-rcm.dtbo \
                 kera-audio-rcm-orne.dtbo \
                 kera-audio-mtp-wcn7750.dtbo \
-                kera-audio-evk-wcd9378-dmic.dtbo
+                kera-audio-evk-wcd9378-dmic.dtbo \
+                kera-audio-evk-lt9611uxd-dmic.dtbo
 
 endif
 
