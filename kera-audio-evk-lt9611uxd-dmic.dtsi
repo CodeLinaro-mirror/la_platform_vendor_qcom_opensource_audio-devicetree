@@ -69,21 +69,13 @@
 
 	qcom,audio-routing =
 		"TX DMIC0", "Digital Mic0",
-		"TX DMIC0", "MIC BIAS3",
 		"TX DMIC1", "Digital Mic1",
-		"TX DMIC1", "MIC BIAS3",
 		"TX DMIC2", "Digital Mic2",
-		"TX DMIC2", "MIC BIAS1",
 		"TX DMIC3", "Digital Mic3",
-		"TX DMIC3", "MIC BIAS1",
 		"TX DMIC4", "Digital Mic4",
-		"TX DMIC4", "MIC BIAS1",
 		"TX DMIC5", "Digital Mic5",
-		"TX DMIC5", "MIC BIAS1",
 		"TX DMIC6", "Digital Mic6",
-		"TX DMIC6", "MIC BIAS1",
 		"TX DMIC7", "Digital Mic7",
-		"TX DMIC7", "MIC BIAS1",
 		"WSA SRC0_INP", "SRC0",
 		"WSA_TX DEC0_INP", "TX DEC0 MUX",
 		"WSA_TX DEC1_INP", "TX DEC1 MUX",
@@ -104,15 +96,7 @@
 		"VA DMIC4", "Digital Mic4",
 		"VA DMIC5", "Digital Mic5",
 		"VA DMIC6", "Digital Mic6",
-		"VA DMIC7", "Digital Mic7",
-		"VA DMIC0", "VA MIC BIAS3",
-		"VA DMIC1", "VA MIC BIAS3",
-		"VA DMIC2", "VA MIC BIAS1",
-		"VA DMIC3", "VA MIC BIAS1",
-		"VA DMIC4", "VA MIC BIAS1",
-		"VA DMIC5", "VA MIC BIAS1",
-		"VA DMIC6", "VA MIC BIAS1",
-		"VA DMIC7", "VA MIC BIAS1";
+		"VA DMIC7", "Digital Mic7";
 
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 		<&wsa884x_0220>, <&wsa884x_0221>;
