@@ -76,7 +76,9 @@ ifeq ($(CONFIG_ARCH_X1E80100), y)
 dtbo-y += x1e80100-audio.dtbo \
           x1e80100-audio-crd.dtbo \
 	  x1e80100-audio-qcp.dtbo \
-          x1e80100-audio-qcb.dtbo
+          x1e80100-audio-qcb.dtbo \
+          x1p42100-audio.dtbo \
+          x1p42100-audio-crd.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_CANOE), y)
