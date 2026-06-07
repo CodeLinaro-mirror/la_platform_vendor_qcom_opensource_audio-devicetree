@@ -33,6 +33,8 @@
 
 	msm_audio_ion: qcom,msm-audio-ion {
 		compatible = "qcom,msm-audio-ion";
+		qcom,use-ddr-for-dma;
+		qcom,ddr-dma-memory-region  = <&audio_carveout_mem>;
 	};
 
 	clock_audio_rx_1: rx_core_clk {
