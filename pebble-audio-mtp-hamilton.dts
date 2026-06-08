@@ -10,6 +10,6 @@
 / {
 	model = "Qualcomm Technologies, Inc. Pebble MTP + Rf(P) + pandeiro";
 	compatible = "qcom,pebble-mtp", "qcom,pebblep-mtp", "qcom,mtp", "qcom,pebble", "qcom,pebblep";
-	qcom,msm-id = <735 0x10000>, <741 0x10000>;
+	qcom,msm-id = <735 0x10000>, <735 0x10001>, <741 0x10000>, <741 0x10001>;
 	qcom,board-id = <0x20308 0x0>;
 };
