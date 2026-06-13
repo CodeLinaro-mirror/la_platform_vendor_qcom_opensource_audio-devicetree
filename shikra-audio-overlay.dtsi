@@ -75,7 +75,7 @@
 		pinctrl-names = "aud_active", "aud_sleep";
 		pinctrl-0 = <&tlmm_swr_tx_clk_active &tlmm_swr_tx_data0_active>;
 		pinctrl-1 = <&tlmm_swr_tx_clk_sleep &tlmm_swr_tx_data0_sleep>;
-		qcom,chip-wakeup-reg = <0x5A4008>;
+		qcom,chip-wakeup-reg = <0x56A008>;
 		qcom,chip-wakeup-maskbit = <7>;
 		qcom,chip-wakeup-default-val = <0x1>;
 		#gpio-cells = <0>;
