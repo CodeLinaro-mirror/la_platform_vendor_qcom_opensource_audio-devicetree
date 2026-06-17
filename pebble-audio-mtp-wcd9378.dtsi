@@ -40,23 +40,25 @@
 };
 
 &rx_swr_haptics {
-	status = "disabled";
+	status = "okay";
+	swr-slave-supply = <&hap_swr_slave_reg>;
+	qcom,rx_swr_ch_map = <0 0x01 0x01 0 HAPT>;
+	qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SWRM_RX_TX1>;
 };
 
 &art_snd {
 	qcom,model = "pebble-mtp-wcd9378-snd-card";
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
-	qcom,ext-disp-audio-rx = <0>;
-	swr-haptics-unsupported;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
+	qcom,ext-disp-audio-rx = <1>;
 	qcom,msm-mbhc-usbc-audio-supported = <0>;
 	qcom,msm-mbhc-hphl-swh = <1>;
 	qcom,msm-mbhc-gnd-swh = <1>;
 	/delete-property/ wcd939x-i2c-handle;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-		      <&wcd9378_codec>, <&wsa885x_i2c>;
+		      <&rx_swr_haptics>, <&wcd9378_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wcd9378_codec", "wsa885x_i2c";
+			"swr-haptics", "wcd9378_codec", "wsa885x_i2c";
 	qcom,audio-routing =
 			"AMIC2", "Analog Mic2",
 			"AMIC2", "MIC BIAS2",
@@ -73,6 +75,7 @@
 			"IN1_HPHL", "HPHL_OUT",
 			"IN2_HPHR", "HPHR_OUT",
 			"IN3_AUX", "AUX_OUT",
+			"HAP_IN", "PCM_OUT",
 			"RX_TX DEC0_INP", "TX DEC0 MUX",
 			"RX_TX DEC1_INP", "TX DEC1 MUX",
 			"RX_TX DEC2_INP", "TX DEC2 MUX",

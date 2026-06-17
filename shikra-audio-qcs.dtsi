@@ -52,6 +52,22 @@
 		qcom,codec-lpass-clk-id = <0x30C>;
 		#clock-cells = <1>;
 	};
+
+	clock_audio_rx_2: rx_npl_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_5>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30F>;
+		#clock-cells = <1>;
+	};
+
+	clock_audio_tx_2: tx_npl_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_7>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30D>;
+		#clock-cells = <1>;
+	};
 };
 
 
@@ -108,6 +124,8 @@
 	qcom,model = "shikra-dsp-snd-card";
 	qcom,msm_audio_ssr_devs = <&audio_gpr>,
 					<&lpass_cdc>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&dmic_eldo_en_pin_default>;
 };
 
 &lpass_cdc {
@@ -116,12 +134,17 @@
 };
 
 &lpass_clk_rsc {
-	clocks = <&clock_audio_rx_1 0>, <&clock_audio_tx_1 0>;
+	clocks = <&clock_audio_rx_1 0>, <&clock_audio_tx_1 0>,
+		<&clock_audio_rx_2 0>, <&clock_audio_tx_2 0>;
 };
 
 &va_macro{
 	clock-names = "lpass_audio_hw_vote";
 	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&rx_macro {
+	clocks = <&clock_audio_rx_2 0>, <&clock_audio_tx_2 0>;
 };
 
 &swr1{

@@ -6,33 +6,108 @@
 /dts-v1/;
 /plugin/;
 
-#include "art-audio-qrd-sku2.dtsi"
+#include "art-lpi.dtsi"
+#include "lpass-audio-cdc-1.0.dtsi"
+#include "lpass-audio-bt-swr.dtsi"
+#include "lpass-cdc-gpio.dtsi"
+#include "art-audio-lpass-reg.dtsi"
+#include "wsa8855-i2c.dtsi"
+#include "wcd.dtsi"
+
+&tlmm {
+	wsa_irq_pullup: wsa_irq_pullup {
+		pins = "gpio98";
+		function = "gpio";
+		bias-pull-up;
+		drive-strength = <2>;
+	};
+};
 
 &wsa885x_i2c {
+	pinctrl-0 = <&pndr_spkr_sd_n
+		&wsa_irq_pullup>;
 	interrupt-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
 	vdd-1p8-supply = <&L2D>;
 	vdd-io-supply = <&L4G>;
 };
 
+&swr_tx_clk_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr_tx_data0_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr_tx_data1_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&swr_tx_data2_active {
+	config {
+		drive-strength = <2>;
+	};
+};
+
+&wcd939x_tx_slave {
+	status = "okay";
+};
+
+&wcd939x_rx_slave {
+	status = "okay";
+};
+
 &wcd939x_codec {
+	status = "okay";
 	cdc-vdd-px-supply = <&L3F>;
+	qcom,cdc-vdd-rx-current = <45010>;
+	qcom,cdc-vdd-tx-current = <45010>;
+	qcom,cdc-vdd-px-current = <5000>;
+	/* 0 for digital crosstalk disabled,
+	 * 1 for digital crosstalk with local sensed a-xtalk enabled, and
+	 * 2 for digital crosstalk with remote sensed a-xtalk enabled.
+	 */
+	qcom,usbcss-hs-xtalk-config = <0>;
+	qcom,usbcss-hs-rdson = <600>;
+	qcom,usbcss-hs-r2 = <7550>;
+	qcom,usbcss-hs-r3 = <1>;
+	qcom,usbcss-hs-r4 = <330>;
+	qcom,usbcss-hs-r5 = <5>;
+	qcom,usbcss-hs-r6 = <1>;
+	qcom,usbcss-hs-r7 = <5>;
+	qcom,usbcss-hs-lin-k-aud = <13>;
+	qcom,usbcss-hs-lin-k-gnd = <13>;
 };
 
 &rx_swr_haptics {
-	status = "disabled";
+	status = "okay";
+	swr-slave-supply = <&hap_swr_slave_reg>;
+	qcom,rx_swr_ch_map = <0 0x01 0x01 0 HAPT>;
+	qcom,rx_swr_vi_ch_map = <2 0x02 0x03 1200000 SWRM_RX_TX1>;
 };
 
 &art_snd {
 	qcom,model = "pebble-qrd-snd-card";
-	qcom,wcn-bt = <0>;
-	qcom,wcn-bt-ext = <0>;
-	qcom,ext-disp-audio-rx = <0>;
-	swr-haptics-unsupported;
-
+	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,wcn-bt = <1>;
+	qcom,wcn-bt-ext = <1>;
+	qcom,ext-disp-audio-rx = <1>;
+	qcom,tdm-max-slots = <8>;
+	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,audio-core-list = <0>, <1>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			<&wcd939x_codec>, <&wsa885x_i2c>;
+			<&rx_swr_haptics>, <&wcd939x_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-			"wcd939x_codec", "wsa885x_i2c";
+			"swr-haptics", "wcd939x_codec", "wsa885x_i2c";
 	qcom,audio-routing =
 		"AMIC1", "Analog Mic1",
 		"AMIC1", "MIC BIAS1",
@@ -57,6 +132,7 @@
 		"IN1_HPHL", "HPHL_OUT",
 		"IN2_HPHR", "HPHR_OUT",
 		"IN3_EAR", "AUX_OUT",
+		"HAP_IN", "PCM_OUT",
 		"RX_TX DEC0_INP", "TX DEC0 MUX",
 		"RX_TX DEC1_INP", "TX DEC1 MUX",
 		"RX_TX DEC2_INP", "TX DEC2 MUX",
@@ -67,4 +143,12 @@
 		"VA_AIF1 CAP", "VA_SWR_CLK",
 		"VA_AIF2 CAP", "VA_SWR_CLK",
 		"VA_AIF3 CAP", "VA_SWR_CLK";
+
+	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
+	qcom,msm-mbhc-usbc-audio-supported = <1>;
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
+	wcd939x-i2c-handle = <&wcd_usbss>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+			<&lpass_cdc>, <&lpass_bt_swr>;
 };

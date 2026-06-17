@@ -27,15 +27,15 @@
 
 &wsa_macro {
 	qcom,wsa-bat-cfgs= <3>, <3>;
-	qcom,wsa-rloads= <2>, <2>;
-	qcom,wsa-system-gains= <0 9>, <0 9>;
+	qcom,wsa-rloads= <0>, <0>;
+	qcom,wsa-system-gains= <3 13>, <3 13>;
 	wsa_data_fs_ctl_reg = <0x6B6F000>;
 };
 
 &wsa2_macro {
 	qcom,wsa-bat-cfgs= <3>, <3>;
-	qcom,wsa-rloads= <2>, <2>;
-	qcom,wsa-system-gains= <0 9>, <0 9>;
+	qcom,wsa-rloads= <0>, <0>;
+	qcom,wsa-system-gains= <3 13>, <3 13>;
 	wsa_data_fs_ctl_reg = <0x6B6F000>;
 };
 
@@ -133,7 +133,7 @@
 	qcom,wcn-bt = <1>;
 	qcom,wcn-bt-ext = <0>;
 	swr-haptics-unsupported;
-	qcom,ext-disp-audio-rx = <0>;
+	qcom,ext-disp-audio-rx = <1>;
 	qcom,tdm-max-slots = <8>;
 	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;

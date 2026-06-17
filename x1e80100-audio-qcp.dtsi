@@ -8,7 +8,7 @@
 #include "lpass-cdc-gpio.dtsi"
 #include "x1e80100-audio-lpass-reg.dtsi"
 #include "wsa884x.dtsi"
-#include "wcd939x.dtsi"
+#include "wcd.dtsi"
 
 /* Dummies for compilation as these entries in wsa-wcd dtsi */
 &lpi_tlmm {
@@ -130,7 +130,7 @@
 	qcom,model = "hamoa-x1e80100-qcp-wsa884x-snd-card";
 	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
 	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <1>, <1>, <1>, <1>, <1>, <1>;
-	qcom,wcn-bt = <0>;
+	qcom,wcn-bt = <1>;
 	qcom,wcn-bt-ext = <0>;
 	swr-haptics-unsupported;
 	qcom,ext-disp-audio-rx = <0>;
