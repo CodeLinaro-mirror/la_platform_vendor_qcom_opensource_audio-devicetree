@@ -228,6 +228,17 @@
 		#gpio-cells = <0>;
 	};
 
+	cdc_tert_mi2s_gpios: msm_cdc_pinctrl_tert {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&tert_mi2s_sck_active &tert_mi2s_ws_active
+			&tert_mi2s_sd0_active>;
+		pinctrl-1 = <&tert_mi2s_sck_sleep &tert_mi2s_ws_sleep
+			&tert_mi2s_sd0_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+
 	cdc_quat_mi2s_gpios: msm_cdc_pinctrl_quat {
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
@@ -235,6 +246,17 @@
 			&quat_mi2s_ws_active>;
 		pinctrl-1 = <&quat_mi2s_sck_sleep &quat_mi2s_sd0_sleep
 			&quat_mi2s_ws_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+
+	cdc_quin_mi2s_gpios:  msm_cdc_pinctrl_quin {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&lpi_i2s1_sck_active &lpi_i2s1_ws_active
+				&lpi_i2s1_sd0_active &lpi_i2s1_sd1_active>;
+		pinctrl-1 = <&lpi_i2s1_sck_sleep &lpi_i2s1_ws_sleep
+				&lpi_i2s1_sd0_sleep &lpi_i2s1_sd1_sleep>;
 		qcom,lpi-gpios;
 		#gpio-cells = <0>;
 	};

@@ -1,0 +1,169 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+#include "yupik-iot-audio-overlay.dtsi"
+
+&aliases {
+	i2c0 = "/soc/qcom,qupv3_0_geni_se@9c0000/i2c@980000";
+};
+
+&tlmm {
+	wcd938x_mic_enable: wcd938x_mic_enable {
+		mux {
+			pins = "gpio80";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio80";
+			drive-strength = <2>;
+			output-high;
+			bias-pull-up;
+		};
+	};
+};
+
+&soc {
+	wcd938x_mic: wcd938x_mic {
+		compatible = "regulator-fixed";
+		regulator-name = "wcd938x_mic";
+		pinctrl-names = "default";
+		pinctrl-0 = <&wcd938x_mic_enable>;
+		gpio = <&tlmm 80 0>;
+		enable-active-high;
+		regulator-always-on;
+	};
+};
+
+&wcd938x_tx_slave {
+	status = "ok";
+};
+
+&wcd937x_tx_slave {
+	status = "disabled";
+};
+
+&wcd938x_rx_slave {
+	status = "ok";
+};
+
+&wcd937x_rx_slave {
+	status = "disabled";
+};
+
+&wsa883x_0221 {
+	status = "disabled";
+};
+
+&wsa883x_0222 {
+	status = "disabled";
+};
+
+&wsa_spkr_en1 {
+	status = "disabled";
+};
+
+&wsa_spkr_en2 {
+	status = "disabled";
+};
+
+&wcd937x_codec {
+	status = "disabled";
+};
+
+&wcd938x_codec {
+	status = "ok";
+	qcom,tx_swr_ch_map = <0 ADC1 0x1 0 SWRM_TX1_CH1>,
+		<0 ADC2 0x2 0 SWRM_TX1_CH2>,
+		<1 ADC3 0x1 0 SWRM_TX1_CH3>,
+		<1 ADC4 0x2 0 SWRM_TX1_CH4>,
+		<2 DMIC0 0x1 0 SWRM_TX2_CH1>,
+		<2 DMIC1 0x2 0 SWRM_TX2_CH2>,
+		<2 MBHC 0x4 0 SWRM_TX2_CH3>,
+		<2 DMIC2 0x4 0 SWRM_TX2_CH3>,
+		<2 DMIC3 0x8 0 SWRM_TX2_CH4>,
+		<3 DMIC4 0x1 0 SWRM_TX3_CH1>,
+		<3 DMIC5 0x2 0 SWRM_TX3_CH2>,
+		<3 DMIC6 0x4 0 SWRM_TX3_CH3>,
+		<3 DMIC7 0x8 0 SWRM_TX3_CH4>;
+};
+
+&cdc_dmic01_gpios {
+	status = "disabled";
+};
+
+&cdc_dmic23_gpios {
+	status = "disabled";
+};
+
+&qupv3_se0_i2c {
+	status = "ok";
+	acm8625s: acm8625s@2c {
+		compatible = "acme,acm8625s";
+		reg = <0x2c>;
+		power-gpio = <&tlmm 99 0>;
+		acme,dsp-config-name = "stereo_btl_48khz";
+		status = "ok";
+	};
+};
+
+&yupik_snd {
+	/delete-property/ fsa4480-i2c-handle;
+	qcom,model = "lahaina-yupikidpaio-snd-card";
+	qcom,wcn-bt = <0>;
+	qcom,wcn-btfm = <0>;
+	qcom,wcd-disabled = <0>;
+	qcom,msm-mi2s-master = <1>, <0>, <0>, <1>, <1>, <1>;
+	qcom,audio-routing =
+		"AMIC2", "Analog Mic2",
+		"Analog Mic2", "MIC BIAS2",
+		"DMIC1", "Digital Mic0",
+		"DMIC2", "Digital Mic1",
+		"DMIC3", "Digital Mic2",
+		"DMIC4", "Digital Mic3",
+		"DMIC5", "Digital Mic4",
+		"DMIC6", "Digital Mic5",
+		"DMIC7", "Digital Mic6",
+		"DMIC8", "Digital Mic7",
+		"TX DMIC0", "Digital Mic0",
+		"TX DMIC1", "Digital Mic1",
+		"TX DMIC2", "Digital Mic2",
+		"TX DMIC3", "Digital Mic3",
+		"TX DMIC4", "Digital Mic4",
+		"TX DMIC5", "Digital Mic5",
+		"IN1_HPHL", "HPHL_OUT",
+		"IN2_HPHR", "HPHR_OUT",
+		"IN3_AUX", "AUX_OUT",
+		"WSA SRC0_INP", "SRC0",
+		"WSA_TX DEC0_INP", "TX DEC0 MUX",
+		"WSA_TX DEC1_INP", "TX DEC1 MUX",
+		"RX_TX DEC0_INP", "TX DEC0 MUX",
+		"RX_TX DEC1_INP", "TX DEC1 MUX",
+		"RX_TX DEC2_INP", "TX DEC2 MUX",
+		"RX_TX DEC3_INP", "TX DEC3 MUX",
+		"TX SWR_INPUT", "WCD_TX_OUTPUT",
+		"VA SWR_INPUT", "VA_SWR_CLK",
+		"VA_AIF1 CAP", "VA_SWR_CLK",
+		"VA_AIF2 CAP", "VA_SWR_CLK",
+		"VA_AIF3 CAP", "VA_SWR_CLK",
+		"VA DMIC0", "Digital Mic0",
+		"VA DMIC1", "Digital Mic1",
+		"VA DMIC2", "Digital Mic2",
+		"VA DMIC3", "Digital Mic3",
+		"VA DMIC4", "Digital Mic4",
+		"VA DMIC5", "Digital Mic5";
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
+	qcom,sec-mi2s-gpios = <&cdc_sec_mi2s_gpios>;
+	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
+	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+	asoc-codec  = <&stub_codec>, <&bolero>,
+				<&wcd938x_codec>, <&acm8625s>,
+				<&ext_disp_audio_codec>;
+	asoc-codec-names = "msm-stub-codec.1", "bolero_codec",
+				"wcd938x_codec", "acm8625s.0-002c",
+				"msm-ext-disp-audio-codec-rx";
+	qcom,wsa-max-devs = <0>;
+};

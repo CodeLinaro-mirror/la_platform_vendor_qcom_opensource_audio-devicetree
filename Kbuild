@@ -84,7 +84,8 @@ dtbo-y += yupik-iot-audio.dtbo \
                 yupik-iot-audio-rb3-gen2-vk-overlay.dtbo \
                 yupik-iot-audio-rb3-gen2-vc-overlay.dtbo \
                 katmaip-audio-rb3-gen2-vk-overlay.dtbo \
-                katmaip-audio-rb3-gen2-vc-overlay.dtbo
+                katmaip-audio-rb3-gen2-vc-overlay.dtbo \
+                yupikp-iot-audio-aio-bar-overlay.dtbo
 endif
 
 
@@ -98,7 +99,9 @@ dtbo-y += kera-audio.dtbo \
                 kera-audio-rcm.dtbo \
                 kera-audio-rcm-orne.dtbo \
                 kera-audio-mtp-wcn7750.dtbo \
-                kera-audio-evk-wcd9378-dmic.dtbo
+                kera-audio-evk-wcd9378-dmic.dtbo \
+                kera-audio-evk-lt9611uxd-dmic.dtbo \
+                kera-audio-evk-hdmi-earc-dmic.dtbo
 
 endif
 
