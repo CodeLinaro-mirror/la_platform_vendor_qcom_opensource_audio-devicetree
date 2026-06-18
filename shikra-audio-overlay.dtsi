@@ -383,7 +383,7 @@
 		"VA SWR_INPUT", "WCD_TX_OUTPUT",
 		"VA_AIF1 CAP", "VA_SWR_CLK",
 		"VA_AIF2 CAP", "VA_SWR_CLK",
-		"VA_AIF3 CAP", "VA_SWR_CLK",*/
+		"VA_AIF3 CAP", "VA_SWR_CLK",
 		"VA DMIC0", "Digital Mic0",
 		"VA DMIC1", "Digital Mic1",
 		"VA DMIC2", "Digital Mic2",
