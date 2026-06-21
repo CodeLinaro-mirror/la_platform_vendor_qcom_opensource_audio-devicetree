@@ -65,8 +65,8 @@
 				<3 SWRM_TX3_CH3 0x4>, <3 SWRM_TX3_CH4 0x8>;
 			qcom,swr-num-dev = <5>;
 			qcom,swr-clock-stop-mode0 = <1>;
-                        qcom,swr-master-version = <0x01070000>;
-                        qcom,swr-mstr-irq-wakeup-capable = <1>;
+			qcom,swr-master-version = <0x01070000>;
+			qcom,swr-mstr-irq-wakeup-capable = <1>;
 			qcom,is-always-on = <1>;
 			wcd9378_tx_slave: wcd9378-tx-slave {
 				status = "okay";
@@ -166,7 +166,7 @@
 			qcom,dynamic-port-map-supported = <0>;
 			wsa883x_0221: wsa883x@02170221 {
 				status = "okay";
-                                compatible = "qcom,wsa883x";
+				compatible = "qcom,wsa883x";
 				reg = <0x2 0x2170221>;
 				qcom,spkr-sd-n-node = <&wsa_spkr_en1>;
 				qcom,lpass-cdc-handle = <&lpass_cdc>;
@@ -180,7 +180,7 @@
 
 			wsa883x_0222: wsa883x@02170222 {
 				status = "okay";
-                                compatible = "qcom,wsa883x";
+				compatible = "qcom,wsa883x";
 				reg = <0x2 0x2170222>;
 				qcom,spkr-sd-n-node = <&wsa_spkr_en2>;
 				qcom,lpass-cdc-handle = <&lpass_cdc>;
