@@ -13,6 +13,7 @@
 
 &bourtzi_snd {
 	qcom,model = "bourtzi-mtp-wcn6450-wsa883x-snd-card";
+	qcom,wcn-btfm-slim = <0>;
         qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
 	qcom,audio-routing =
 	"AMIC2", "Analog Mic2",
