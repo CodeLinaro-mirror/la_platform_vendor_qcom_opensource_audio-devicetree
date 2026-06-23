@@ -26,6 +26,7 @@
 
 &kera_snd {
 	qcom,wcn-bt = <0x0>;
+	qcom,wcn-btfm-proxy = <1>;
 	qcom,ext-disp-audio-rx = <1>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&Dmic_Eldo_En>;
