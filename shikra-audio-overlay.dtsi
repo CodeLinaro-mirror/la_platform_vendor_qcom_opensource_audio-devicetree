@@ -118,7 +118,7 @@
 		qcom,va-dmic-override-clk-div-factor = <4 4 4 4>;
 		qcom,default-clk-id = <TX_CORE_CLK>;
 		qcom,use-clk-id = <TX_CORE_CLK>;
-		qcom,is-used-swr-gpio = <0>;
+		qcom,is-used-swr-gpio = <1>;
 		qcom,va-swr-gpios = <&va_swr_gpios>;
 		reg = <0x0A078000 0x0>;
 
@@ -399,7 +399,7 @@
 	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
 	qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			 <&wsa885x_i2c>;
+			 <&rouleur_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			 "rouleur-codec", "wsa885x_i2c";
 	qcom,wsa-max-devs = <0>;
