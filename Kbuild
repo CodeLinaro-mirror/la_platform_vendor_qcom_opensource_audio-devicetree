@@ -117,3 +117,13 @@ endif
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
+
+ifeq ($(CONFIG_ARCH_WAIPIO), y)
+dtbo-y += waipio-audio.dtbo \
+		waipio-audio-mtp.dtbo \
+		waipio-audio-qrd.dtbo
+endif
+
+always-y    := $(dtb-y) $(dtbo-y)
+subdir-y    := $(dts-dirs)
+clean-files    := *.dtb *.dtbo

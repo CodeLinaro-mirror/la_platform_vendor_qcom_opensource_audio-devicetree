@@ -6,16 +6,16 @@
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/clock/qcom,gcc-sm8450.h>
+#include <dt-bindings/clock/qcom,fillmore-gcc.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include <dt-bindings/interconnect/qcom,waipio.h>
+#include <dt-bindings/interconnect/qcom,diwali.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
 #include "waipio-audio.dtsi"
 
 / {
-	model = "Qualcomm Technologies, Inc. Waipio v1 SoC";
-	compatible = "qcom,waipio";
-	qcom,msm-id = <457 0x10000>, <482 0x10000>, <457 0x20000>, <482 0x20000>, <552 0x10000>;
-	qcom,board-id = <0 0>;
+	model = "Qualcomm Technologies, Inc. Diwali SoC";
+	compatible = "qcom,diwali";
+	qcom,msm-id = <506 0x10000>, <547 0x10000>, <564 0x10000>;
+	qcom,board-id = <0 0>, <0 2>;
 };
