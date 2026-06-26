@@ -175,6 +175,7 @@
 				qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 				qcom,cdc-vdd-1p8-current = <20000>;
 				qcom,cdc-static-supplies = "cdc-vdd-1p8";
+				qcom,cdc-vdd-1p8-lpm-supported = <1>;
 				sound-name-prefix = "SpkrLeft";
 			};
 
@@ -189,6 +190,7 @@
 				qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 				qcom,cdc-vdd-1p8-current = <20000>;
 				qcom,cdc-static-supplies = "cdc-vdd-1p8";
+				qcom,cdc-vdd-1p8-lpm-supported = <1>;
 				sound-name-prefix = "SpkrRight";
 			};
 
@@ -204,6 +206,7 @@
 				qcom,cdc-vdd-1p8-voltage = <1800000 1800000>;
 				qcom,cdc-vdd-1p8-current = <20000>;
 				qcom,cdc-static-supplies = "cdc-vdd-1p8";
+				qcom,cdc-vdd-1p8-lpm-supported = <1>;
 				sound-name-prefix = "SpkrRight";
 			};
 		};
@@ -355,19 +358,16 @@
 		qcom,rx-slave = <&wcd9378_rx_slave>;
 		qcom,tx-slave = <&wcd9378_tx_slave>;
 
-		/*cdc-vdd-rxtx-supply = <&L15B>;*/
 		cdc-vdd-rxtx-supply = <&L21B>;
 		qcom,cdc-vdd-rxtx-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-rxtx-current = <30000>;
 		qcom,cdc-vdd-rxtx-lpm-supported = <1>;
 
-		/*cdc-vdd-io-supply = <&L1F>;*/
 		cdc-vdd-io-supply = <&L21B>;
 		qcom,cdc-vdd-io-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-io-current = <20000>;
 		qcom,cdc-vdd-io-lpm-supported = <1>;
 
-		/*cdc-vdd-buck-supply = <&L15B>;*/
 		cdc-vdd-buck-supply = <&L20B>;
 		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-buck-current = <650000>;
