@@ -7,17 +7,13 @@
 
 &bourtzi_snd {
 	qcom,model = "bourtzi-atp-wsa883x-snd-card";
-	compatible = "qcom,canoe-asoc-snd-stub";
-	asoc-codec = <&stub_codec>;
-	asoc-codec-names = "msm-stub-codec.1";
-};
-
-&lpi_tlmm {
-	status = "disabled";
-};
-
-&lpass_cdc {
-	status = "disabled";
+	/* Copy routing from Clarence */
+	asoc-codec = <&stub_codec>, <&lpass_cdc>,
+		     <&wcd937x_codec>,
+		     <&wsa883x_0221>, <&wsa883x_0222>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+		           "wcd937x_codec",
+		           "wsa-codec1", "wsa-codec2";
 };
 
 &wcd9378_codec {
@@ -30,4 +26,16 @@
 
 &wcd9378_rx_slave {
 	status = "disabled";
+};
+
+&wcd937x_codec {
+	status = "okay";
+};
+
+&wcd937x_tx_slave {
+	status = "okay";
+};
+
+&wcd937x_rx_slave {
+	status = "okay";
 };
