@@ -83,6 +83,7 @@ dtbo-y += yupik-iot-audio.dtbo \
                 yupik-iot-audio-rb3-gen2-ck-overlay.dtbo \
                 yupik-iot-audio-rb3-gen2-vk-overlay.dtbo \
                 yupik-iot-audio-rb3-gen2-vc-overlay.dtbo \
+                yupik-iot-audio-controller-overlay.dtbo \
                 katmaip-audio-rb3-gen2-vk-overlay.dtbo \
                 katmaip-audio-rb3-gen2-vc-overlay.dtbo \
                 yupikp-iot-audio-360-camera-overlay.dtbo \
