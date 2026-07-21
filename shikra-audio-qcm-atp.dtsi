@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+#include "shikra-audio-qcm.dtsi"
+
+&shikra_snd {
+	compatible = "qcom,shikra-asoc-snd-stub";
+	qcom,wsa885x-tdm = <0>;
+	asoc-codec = <&stub_codec>;
+	asoc-codec-names = "msm-stub-codec.1";
+};
+
+&lpass_cdc {
+	status = "disabled";
+};
+
+&wsa885x_i2c {
+	status = "disabled";
+};
+
+&qaif_cpu {
+	status = "disabled";
+};
