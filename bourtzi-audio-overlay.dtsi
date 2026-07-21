@@ -11,6 +11,7 @@
 &lpass_cdc {
 	qcom,num-macros = <4>;
 	qcom,lpass-cdc-version = <6>;
+	va_top_csr_core_regs = < 0x33F00C0 0x33F00C4 0x33F00C8 >;
 	#address-cells = <1>;
 	#size-cells = <1>;
 	lpass-cdc-clk-rsc-mngr {
