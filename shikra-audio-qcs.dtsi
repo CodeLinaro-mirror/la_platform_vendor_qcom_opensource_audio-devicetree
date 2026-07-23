@@ -68,6 +68,14 @@
 		qcom,codec-lpass-clk-id = <0x30D>;
 		#clock-cells = <1>;
 	};
+
+	dmic_eldo_en_gpios: dmic_eldo_en_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&dmic_eldo_en_pin_audio_active>;
+		pinctrl-1 = <&dmic_eldo_en_pin_audio_sleep>;
+		#gpio-cells = <0>;
+	};
 };
 
 
@@ -124,8 +132,6 @@
 	qcom,model = "shikra-dsp-snd-card";
 	qcom,msm_audio_ssr_devs = <&audio_gpr>,
 					<&lpass_cdc>;
-	pinctrl-names = "default";
-	pinctrl-0 = <&dmic_eldo_en_pin_default>;
 };
 
 &lpass_cdc {
@@ -141,6 +147,7 @@
 &va_macro{
 	clock-names = "lpass_audio_hw_vote";
 	clocks = <&lpass_audio_hw_vote 0>;
+	qcom,dmic-eldo-en-gpios = <&dmic_eldo_en_gpios>;
 };
 
 &rx_macro {
