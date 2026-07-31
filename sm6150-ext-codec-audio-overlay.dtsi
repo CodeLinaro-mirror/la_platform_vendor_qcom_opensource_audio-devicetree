@@ -5,7 +5,7 @@
 
 #include "sm6150-audio-overlay.dtsi"
 
-&bolero {
+&bolero_cdc {
 	status = "disabled";
 };
 
@@ -49,23 +49,15 @@
 	status = "okay";
 };
 
-&qupv3_se4_spi {
-	status = "disable";
-};
-
-&tavil_wdsp {
-	status = "okay";
-};
-
-&tavil_glink {
-	status = "okay";
-};
-
 &slim_aud {
 	status = "okay";
 };
 
-&dai_slim {
+&tavil_ifd{
+	status = "okay";
+};
+
+&wcd934x_rst_gpio {
 	status = "okay";
 };
 
@@ -77,6 +69,3 @@
 	status = "okay";
 };
 
-&wcd934x_rst_gpio {
-	status = "okay";
-};

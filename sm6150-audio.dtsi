@@ -116,48 +116,56 @@
                         };
                 };
 	cdc_dmic01_gpios: cdc_dmic01_pinctrl {
-                compatible = "qcom,msm-cdc-pinctrl";
-                pinctrl-names = "aud_active", "aud_sleep";
-                pinctrl-0 = <&cdc_dmic01_clk_active &cdc_dmic01_data_active>;
-                pinctrl-1 = <&cdc_dmic01_clk_sleep &cdc_dmic01_data_sleep>;
-                qcom,lpi-gpios;
-                #gpio-cells = <0>;
-        };
-        cdc_dmic23_gpios: cdc_dmic23_pinctrl {
-                compatible = "qcom,msm-cdc-pinctrl";
-                pinctrl-names = "aud_active", "aud_sleep";
-                pinctrl-0 = <&cdc_dmic23_clk_active &cdc_dmic23_data_active>;
-                pinctrl-1 = <&cdc_dmic23_clk_sleep &cdc_dmic23_data_sleep>;
-                qcom,lpi-gpios;
-                #gpio-cells = <0>;
-        };
-	 rx_swr_gpios: rx_swr_clk_data_pinctrl {
-                compatible = "qcom,msm-cdc-pinctrl";
-                pinctrl-names = "aud_active", "aud_sleep";
-                pinctrl-0 = <&rx_swr_clk_active &rx_swr_data_active>;
-                pinctrl-1 = <&rx_swr_clk_sleep &rx_swr_data_sleep>;
-                qcom,lpi-gpios;
-                #gpio-cells = <0>;
-        };
-        tx_swr_gpios: tx_swr_clk_data_pinctrl {
-                compatible = "qcom,msm-cdc-pinctrl";
-                pinctrl-names = "aud_active", "aud_sleep";
-                pinctrl-0 = <&tx_swr_clk_active &tx_swr_data1_active
-                                &tx_swr_data2_active>;
-                pinctrl-1 = <&tx_swr_clk_sleep &tx_swr_data1_sleep
-                                &tx_swr_data2_sleep>;
-                qcom,lpi-gpios;
-                #gpio-cells = <0>;
-        };
-        wcd937x_rst_gpio: msm_cdc_pinctrl@29 {
-                compatible = "qcom,msm-cdc-pinctrl";
-                pinctrl-names = "aud_active", "aud_sleep";
-                pinctrl-0 = <&lpi_wcd937x_reset_active>;
-                pinctrl-1 = <&lpi_wcd937x_reset_sleep>;
-                qcom,lpi-gpios;
-        };
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&cdc_dmic01_clk_active &cdc_dmic01_data_active>;
+		pinctrl-1 = <&cdc_dmic01_clk_sleep &cdc_dmic01_data_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+	cdc_dmic23_gpios: cdc_dmic23_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&cdc_dmic23_clk_active &cdc_dmic23_data_active>;
+		pinctrl-1 = <&cdc_dmic23_clk_sleep &cdc_dmic23_data_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+	rx_swr_gpios: rx_swr_clk_data_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&rx_swr_clk_active &rx_swr_data_active>;
+		pinctrl-1 = <&rx_swr_clk_sleep &rx_swr_data_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+	tx_swr_gpios: tx_swr_clk_data_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&tx_swr_clk_active &tx_swr_data1_active
+				&tx_swr_data2_active>;
+		pinctrl-1 = <&tx_swr_clk_sleep &tx_swr_data1_sleep
+				&tx_swr_data2_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+	wcd934x_rst_gpio: msm_cdc_pinctrl@24 {
+		status = "okay";
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&lpi_wcd934x_reset_active>;
+		pinctrl-1 = <&lpi_wcd934x_reset_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
 
-
+	wcd937x_rst_gpio: msm_cdc_pinctrl@29 {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&lpi_wcd937x_reset_active>;
+		pinctrl-1 = <&lpi_wcd937x_reset_sleep>;
+		qcom,lpi-gpios;
+	};
 
 	sm6150_snd: sound {
 		compatible = "qcom,sm6150-asoc-snd";
@@ -165,7 +173,7 @@
 		qcom,auxpcm-audio-intf = <0>;
 		qcom,wcn-btfm = <0>;
 		clock-names = "lpass_core_hw_vote";
-                clocks = <&lpass_core_hw_vote 0>;
+		clocks = <&lpass_core_hw_vote 0>;
 
 	};
 };
@@ -175,15 +183,4 @@
 	swr1 = "/soc/spf_core_platform/bolero-cdc/rx-macro@62ee0000/rx_swr_master";
 	swr2 = "/soc/spf_core_platform/bolero-cdc/tx-macro@62ec0000/tx_swr_master";
 };
-
-
-/*&slim_aud {
-        status = "disabled";
-        dai_slim: msm_dai_slim {
-                status = "disabled";
-                compatible = "qcom,msm-dai-slim";
-                elemental-addr = [ff ff ff fe 17 02];
-        };
-};*/
-
 
