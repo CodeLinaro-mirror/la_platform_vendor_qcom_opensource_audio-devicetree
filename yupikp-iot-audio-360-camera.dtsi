@@ -24,10 +24,12 @@
 };
 
 &wsa883x_0221 {
+	sound-name-prefix = "SpR";
 	status = "okay";
 };
 
 &wsa883x_0222 {
+	sound-name-prefix = "SpL";
 	status = "disabled";
 };
 
@@ -84,7 +86,7 @@
 		"RX_TX DEC1_INP", "TX DEC1 MUX",
 		"RX_TX DEC2_INP", "TX DEC2 MUX",
 		"RX_TX DEC3_INP", "TX DEC3 MUX",
-		"SpL IN", "WSA_SPK1 OUT",
+		"SpR IN", "WSA_SPK2 OUT",
 		"VA SWR_INPUT", "VA_SWR_CLK",
 		"VA_AIF1 CAP", "VA_SWR_CLK",
 		"VA_AIF2 CAP", "VA_SWR_CLK",
