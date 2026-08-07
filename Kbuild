@@ -32,6 +32,7 @@ dtbo-y += sun-audio.dtbo \
                 sun-audio-hamilton-mtp-v2.dtbo \
                 sun-audio-hamilton-mtp.dtbo \
                 sun-audio-hamilton-mtp-3.5mm.dtbo \
+                sun-audio-iot-vc.dtbo \
                 tuna-audio-atp.dtbo \
                 tuna-audio.dtbo \
                 tuna-audio-cdp.dtbo \
