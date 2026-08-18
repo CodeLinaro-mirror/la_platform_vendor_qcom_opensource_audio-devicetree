@@ -66,7 +66,7 @@
 
 &yupik_snd {
 	/delete-property/ fsa4480-i2c-handle;
-	qcom,model = "lahaina-yupikidprb3-snd-card";
+	qcom,model = "lahaina-yupikidprb3-vc-snd-card";
 	qcom,wcn-bt = <1>;
 	qcom,wcd-disabled = <1>;
 	qcom,msm-mi2s-master = <0>, <1>, <1>, <1>, <1>, <1>;
