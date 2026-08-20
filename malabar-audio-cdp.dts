@@ -10,8 +10,8 @@
 / {
 	model = "Qualcomm Technologies, Inc. Malabar CDP + LCD";
 	compatible = "qcom,malabar-cdp", "qcom,malabar", "qcom,malabarp-cdp", "qcom,malabarp",
-			"qcom,cdp";
+			"qcom,cdp", "qcom,malabar-qmb";
 
-	qcom,msm-id = <733 0x10000>, <757 0x10000>;
+	qcom,msm-id = <733 0x10000>, <757 0x10000>, <800 0x10000>;
 	qcom,board-id = <0x10001 0>, <0x20001 0>, <0x10001 0x600>, <0x10001 1>;
 };

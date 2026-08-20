@@ -80,6 +80,7 @@ endif
 ifeq ($(CONFIG_ARCH_MALABAR), y)
 dtbo-y += malabar-audio.dtbo \
                 malabar-audio-mtp.dtbo \
+		malabar-audio-mtp-emmc-wcn3950.dtbo \
 		malabar-audio-qrd.dtbo \
 		malabar-audio-atp.dtbo \
 		malabar-audio-rcm.dtbo \
