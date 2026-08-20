@@ -109,6 +109,7 @@
 		"VA DMIC4", "VA MIC BIAS1",
 		"VA DMIC5", "VA MIC BIAS1";
 	qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
+	qcom,sec-mi2s-gpios = <&cdc_sec_mi2s_gpios>;
 	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
 	asoc-codec = <&stub_codec>, <&bolero>,
 		     <&wsa883x_0221>, <&wsa883x_0222>,
