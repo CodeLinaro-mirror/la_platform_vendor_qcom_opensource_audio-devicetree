@@ -1,0 +1,329 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+#include <bindings/qcom,gpr.h>
+#include <bindings/qcom,audio-ext-clk.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+&soc {
+	lpass_audio_hw_vote: vote_lpass_audio_hw {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_AUDIO_HW_VOTE>;
+		#clock-cells = <1>;
+	};
+
+	audio_pkt_core_platform: qcom,audio-pkt-core-platform {
+		compatible = "qcom,audio-pkt-core-platform";
+	};
+
+	adsp_loader: qcom,msm-adsp-loader {
+		status = "okay";
+		compatible = "qcom,adsp-loader";
+		qcom,rproc-handle = <&modem_pas>;
+		qcom,adsp-state = <0>;
+		qcom,proc-img-to-load = "modem";
+	};
+
+	adsp_notify: qcom,msm-adsp-notify {
+		status = "okay";
+		compatible = "qcom,adsp-notify";
+		qcom,rproc-handle = <&modem_pas>;
+	};
+
+	msm_audio_ion: qcom,msm-audio-ion {
+		compatible = "qcom,msm-audio-ion";
+		qcom,use-ddr-for-dma;
+		qcom,ddr-dma-memory-region  = <&audio_carveout_mem>;
+	};
+
+	clock_audio_rx_1: rx_core_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_4>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30E>;
+		#clock-cells = <1>;
+	};
+
+	clock_audio_tx_1: tx_core_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_6>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30C>;
+		#clock-cells = <1>;
+	};
+
+	clock_audio_rx_2: rx_npl_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_5>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30F>;
+		#clock-cells = <1>;
+	};
+
+	clock_audio_tx_2: tx_npl_clk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK_7>;
+		qcom,codec-lpass-ext-clk-freq = <19200000>;
+		qcom,codec-lpass-clk-id = <0x30D>;
+		#clock-cells = <1>;
+	};
+
+	/*
+	 * MAX98091 MCLK: PRM/AFE-mediated (clk_id 0x301 == Q6PRM_LPASS_CLK_ID_MCLK_2
+	 * in the LE 6.18 kernel's q6prm.h) - the same numeric PRM clock-ID space
+	 * as the RX/TX core/NPL clocks above (their 0x30C-0x30F ids match
+	 * Q6PRM_LPASS_CLK_ID_{TX,RX}_CORE[_NPL]_MCLK exactly), confirming this is
+	 * aDSP-firmware-mediated like LE's reference, not a raw AP-side clock.
+	 * qcom,codec-ext-clk-src just selects a cosmetic Linux-clk-hw naming slot
+	 * (audio-ext-clk-up.c's audio_clk_array[]) - qcom,codec-lpass-clk-id is
+	 * what actually gets sent to the DSP, confirmed in that driver's probe().
+	 */
+	clock_audio_max98091_mclk: max98091_mclk {
+		compatible = "qcom,audio-ref-clk";
+		qcom,codec-ext-clk-src = <AUDIO_LPASS_MCLK>;
+		qcom,codec-lpass-ext-clk-freq = <12288000>;
+		qcom,codec-lpass-clk-id = <0x301>;
+		#clock-cells = <1>;
+	};
+
+	dmic_eldo_en_gpios: dmic_eldo_en_pinctrl {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&dmic_eldo_en_pin_audio_active>;
+		pinctrl-1 = <&dmic_eldo_en_pin_audio_sleep>;
+		#gpio-cells = <0>;
+	};
+};
+
+&remoteproc_modem_glink {
+	audio_gpr: qcom,gpr {
+		compatible = "qcom,gpr";
+		qcom,glink-channels = "modem_apps";
+		qcom,intents = <0x200 20>;
+		reg = <GPR_DOMAIN_MODEM>;
+
+		spf_core {
+			compatible = "qcom,spf_core";
+			reg = <GPR_SVC_ADSP_CORE>;
+		};
+
+		audio-pkt {
+			compatible = "qcom,audio-pkt";
+			qcom,audiopkt-ch-name = "apr_audio_svc";
+			reg = <GPR_SVC_MAX>;
+		};
+
+		audio_prm {
+			compatible = "qcom,audio_prm";
+			reg = <GPR_SVC_ASM>;
+		};
+	};
+};
+
+&soc {
+	spf_core_platform: spf_core_platform {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "qcom,spf-core-platform";
+
+		lpass_cdc: lpass-cdc {
+			compatible = "qcom,lpass-cdc";
+		};
+
+		shikra_snd: sound {
+			compatible = "qcom,shikra-asoc-snd";
+			qcom,mi2s-audio-intf = <1>;
+			qcom,tdm-audio-intf = <0>;
+			qcom,wcn-bt = <0>;
+			qcom,ext-disp-audio-rx = <0>;
+			clock-names = "lpass_audio_hw_vote";
+			clocks = <&lpass_audio_hw_vote 0>;
+		};
+	};
+};
+
+#include "shikra-audio-overlay.dtsi"
+
+/*
+ * Industrial (IQS) uses an external MAX98091 I2S codec instead of Retail's
+ * Rouleur/WSA8855 SoundWire combo. rx_macro/va_macro stay enabled (their own
+ * DAIs/DAPM widgets are referenced unconditionally elsewhere), only their
+ * SWR-GPIO usage is disabled since those pins are reassigned to I2S0 here.
+ */
+&rouleur_codec {
+	status = "disabled";
+	/*
+	 * Disabling the node alone doesn't drop these two phandle-bearing
+	 * properties from the compiled overlay's fixup table - fdtoverlay
+	 * still needs to resolve them against the base dtb regardless of
+	 * status. pm4125_cdc/L22A aren't exported by the shikra_auto base
+	 * (kp-dtbs), causing FDT_ERR_NOTFOUND at merge time. Drop them here,
+	 * scoped to this overlay only - shikra-audio-overlay.dtsi (shared
+	 * with qcm/qcs) stays untouched, since those boards' bases do export
+	 * these symbols and still need them live.
+	 */
+	/delete-property/ qcom,pmic-spmi-node;
+	/delete-property/ cdc-vdd-mic-bias-supply;
+};
+
+&wsa885x_i2c {
+	status = "disabled";
+};
+
+&rx_macro {
+	qcom,is-used-swr-gpio = <0>;
+	clocks = <&clock_audio_rx_2 0>, <&clock_audio_tx_2 0>;
+};
+
+&va_macro {
+	qcom,is-used-swr-gpio = <0>;
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+	qcom,dmic-eldo-en-gpios = <&dmic_eldo_en_gpios>;
+};
+
+&rx_swr_gpios {
+	status = "disabled";
+};
+
+&va_swr_gpios {
+	status = "disabled";
+};
+
+/*
+ * Physical I2S0 (gpio105-109) is the "Quaternary" MI2S slot in LA's naming:
+ * LPASS_BE_QUAT_MI2S_RX == "QAIF-QAIF_AUD-RX-0" -> QAIF_AUD_INTF0 ->
+ * CLOCK_ID_AUD_INTF0_IBIT (0x500), which is exactly the bit clock LE assigns
+ * to this same port (LE calls it PRIMARY_MI2S). The base overlay already wires
+ * qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios> with the tlmm_i2s0_* pins, so
+ * just enable it here - but drop data3, since gpio110 is the codec MCLK pin on
+ * this board (LE's i2s0_default is likewise only gpio105-109).
+ */
+&cdc_quat_mi2s_gpios {
+	status = "okay";
+	pinctrl-0 = <&tlmm_i2s0_sck_active &tlmm_i2s0_ws_active
+			&tlmm_i2s0_data0_active &tlmm_i2s0_data1_active
+			&tlmm_i2s0_data2_active>;
+	pinctrl-1 = <&tlmm_i2s0_sck_sleep &tlmm_i2s0_ws_sleep
+			&tlmm_i2s0_data0_sleep &tlmm_i2s0_data1_sleep
+			&tlmm_i2s0_data2_sleep>;
+};
+
+&lpass_cdc {
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&lpass_clk_rsc {
+	clocks = <&clock_audio_rx_1 0>, <&clock_audio_tx_1 0>,
+		<&clock_audio_rx_2 0>, <&clock_audio_tx_2 0>;
+};
+
+&swr1 {
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&swr0 {
+	clock-names = "lpass_audio_hw_vote";
+	clocks = <&lpass_audio_hw_vote 0>;
+};
+
+&aliases {
+	swr0 = "/soc/spf_core_platform/lpass-cdc/rx-macro@A040000/rx_swr_master";
+	swr1 = "/soc/spf_core_platform/lpass-cdc/va-macro@A078000/va_swr_master";
+};
+
+&tlmm {
+	max98091_int_active: max98091-int-active-state {
+		pins = "gpio28";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-pull-up;
+	};
+
+	max98091_mclk_active: max98091-mclk-active-state {
+		pins = "gpio110";
+		function = "ext_mclk";
+		drive-strength = <8>;
+		bias-disable;
+	};
+};
+
+&i2c3 {
+	status = "okay";
+
+	max98091: audio-codec@10 {
+		compatible = "maxim,max98091";
+		reg = <0x10>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&max98091_int_active &max98091_mclk_active>;
+		interrupts-extended = <&tlmm 28 IRQ_TYPE_LEVEL_HIGH>;
+		/*
+		 * No assigned-clocks/-rates here: qcom,audio-ref-clk's ops
+		 * (audio_ext_clk_ops in audio-ext-clk-up.c) implement only
+		 * prepare/unprepare/get_parent - no .set_rate/.round_rate - so
+		 * clk_set_rate() would just fail and log. The rate is conveyed to
+		 * the DSP via qcom,codec-lpass-ext-clk-freq on the provider node.
+		 */
+		clocks = <&clock_audio_max98091_mclk 0>;
+		clock-names = "mclk";
+		#sound-dai-cells = <0>;
+	};
+};
+
+&shikra_snd {
+	qcom,model = "shikra-iqs-snd-card";
+	qcom,msm_audio_ssr_devs = <&audio_gpr>,
+					<&lpass_cdc>;
+	qcom,max98091-supported;
+	qcom,wsa885x-tdm = <0>;
+
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>, <&max98091>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc", "max98091";
+
+	/*
+	 * Trimmed from the shared base's list (shikra-audio-overlay.dtsi):
+	 * dropped every route naming a DAPM widget owned exclusively by
+	 * rouleur_codec (AMIC1-3, MIC BIAS1-3, IN1_HPHL, IN2_HPHR,
+	 * WCD_TX_OUTPUT - confirmed against asoc/codecs/rouleur/rouleur.c).
+	 * Per the MIC-DC block diagram: on Industrial ITP, AMIC1/AMIC2 (analog
+	 * mics; no AMIC3 populated) and MIC_BIAS1-3 are sourced from this codec,
+	 * not from Retail's SoC-card codec (COCOS/Rouleur). AMIC2 -> HSJ_1
+	 * (headset jack), AMIC1 -> on-board mic. All 8 DMICs route directly to
+	 * the SoC's va_macro (DMIC01/23/45/67_CLK,DATA), not through this codec
+	 * at all - its own DMICL/DMICR pins are unconnected on this board, so
+	 * (unlike LE's shikra-iqs-evk.dts, which routes "DMICL","Int Mic") the
+	 * board's on-mic path here is analog (IN12), not digital.
+	 * IN12/IN34/HPL/HPR/SPKL/SPKR/MICBIAS are registered by the codec itself
+	 * (sound/soc/codecs/max98090.c) and Headphone/Speaker/Headset Mic/
+	 * Int Mic by the machine driver's msm_int_dapm_widgets[].
+	 */
+	qcom,audio-routing =
+			"IN34", "Headset Mic",
+			"Headset Mic", "MICBIAS",
+			"IN12", "Int Mic",
+			"Int Mic", "MICBIAS",
+			"Headphone", "HPL",
+			"Headphone", "HPR",
+			"Speaker", "SPKL",
+			"Speaker", "SPKR",
+			"RX_TX DEC0_INP", "VA DEC0 MUX",
+			"RX_TX DEC1_INP", "VA DEC1 MUX",
+			"RX_TX DEC2_INP", "VA DEC2 MUX",
+			"RX_TX DEC3_INP", "VA DEC3 MUX",
+			"VA SWR_INPUT", "VA_SWR_CLK",
+			"VA_AIF1 CAP", "VA_SWR_CLK",
+			"VA_AIF2 CAP", "VA_SWR_CLK",
+			"VA_AIF3 CAP", "VA_SWR_CLK",
+			"VA DMIC0", "Digital Mic0",
+			"VA DMIC1", "Digital Mic1",
+			"VA DMIC2", "Digital Mic2",
+			"VA DMIC3", "Digital Mic3",
+			"VA DMIC0", "VA MIC BIAS",
+			"VA DMIC1", "VA MIC BIAS",
+			"VA DMIC2", "VA MIC BIAS",
+			"VA DMIC3", "VA MIC BIAS";
+};
