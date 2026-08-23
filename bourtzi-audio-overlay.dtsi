@@ -6,7 +6,7 @@
 #include <bindings/qcom,lpass-cdc-clk-rsc.h>
 #include <bindings/audio-codec-port-types.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
-#include "waipio-lpi.dtsi"
+#include "bourtzi-lpi.dtsi"
 
 &lpass_cdc {
 	qcom,num-macros = <4>;
@@ -65,14 +65,14 @@
 				<3 SWRM_TX3_CH3 0x4>, <3 SWRM_TX3_CH4 0x8>;
 			qcom,swr-num-dev = <5>;
 			qcom,swr-clock-stop-mode0 = <1>;
-                        qcom,swr-master-version = <0x01070000>;
-                        qcom,swr-mstr-irq-wakeup-capable = <1>;
+			qcom,swr-master-version = <0x01070000>;
+			qcom,swr-mstr-irq-wakeup-capable = <1>;
 			qcom,is-always-on = <1>;
-			wcd938x_tx_slave: wcd938x-tx-slave {
-				compatible = "qcom,wcd938x-slave";
-				reg = <0x0D 0x01170223>;
+			wcd9378_tx_slave: wcd9378-tx-slave {
+				status = "okay";
+				compatible = "qcom,wcd9378-slave";
+				reg = <0x10 0x01170223>;
 			};
-
 			wcd937x_tx_slave: wcd937x-tx-slave {
 				status = "disabled";
 				compatible = "qcom,wcd937x-slave";
@@ -120,9 +120,10 @@
 			qcom,swr-num-dev = <2>;
 			qcom,swr-clock-stop-mode0 = <1>;
 
-			wcd938x_rx_slave: wcd938x-rx-slave {
-				compatible = "qcom,wcd938x-slave";
-				reg = <0x0D 0x01170224>;
+			wcd9378_rx_slave: wcd9378-rx-slave {
+				status = "okay";
+				compatible = "qcom,wcd9378-slave";
+				reg = <0x10 0x01170224>;
 			};
 
 			wcd937x_rx_slave: wcd937x-rx-slave {
@@ -165,7 +166,7 @@
 			qcom,dynamic-port-map-supported = <0>;
 			wsa883x_0221: wsa883x@02170221 {
 				status = "okay";
-                                compatible = "qcom,wsa883x";
+				compatible = "qcom,wsa883x";
 				reg = <0x2 0x2170221>;
 				qcom,spkr-sd-n-node = <&wsa_spkr_en1>;
 				qcom,lpass-cdc-handle = <&lpass_cdc>;
@@ -179,7 +180,7 @@
 
 			wsa883x_0222: wsa883x@02170222 {
 				status = "okay";
-                                compatible = "qcom,wsa883x";
+				compatible = "qcom,wsa883x";
 				reg = <0x2 0x2170222>;
 				qcom,spkr-sd-n-node = <&wsa_spkr_en2>;
 				qcom,lpass-cdc-handle = <&lpass_cdc>;
@@ -308,6 +309,7 @@
 		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-buck-current = <361110>;
 
+		/*cdc-vdd-mic-bias-supply = <&BOB>; TODO check*/
 		qcom,cdc-vdd-mic-bias-voltage = <3700000 3700000>;
 		qcom,cdc-vdd-mic-bias-current = <6760>;
 
@@ -320,76 +322,82 @@
 		qcom,cdc-on-demand-supplies = "cdc-vdd-buck";
 	};
 
-	wcd938x_codec: wcd938x-codec {
-		compatible = "qcom,wcd938x-codec";
+	wcd9378_codec: wcd9378-codec {
+		compatible = "qcom,wcd9378-codec";
 		qcom,split-codec = <1>;
+		qcom,wcd-mode = <1>;
 		qcom,rx_swr_ch_map = <0 HPH_L 0x1 0 HPH_L>,
 			<0 HPH_R 0x2 0 HPH_R>, <1 CLSH 0x1 0 CLSH>,
 			<2 COMP_L 0x1 0 COMP_L>, <2 COMP_R 0x2 0 COMP_R>,
 			<3 LO 0x1 0 LO>, <4 DSD_L 0x1 0 DSD_L>,
 			<4 DSD_R 0x2 0 DSD_R>;
-
 		qcom,tx_swr_ch_map = <0 ADC1 0x1 0 SWRM_TX1_CH1>,
-			<0 ADC2 0x2 0 SWRM_TX1_CH2>,
-			<1 ADC3 0x1 0 SWRM_TX1_CH3>,
-			<1 ADC4 0x2 0 SWRM_TX1_CH4>,
-			<2 DMIC0 0x1 0 SWRM_TX2_CH1>,
-			<2 DMIC1 0x2 0 SWRM_TX2_CH2>,
-			<2 MBHC 0x4 0 SWRM_TX2_CH3>,
-			<2 DMIC2 0x4 0 SWRM_TX2_CH3>,
-			<2 DMIC3 0x8 0 SWRM_TX2_CH4>,
-			<3 DMIC4 0x1 0 SWRM_TX3_CH1>,
-			<3 DMIC5 0x2 0 SWRM_TX3_CH2>,
-			<3 DMIC6 0x4 0 SWRM_TX3_CH3>,
-			<3 DMIC7 0x8 0 SWRM_TX3_CH4>;
-
+			<1 ADC2 0x1 0 SWRM_TX1_CH2>,
+			<2 ADC3 0x1 0 SWRM_TX1_CH3>,
+			<3 DMIC0 0x4 0 SWRM_TX2_CH1>,
+			<3 DMIC1 0x8 0 SWRM_TX2_CH2>,
+			<3 MBHC 0x4 0 SWRM_TX2_CH3>,
+			<4 DMIC2 0x1 0 SWRM_TX2_CH3>,
+			<4 DMIC3 0x2 0 SWRM_TX2_CH4>,
+			<4 DMIC4 0x3 0 SWRM_TX3_CH1>,
+			<4 DMIC5 0x4 0 SWRM_TX3_CH2>;
 		qcom,swr-tx-port-params =
-			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL0 LANE2>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
-			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
-			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL2 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
-			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>;
-
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE1>,
+			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL1 LANE0>,
+			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL1 LANE0>,
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
+			<OFFSET1_VAL0 LANE1>, <OFFSET1_VAL2 LANE0>,
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL2 LANE0>,
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>,
+			<OFFSET1_VAL1 LANE0>, <OFFSET1_VAL1 LANE0>;
+		/*qcom,wcd-rst-gpio-node = <&wcd939x_rst_gpio>;*/
 		qcom,wcd-rst-gpio-node = <&wcd_rst_gpio>;
-		qcom,rx-slave = <&wcd938x_rx_slave>;
-		qcom,tx-slave = <&wcd938x_tx_slave>;
+		qcom,rx-slave = <&wcd9378_rx_slave>;
+		qcom,tx-slave = <&wcd9378_tx_slave>;
 
+		/*cdc-vdd-rxtx-supply = <&L15B>;*/
 		cdc-vdd-rxtx-supply = <&L21B>;
 		qcom,cdc-vdd-rxtx-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-rxtx-current = <30000>;
+		qcom,cdc-vdd-rxtx-lpm-supported = <1>;
 
-		cdc-vddio-supply = <&L21B>;
-		qcom,cdc-vddio-voltage = <1800000 1800000>;
-		qcom,cdc-vddio-current = <30000>;
+		/*cdc-vdd-io-supply = <&L1F>;*/
+		cdc-vdd-io-supply = <&L21B>;
+		qcom,cdc-vdd-io-voltage = <1800000 1800000>;
+		qcom,cdc-vdd-io-current = <20000>;
+		qcom,cdc-vdd-io-lpm-supported = <1>;
 
+		/*cdc-vdd-buck-supply = <&L15B>;*/
 		cdc-vdd-buck-supply = <&L20B>;
 		qcom,cdc-vdd-buck-voltage = <1800000 1800000>;
 		qcom,cdc-vdd-buck-current = <650000>;
+		qcom,cdc-vdd-buck-lpm-supported = <1>;
 
+		/* Recheck on these 3 micbias supply, volt, current */
+		/*cdc-vdd-mic-bias-supply = <&BOB1>;*/
 		qcom,cdc-vdd-mic-bias-voltage = <3296000 3296000>;
-		qcom,cdc-vdd-mic-bias-current = <30000>;
+		qcom,cdc-vdd-mic-bias-current = <40055>;
 
 		qcom,cdc-micbias1-mv = <1800>;
 		qcom,cdc-micbias2-mv = <1800>;
 		qcom,cdc-micbias3-mv = <1800>;
-		qcom,cdc-micbias4-mv = <1800>;
 
 		qcom,cdc-static-supplies = "cdc-vdd-rxtx",
-					   "cdc-vddio",
-					   "cdc-vdd-buck";
+					   "cdc-vdd-io";
+		qcom,cdc-on-demand-supplies = "cdc-vdd-buck";
 	};
 
 };
 
-&spf_core_platform  {
-	waipio_snd: sound {
-		qcom,model = "ravelin-idp-wsa883x-snd-card";
-		qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>;
-		qcom,mi2s-tdm-is-hw-vote-needed = <1>, <0>, <1>, <0>, <0>, <0>;
-		qcom,tdm-max-slots = <8>;
-		qcom,wcn-btfm-slim = <1>;
-                qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
-		qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
-		qcom,audio-routing =
+&bourtzi_snd {
+	qcom,model = "bourtzi-mtp-wsa883x-snd-card";
+	qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>;
+	qcom,mi2s-tdm-is-hw-vote-needed = <1>, <0>, <1>, <0>, <0>, <0>;
+	qcom,tdm-max-slots = <8>;
+	qcom,wcn-btfm-slim = <1>;
+	qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
+	qcom,audio-routing =
 			"AMIC1", "Analog Mic1",
 			"AMIC1", "MIC BIAS1",
 			"AMIC2", "Analog Mic2",
@@ -430,26 +438,41 @@
 			"VA DMIC1", "VA MIC BIAS3",
 			"VA DMIC2", "VA MIC BIAS1",
 			"VA DMIC3", "VA MIC BIAS1";
-		qcom,msm-mbhc-usbc-audio-supported = <0>;
-		qcom,msm-mbhc-hphl-swh = <1>;
-		qcom,msm-mbhc-gnd-swh = <1>;
+	qcom,msm-mbhc-usbc-audio-supported = <0>;
+	qcom,msm-mbhc-hphl-swh = <1>;
+	qcom,msm-mbhc-gnd-swh = <1>;
 
-		qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
-		qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
-		qcom,cdc-dmic45-gpios = <&cdc_dmic45_gpios>;
-		asoc-codec  = <&stub_codec>, <&lpass_cdc>,
-			      <&wcd938x_codec>,
-			      <&wsa883x_0221>, <&wsa883x_0222>;
-		asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-				   "wcd938x_codec",
-				   "wsa-codec1", "wsa-codec2";
-		qcom,wsa-max-devs = <2>;
-		qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
-				  <&lpass_cdc>;
-		qcom,upd_backends_used = "wcd";
-		qcom,upd_lpass_reg_addr = <0x00000418 0x33B0300>;
-		qcom,upd_ear_pa_reg_addr = <0x300A>;
-	};
+	qcom,cdc-dmic01-gpios = <&cdc_dmic01_gpios>;
+	qcom,cdc-dmic23-gpios = <&cdc_dmic23_gpios>;
+	qcom,cdc-dmic45-gpios = <&cdc_dmic45_gpios>;
+	/* Tambora codec, karyenda */
+	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
+		      <&wcd9378_codec>,
+		      <&wsa883x_0221>, <&wsa883x_0222>;
+	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
+			   "wcd9378_codec",
+			   "wsa-codec1", "wsa-codec2";
+	qcom,wsa-max-devs = <2>;
+	qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
+			  <&lpass_cdc>;
+	qcom,upd_backends_used = "wcd";
+	qcom,upd_lpass_reg_addr = <0x00000418 0x33B0300>;
+	qcom,upd_ear_pa_reg_addr = <0x300A>;
+};
+
+&spf_core_platform  {
+	cdc_sep_mi2s_gpios: sep_mi2s_pinctrl {
+		status = "disabled";
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&lpi_i2s3_sck_active &lpi_i2s3_ws_active
+				&lpi_i2s3_sd0_active &lpi_i2s3_sd1_active>;
+		pinctrl-1 = <&lpi_i2s3_sck_sleep &lpi_i2s3_ws_sleep
+				&lpi_i2s3_sd0_sleep &lpi_i2s3_sd1_sleep>;
+		qcom,lpi-gpios;
+                qcom,tlmm-pins = <125>;
+                #gpio-cells = <0>;
+        };
 
 	wsa_swr_gpios: wsa_swr_clk_data_pinctrl {
 		compatible = "qcom,msm-cdc-pinctrl";

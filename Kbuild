@@ -94,6 +94,23 @@ dtbo-y += ravelin-audio.dtbo \
                 ravelin-audio-qrd.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_BOURTZI), y)
+dtbo-y += bourtzi-audio.dtbo \
+		bourtzi-audio-atp.dtbo \
+		bourtzi-audio-cdp.dtbo \
+		bourtzi-audio-cdp-lcd.dtbo \
+		bourtzi-audio-mtp.dtbo \
+		bourtzi-audio-mtp-evros-cottid.dtbo \
+		bourtzi-audio-qrd.dtbo \
+		bourtzi-audio-qrd-evros.dtbo \
+		bourtzi-audio-rcm.dtbo \
+		bourtzi-audio-rcm-evros-cottid.dtbo \
+		bourtzi-audio-rumi.dtbo \
+		bourtzi-audio-mtp-4gb.dtbo \
+		bourtzi-audio-cdp-4gb.dtbo \
+		bourtzi-audio-cdp-lcd-4gb.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
