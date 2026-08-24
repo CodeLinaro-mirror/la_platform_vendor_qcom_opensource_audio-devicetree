@@ -13,6 +13,5 @@
 };
 
 &kera_snd {
-	qcom,wcn-bt = <0>;
-	qcom,wcn-btfm-proxy = <1>;
+	qcom,wcn-bt = <1>;
 };
