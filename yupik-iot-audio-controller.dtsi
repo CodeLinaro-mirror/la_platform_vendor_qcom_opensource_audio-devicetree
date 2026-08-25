@@ -67,7 +67,7 @@
 &yupik_snd {
 	/delete-property/ fsa4480-i2c-handle;
 	qcom,model = "lahaina-yupikidpcontroller-snd-card";
-	qcom,wcn-btfm = <0>;
+	qcom,wcn-btfm = <1>;
 	qcom,wcd-disabled = <1>;
 	qcom,msm-mi2s-master = <0>, <1>, <1>, <0>, <1>, <1>;
 	qcom,tdm-audio-intf = <1>;
