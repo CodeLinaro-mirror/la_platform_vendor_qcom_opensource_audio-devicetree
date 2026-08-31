@@ -70,7 +70,7 @@
 	qcom,ext-disp-audio-rx = <1>;
 	qcom,wcd-disabled = <1>;
 	qcom,wcn-bt = <0>;
-	qcom,wcn-btfm = <0>;
+	qcom,wcn-btfm = <1>;
 
 	qcom,audio-routing =
 		"TX DMIC0", "Digital Mic0",
