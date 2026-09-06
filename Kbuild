@@ -108,7 +108,10 @@ dtbo-y += bourtzi-audio.dtbo \
 		bourtzi-audio-rumi.dtbo \
 		bourtzi-audio-mtp-4gb.dtbo \
 		bourtzi-audio-cdp-4gb.dtbo \
-		bourtzi-audio-cdp-lcd-4gb.dtbo
+		bourtzi-audio-cdp-lcd-4gb.dtbo \
+		bourtzi-audio-rcm-4gb.dtbo \
+		bourtzi-audio-rcm-4gb-lcd.dtbo \
+		bourtzi-audio-rcm-evros-cottid-lcd.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)

@@ -46,9 +46,9 @@
 
 &bourtzi_snd {
 	qcom,model = "bourtzi-qrd-wsa883x-snd-card";
-	qcom,msm-mbhc-usbc-audio-supported = <0>;
-	qcom,msm-mbhc-hphl-swh = <1>;
-	qcom,msm-mbhc-gnd-swh = <1>;
+	qcom,msm-mbhc-usbc-audio-supported = <1>;
+	qcom,msm-mbhc-hphl-swh = <0>;
+	qcom,msm-mbhc-gnd-swh = <0>;
 	qcom,audio-routing =
 			"AMIC1", "Analog Mic1",
 			"AMIC1", "MIC BIAS1",
@@ -81,7 +81,7 @@
 			"VA_AIF2 CAP", "VA_SWR_CLK",
 			"VA_AIF3 CAP", "VA_SWR_CLK";
 	qcom,wsa-max-devs = <1>;
-	/*fsa4480-i2c-handle = <&fsa4480>;*/
+	fsa4480-i2c-handle = <&fsa4480>;
 	qcom,msm-mbhc-hs-mic-max-threshold-mv = <1670>;
 	asoc-codec = <&stub_codec>, <&lpass_cdc>,
 					<&wcd937x_codec>, <&wsa883x_0221>;
