@@ -222,7 +222,7 @@
 			<2 COMP_L 0x1 0 COMP_L>, <2 COMP_R 0x2 0 COMP_R>,
 			<3 LO 0x1 0 LO>, <4 DSD_L 0x1 0 DSD_L>,
 			<4 DSD_R 0x2 0 DSD_R>;
-		qcom,tx_swr_ch_map = <0 ADC1 0x1 0 SWRM_TX1_CH1>,
+		qcom,tx_swr_ch_map = <0 ADC1 0x1 9600000 SWRM_TX1_CH1>,
 			<1 ADC2 0x1 4800000 SWRM_TX2_CH1>,
 			<1 ADC3 0x2 4800000 SWRM_TX2_CH2>,
 			<2 DMIC0 0x1 0 SWRM_TX1_CH4>,

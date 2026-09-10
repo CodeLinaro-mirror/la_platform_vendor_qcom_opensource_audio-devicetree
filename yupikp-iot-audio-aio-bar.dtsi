@@ -156,6 +156,7 @@
 		"VA DMIC5", "Digital Mic5";
 	qcom,msm-mbhc-hphl-swh = <0>;
 	qcom,msm-mbhc-gnd-swh = <0>;
+        qcom,pri-mi2s-gpios = <&cdc_pri_mi2s_gpios>;
 	qcom,sec-mi2s-gpios = <&cdc_sec_mi2s_gpios>;
 	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
