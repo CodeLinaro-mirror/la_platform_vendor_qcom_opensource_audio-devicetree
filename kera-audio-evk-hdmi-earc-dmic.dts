@@ -1,0 +1,16 @@
+/*
+ * SPDX-License-Identifier: BSD-3-Clause
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "kera-audio-evk-hdmi-earc-dmic.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Kuna EVK HDMI EARC + DMIC";
+	compatible = "qcom,kera-evk", "qcom,kera", "qcom,kerap-evk", "qcom,kerap",
+			"qcom,evk";
+	qcom,msm-id = <731 0x10000>, <732 0x10000>;
+	qcom,board-id = <0x4002F 0>;
+};

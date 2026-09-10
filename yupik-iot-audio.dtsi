@@ -61,7 +61,8 @@
                 qcom,smmu-version = <2>;
                 qcom,smmu-enabled;
                 iommus = <&apps_smmu 0x1801 0x0>;
-                qcom,iommu-dma-addr-pool = <0x10000000 0x10000000>;
+				iommu-addresses = <&msm_audio_ion 0x0 0x00000000 0x0 0x10000000>,
+                                        <&msm_audio_ion 0x0 0x20000000 0x0 0xD0000000>;
                 qcom,smmu-sid-mask = /bits/ 64 <0xf>;
                 dma-coherent;
         };
@@ -205,6 +206,59 @@
 		clock-names = "lpass_audio_hw_vote";
 		clocks = <&lpass_audio_hw_vote 0>;
 		fsa4480-i2c-handle = <&fsa4480>;
+	};
+
+	cdc_pri_mi2s_gpios: msm_cdc_pinctrl_pri {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&pri_mi2s_sck_active &pri_mi2s_sd0_active
+			&pri_mi2s_sd1_active &pri_mi2s_ws_active>;
+		pinctrl-1 = <&pri_mi2s_sck_sleep &pri_mi2s_sd0_sleep
+			&pri_mi2s_sd1_sleep &pri_mi2s_ws_sleep>;
+		#gpio-cells = <0>;
+	};
+
+	cdc_sec_mi2s_gpios: msm_cdc_pinctrl_sec {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&sec_mi2s_sck_active &sec_mi2s_ws_active
+				&sec_mi2s_sd0_active>;
+		pinctrl-1 = <&sec_mi2s_sck_sleep &sec_mi2s_ws_sleep
+				&sec_mi2s_sd0_sleep>;
+		#gpio-cells = <0>;
+	};
+
+	cdc_tert_mi2s_gpios: msm_cdc_pinctrl_tert {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&tert_mi2s_sck_active &tert_mi2s_ws_active
+			&tert_mi2s_sd0_active>;
+		pinctrl-1 = <&tert_mi2s_sck_sleep &tert_mi2s_ws_sleep
+			&tert_mi2s_sd0_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+
+	cdc_quat_mi2s_gpios: msm_cdc_pinctrl_quat {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&quat_mi2s_sck_active &quat_mi2s_sd0_active
+			&quat_mi2s_ws_active>;
+		pinctrl-1 = <&quat_mi2s_sck_sleep &quat_mi2s_sd0_sleep
+			&quat_mi2s_ws_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
+	};
+
+	cdc_quin_mi2s_gpios:  msm_cdc_pinctrl_quin {
+		compatible = "qcom,msm-cdc-pinctrl";
+		pinctrl-names = "aud_active", "aud_sleep";
+		pinctrl-0 = <&lpi_i2s1_sck_active &lpi_i2s1_ws_active
+				&lpi_i2s1_sd0_active &lpi_i2s1_sd1_active>;
+		pinctrl-1 = <&lpi_i2s1_sck_sleep &lpi_i2s1_ws_sleep
+				&lpi_i2s1_sd0_sleep &lpi_i2s1_sd1_sleep>;
+		qcom,lpi-gpios;
+		#gpio-cells = <0>;
 	};
 };
 

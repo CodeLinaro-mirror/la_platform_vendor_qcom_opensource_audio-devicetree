@@ -327,7 +327,7 @@
 		pinctrl-1 = <&spkr_2_sd_n_sleep>;
 	};
 	wcd9xxx_intc: wcd9xxx-irq {
-		//status = "disabled";
+		status = "disabled";
 		compatible = "qcom,wcd9xxx-irq";
 		interrupt-controller;
 		#interrupt-cells = <1>;
@@ -336,23 +336,6 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <&wcd_intr_default>;
 	};
-	/*tavil_glink: qcom,wcd-dsp-glink {
-		status = "disabled";
-		compatible = "qcom,wcd-dsp-glink";
-		qcom,wdsp-channels = "g_glink_ctrl",
-					"g_glink_persistent_data_nild",
-					"g_glink_persistent_data_ild",
-					"g_glink_audio_data";
-	};
-
-	tavil_wdsp: wcd-dsp-mgr@2 {
-		status = "disabled";
-		compatible = "qcom,wcd-dsp-mgr";
-		qcom,wdsp-components = <&wcd934x_cdc 0>,
-					<&tavil_spi_0 1>,
-					<&glink_spi_xprt_wdsp 2>;
-		qcom,img-filename = "cpe_9340";
-	};*/
 
 	clock_audio_wsa_1: wsa_core_clk {
 		compatible = "qcom,audio-ref-clk";
@@ -511,215 +494,10 @@
 			qcom,wdsp-cmpnt-dev-name = "tavil_codec";
 			qcom,vreg-micb-supply = <&BOB>;
 
-	/*tavil_wcd: wcd_pinctrl@5 {
-			compatible = "qcom,wcd-pinctrl";
-			qcom,gpios-count = <5>;
-			gpio-controller;
-			#gpio-cells = <2>;
-
-			us_euro_sw_active: us_euro_sw_wcd_active {
-				mux {
-					pins = "gpio1";
-				};
-
-				config {
-					pins = "gpio1";
-					output-high;
-				};
-			};
-
-			us_euro_sw_sleep: us_euro_sw_wcd_sleep {
-				mux {
-					pins = "gpio1";
-				};
-
-				config {
-					pins = "gpio1";
-					output-low;
-				};
-			};
-
-			spk_1_wcd_en_active: spkr_1_wcd_en_active {
-				mux {
-					pins = "gpio2";
-				};
-
-				config {
-					pins = "gpio2";
-					output-high;
-				};
-			};
-
-			spk_1_wcd_en_sleep: spkr_1_wcd_en_sleep {
-				mux {
-					pins = "gpio2";
-				};
-
-				config {
-					pins = "gpio2";
-					input-enable;
-				};
-			};
-
-			spk_2_wcd_en_active: spkr_2_sd_n_active {
-				mux {
-					pins = "gpio3";
-				};
-
-				config {
-					pins = "gpio3";
-					output-high;
-				};
-			};
-
-			spk_2_wcd_en_sleep: spkr_2_sd_n_sleep {
-				mux {
-					pins = "gpio3";
-				};
-
-				config {
-					pins = "gpio3";
-					input-enable;
-				};
-			};
-
-			hph_en0_wcd_active: hph_en0_wcd_active {
-				mux {
-					pins = "gpio4";
-				};
-
-				config {
-					pins = "gpio4";
-					output-high;
-				};
-			};
-
-			hph_en0_wcd_sleep: hph_en0_wcd_sleep {
-				mux {
-					pins = "gpio4";
-				};
-
-				config {
-					pins = "gpio4";
-					output-low;
-				};
-			};
-
-			hph_en1_wcd_active: hph_en1_wcd_active {
-				mux {
-					pins = "gpio5";
-				};
-
-				config {
-					pins = "gpio5";
-					output-high;
-				};
-			};
-
-			hph_en1_wcd_sleep: hph_en1_wcd_sleep {
-				mux {
-					pins = "gpio5";
-				};
-
-				config {
-					pins = "gpio5";
-					output-low;
-				};
-			};
-		};
-
-		wsa_spk_wcd_sd1: msm_cdc_pinctrll {
-			compatible = "qcom,msm-cdc-pinctrl";
-			pinctrl-names = "aud_active", "aud_sleep";
-			pinctrl-0 = <&spk_1_wcd_en_active>;
-			pinctrl-1 = <&spk_1_wcd_en_sleep>;
-		};
-
-		wsa_spk_wcd_sd2: msm_cdc_pinctrlr {
-			compatible = "qcom,msm-cdc-pinctrl";
-			pinctrl-names = "aud_active", "aud_sleep";
-			pinctrl-0 = <&spk_2_wcd_en_active>;
-			pinctrl-1 = <&spk_2_wcd_en_sleep>;
-		};
-
-		tavil_us_euro_switch: msm_cdc_pinctrl_us_euro_sw {
-			compatible = "qcom,msm-cdc-pinctrl";
-			pinctrl-names = "aud_active", "aud_sleep";
-			pinctrl-0 = <&us_euro_sw_active>;
-			pinctrl-1 = <&us_euro_sw_sleep>;
-		};
-
-		tavil_hph_en0: msm_cdc_pinctrl_hph_en0 {
-			compatible = "qcom,msm-cdc-pinctrl";
-			pinctrl-names = "aud_active", "aud_sleep";
-			pinctrl-0 = <&hph_en0_wcd_active>;
-			pinctrl-1 = <&hph_en0_wcd_sleep>;
-			#gpio-cells = <0>;
-		};
-
-		tavil_hph_en1: msm_cdc_pinctrl_hph_en1 {
-			compatible = "qcom,msm-cdc-pinctrl";
-			pinctrl-names = "aud_active", "aud_sleep";
-			pinctrl-0 = <&hph_en1_wcd_active>;
-			pinctrl-1 = <&hph_en1_wcd_sleep>;
-			#gpio-cells = <0>;
-		};
-		swr3: swr_master {
-			compatible = "qcom,swr-mstr";
-			#address-cells = <2>;
-			#size-cells = <0>;
-			qcom,swr-num-ports = <8>;
-			qcom,swr-port-mapping = <1 SPKR_L 0x1>,
-				<2 SPKR_L_COMP 0xF>, <3 SPKR_L_BOOST 0x3>,
-				<4 SPKR_R 0x1>, <5 SPKR_R_COMP 0xF>,
-				<6 SPKR_R_BOOST 0x3>, <7 SPKR_L_VI 0x3>,
-				<8 SPKR_R_VI 0x3>;
-			qcom,swr_master_id = <1>;
-			qcom,swr-num-dev = <2>;
-			qcom,swr-master-version = <0x1030000>;
-			wsa881x_11: wsa881x@11 {
-				compatible = "qcom,wsa881x";
-				reg = <0x10 0x20170211>;
-				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd1>;
-				qcom,wsa-prefix = "SpkrLeft";
-			};
-
-			wsa881x_12: wsa881x@12 {
-				compatible = "qcom,wsa881x";
-				reg = <0x10 0x20170212>;
-				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd2>;
-				qcom,wsa-prefix = "SpkrRight";
-			};
-
-			wsa881x_13: wsa881x@13 {
-				compatible = "qcom,wsa881x";
-				reg = <0x10 0x21170213>;
-				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd1>;
-				qcom,wsa-prefix = "SpkrLeft";
-			};
-
-			wsa881x_14: wsa881x@14 {
-				compatible = "qcom,wsa881x";
-				reg = <0x10 0x21170214>;
-				qcom,spkr-sd-n-node = <&wsa_spk_wcd_sd2>;
-				qcom,wsa-prefix = "SpkrRight";
-			};
-		}; */
 	    };
 
 	};
 
-};	
-
-
-&qupv3_se4_spi {
-       status = "disabled";
-       tavil_spi_0: wcd_spi@0 {
-               compatible = "qcom,wcd-spi-v2";
-               reg = <0>;
-               qcom,max-frequency = <24000000>;
-               qcom,mem-base-addr = <0x100000>;
-        };
 };
 
 &adsp_loader {

@@ -49,18 +49,6 @@
 	status = "okay";
 };
 
-/*&qupv3_se4_spi {
-	status = "disable";
-};*/
-
-/*&tavil_wdsp {
-	status = "okay";
-};
-
-&tavil_glink {
-	status = "okay";
-};*/
-
 &slim_aud {
 	status = "okay";
 };
@@ -68,12 +56,9 @@
 &tavil_ifd{
 	status = "okay";
 };
-&dai_slim {
-	status = "okay";
-};
 
 &wcd934x_rst_gpio {
-        status = "okay";
+	status = "okay";
 };
 
 &wcd934x_cdc {

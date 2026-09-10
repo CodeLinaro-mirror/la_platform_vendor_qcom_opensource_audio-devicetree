@@ -79,7 +79,15 @@ dtbo-y += yupik-iot-audio.dtbo \
                 yupikp-iot-audio-hsp-overlay.dtbo \
                 yupikp-iot-audio-idp-overlay.dtbo \
                 yupikp-iot-audio-idps-amoled-overlay.dtbo \
-                yupikp-iot-audio-qrd-overlay.dtbo
+                yupikp-iot-audio-qrd-overlay.dtbo \
+                yupik-iot-audio-rb3-gen2-ck-overlay.dtbo \
+                yupik-iot-audio-rb3-gen2-vk-overlay.dtbo \
+                yupik-iot-audio-rb3-gen2-vc-overlay.dtbo \
+                yupik-iot-audio-controller-overlay.dtbo \
+                katmaip-audio-rb3-gen2-vk-overlay.dtbo \
+                katmaip-audio-rb3-gen2-vc-overlay.dtbo \
+                yupikp-iot-audio-360-camera-overlay.dtbo \
+                yupikp-iot-audio-aio-bar-overlay.dtbo
 endif
 
 
@@ -93,13 +101,15 @@ dtbo-y += kera-audio.dtbo \
                 kera-audio-rcm.dtbo \
                 kera-audio-rcm-orne.dtbo \
                 kera-audio-mtp-wcn7750.dtbo \
-                kera-audio-evk-wcd9378-dmic.dtbo
+                kera-audio-evk-wcd9378-dmic.dtbo \
+                kera-audio-evk-lt9611uxd-dmic.dtbo \
+                kera-audio-evk-hdmi-earc-dmic.dtbo
 
 endif
 
 ifeq ($(CONFIG_ARCH_SM6150), y)
 dtbo-y += qcs610-audio-iot-overlay.dtbo \
-		 qcs610-audio-opk-iot-overlay.dtbo
+		qcs610-audio-opk-iot-overlay.dtbo
 endif
 
  always-y    := $(dtb-y) $(dtbo-y)
