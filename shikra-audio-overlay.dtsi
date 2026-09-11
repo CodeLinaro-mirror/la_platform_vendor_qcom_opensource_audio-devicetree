@@ -49,7 +49,7 @@
 		#gpio-cells = <0>;
 	};
 
-	cdc_sep_mi2s_gpios: sep_mi2s_pinctrl {
+	cdc_tert_mi2s_gpios: tert_mi2s_pinctrl {
 		status = "disabled";
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
@@ -407,7 +407,7 @@
 	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
 	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
-	qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
+	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			 <&rouleur_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
