@@ -70,6 +70,11 @@
 		compatible = "qcom,lpi-pinctrl";
 		reg = <0x3440000 0x0>;
 		qcom,slew-reg = <0x34da000 0x0>;
+		/* On ADSP, there is no LPASS core entry and the param corresponds
+		 *  to remote voting of LPASS CORE, so added below param to avoid calling
+		 *  vote against sleep API
+		 */
+		qcom,sleep_vote_disable;
 		qcom,gpios-count = <23>;
 		gpio-controller;
 		#gpio-cells = <2>;
