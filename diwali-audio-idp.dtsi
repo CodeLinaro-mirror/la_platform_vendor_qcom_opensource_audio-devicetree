@@ -15,10 +15,12 @@
 	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
 	asoc-codec = <&stub_codec>, <&lpass_cdc>,
 		     <&wcd937x_codec>,
-		     <&wsa883x_0221>, <&wsa883x_0222>;
+		     <&wsa883x_0221>, <&wsa883x_0222>,
+		     <&ext_disp_audio_codec>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			   "wcd937x_codec",
-			   "wsa-codec1", "wsa-codec2";
+			   "wsa-codec1", "wsa-codec2",
+			   "msm-ext-disp-audio-codec-rx";
 };
 
 &wcd938x_codec {

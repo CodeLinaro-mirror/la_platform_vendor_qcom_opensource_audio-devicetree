@@ -351,8 +351,8 @@
 		qcom,model = "waipio-mtp-snd-card";
 		qcom,msm-mi2s-master = <1>, <1>, <1>, <1>, <1>, <1>;
 		qcom,mi2s-tdm-is-hw-vote-needed = <1>, <0>, <1>, <0>, <0>, <0>;
-		qcom,wcn-bt = <0>;
-		qcom,ext-disp-audio-rx = <0>;
+		qcom,wcn-bt = <1>;
+		qcom,ext-disp-audio-rx = <1>;
 		qcom,tdm-max-slots = <8>;
 		qcom,tdm-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
 		qcom,mi2s-clk-attribute = <0x1>, <0x1>, <0x1>, <0x1>, <0x1>, <0x1>;
@@ -422,10 +422,12 @@
 		qcom,cdc-dmic67-gpios = <&cdc_dmic67_gpios>;
 		asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			      <&wcd938x_codec>, <&swr_haptics>,
-			      <&wsa883x_0221>, <&wsa883x_0222>;
+			      <&wsa883x_0221>, <&wsa883x_0222>,
+			      <&ext_disp_audio_codec>;
 		asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 				   "wcd938x_codec", "swr-haptics",
-				   "wsa-codec1", "wsa-codec2";
+				   "wsa-codec1", "wsa-codec2",
+				   "msm-ext-disp-audio-codec-rx";
 		qcom,wsa-max-devs = <2>;
 		qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 				  <&lpass_cdc>;
