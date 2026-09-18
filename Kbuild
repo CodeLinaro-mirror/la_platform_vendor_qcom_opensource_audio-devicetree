@@ -114,16 +114,26 @@ dtbo-y += bourtzi-audio.dtbo \
 		bourtzi-audio-rcm-evros-cottid-lcd.dtbo
 endif
 
+ifeq ($(CONFIG_ARCH_WAIPIO), y)
+dtbo-y += waipio-audio.dtbo \
+		waipio-audio-cdp.dtbo \
+		waipio-audio-mtp.dtbo \
+		waipio-audio-qrd.dtbo \
+		waipio-audio-atp.dtbo \
+		waipio-audio-rumi.dtbo \
+		waipio-audio-hdk.dtbo
+endif
+
+ifeq ($(CONFIG_ARCH_DIWALI), y)
+dtbo-y += diwali-audio.dtbo \
+		diwali-audio-idp.dtbo \
+		diwali-audio-idp-amoled.dtbo \
+		diwali-audio-qrd.dtbo \
+		diwali-audio-atp.dtbo \
+		diwali-audio-idp-hsp.dtbo \
+		diwali-audio-idp-usbc.dtbo
+endif
+
  always-y    := $(dtb-y) $(dtbo-y)
  subdir-y    := $(dts-dirs)
  clean-files    := *.dtb *.dtbo
-
-ifeq ($(CONFIG_ARCH_WAIPIO), y)
-dtbo-y += waipio-audio.dtbo \
-		waipio-audio-mtp.dtbo \
-		waipio-audio-qrd.dtbo
-endif
-
-always-y    := $(dtb-y) $(dtbo-y)
-subdir-y    := $(dts-dirs)
-clean-files    := *.dtb *.dtbo
