@@ -32,6 +32,7 @@ dtbo-y += sun-audio.dtbo \
                 sun-audio-hamilton-mtp-v2.dtbo \
                 sun-audio-hamilton-mtp.dtbo \
                 sun-audio-hamilton-mtp-3.5mm.dtbo \
+                sun-audio-iot-vc.dtbo \
                 tuna-audio-atp.dtbo \
                 tuna-audio.dtbo \
                 tuna-audio-cdp.dtbo \
@@ -57,6 +58,7 @@ dtbo-y += kera-audio.dtbo \
                 kera-audio-rcm-orne.dtbo \
                 kera-audio-idp.dtbo \
                 kera-audio-mtp-wcn7750.dtbo \
+                kera-audio-evk-lt9611uxd-dmic.dtbo \
                 kera-audio-evk-wcd9378-dmic.dtbo
 endif
 
