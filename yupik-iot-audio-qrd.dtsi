@@ -115,6 +115,7 @@
         qcom,msm-mbhc-usbc-audio-supported = <1>;
         qcom,msm-mbhc-hphl-swh = <0>;
         qcom,msm-mbhc-gnd-swh = <0>;
+        fsa4480-i2c-handle = <&fsa4480>;
 
         asoc-codec  = <&stub_codec>, <&bolero>,
                       <&wcd938x_codec>, <&swr_haptics>,
