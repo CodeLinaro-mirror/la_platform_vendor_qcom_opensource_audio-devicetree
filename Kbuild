@@ -133,7 +133,8 @@ dtbo-y += shikra-audio-rumi.dtbo\
                 shikra-audio-qcs-atp.dtbo \
                 shikra-audio-qcm-atp.dtbo \
                 shikra-audio-qcs.dtbo\
-                shikra-audio-qcm.dtbo
+                shikra-audio-qcm.dtbo \
+                shikra-audio-iqs.dtbo
 endif
 
 ifeq ($(CONFIG_ARCH_KERA), y)

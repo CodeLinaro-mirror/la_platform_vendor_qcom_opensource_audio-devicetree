@@ -1,0 +1,20 @@
+/*
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,shikra-gcc.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,shikra.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+#include "shikra-audio-iqs.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Shikra IQS";
+	compatible = "qcom,shikra-iqs";
+	qcom,msm-id = <759 0x10000>;
+	qcom,board-id = <0 0>;
+};

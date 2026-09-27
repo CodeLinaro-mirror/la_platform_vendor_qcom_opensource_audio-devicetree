@@ -49,7 +49,7 @@
 		#gpio-cells = <0>;
 	};
 
-	cdc_sep_mi2s_gpios: sep_mi2s_pinctrl {
+	cdc_tert_mi2s_gpios: tert_mi2s_pinctrl {
 		status = "disabled";
 		compatible = "qcom,msm-cdc-pinctrl";
 		pinctrl-names = "aud_active", "aud_sleep";
@@ -121,6 +121,16 @@
 		qcom,is-used-swr-gpio = <1>;
 		qcom,va-swr-gpios = <&va_swr_gpios>;
 		reg = <0x0A078000 0x0>;
+	/* Adapt block tuning registers and its values (VA macro).
+	 * < adapt_reg_address msm_mic/swr_mic_value hs_mic_value >
+	 */
+		adapt-tuning-reg-values = < 0x3810 0x4C 0x4C
+					0x3814 0x1D 0x1D
+					0x3818 0x7C 0x7C
+					0x381C 0x3C 0x3C
+					0x3820 0x67 0x67
+					0x3824 0x16 0x16
+					0x3828 0x03 0x03>;
 
 		swr1: va_swr_master {
 			status = "okay";
@@ -397,7 +407,7 @@
 	qcom,quat-mi2s-gpios = <&cdc_quat_mi2s_gpios>;
 	qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
 	qcom,sen-mi2s-gpios = <&cdc_sen_mi2s_gpios>;
-	qcom,sep-mi2s-gpios = <&cdc_sep_mi2s_gpios>;
+	qcom,tert-mi2s-gpios = <&cdc_tert_mi2s_gpios>;
 	asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			 <&rouleur_codec>, <&wsa885x_i2c>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
