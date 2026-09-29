@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 #include "diwali-audio-idp.dtsi"
 
 &waipio_snd {

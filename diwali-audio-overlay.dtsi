@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 #include <bindings/qcom,audio-ext-clk.h>
 #include <bindings/qcom,lpass-cdc-clk-rsc.h>
 #include <bindings/audio-codec-port-types.h>

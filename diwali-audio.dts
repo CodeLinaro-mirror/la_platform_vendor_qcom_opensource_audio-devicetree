@@ -2,11 +2,9 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 /dts-v1/;
 /plugin/;
 
-#include <dt-bindings/clock/qcom,fillmore-gcc.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/interconnect/qcom,diwali.h>
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>

@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 #include "waipio-audio-overlay.dtsi"
 &tx_swr_clk_active {
 	config {

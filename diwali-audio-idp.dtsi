@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 #include "diwali-audio-overlay.dtsi"
 
 &cdc_tert_mi2s_gpios {
@@ -18,8 +17,8 @@
 		     <&wcd937x_codec>,
 		     <&wsa883x_0221>, <&wsa883x_0222>;
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
-		           "wcd937x_codec",
-		           "wsa-codec1", "wsa-codec2";
+			   "wcd937x_codec",
+			   "wsa-codec1", "wsa-codec2";
 };
 
 &wcd938x_codec {

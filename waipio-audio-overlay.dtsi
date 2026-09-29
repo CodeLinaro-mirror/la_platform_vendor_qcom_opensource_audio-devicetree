@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 #include <bindings/qcom,audio-ext-clk.h>
 #include <bindings/qcom,lpass-cdc-clk-rsc.h>
 #include <bindings/audio-codec-port-types.h>
@@ -423,10 +422,10 @@
 		qcom,cdc-dmic67-gpios = <&cdc_dmic67_gpios>;
 		asoc-codec  = <&stub_codec>, <&lpass_cdc>,
 			      <&wcd938x_codec>, <&swr_haptics>,
-		      	<&wsa883x_0221>, <&wsa883x_0222>;
+			      <&wsa883x_0221>, <&wsa883x_0222>;
 		asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 				   "wcd938x_codec", "swr-haptics",
-			   	"wsa-codec1", "wsa-codec2";
+				   "wsa-codec1", "wsa-codec2";
 		qcom,wsa-max-devs = <2>;
 		qcom,msm_audio_ssr_devs = <&audio_gpr>, <&lpi_tlmm>,
 				  <&lpass_cdc>;

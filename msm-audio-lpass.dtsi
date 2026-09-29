@@ -2,7 +2,6 @@
 /*
  * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
-
 &soc {
 	pcm0: qcom,msm-pcm {
 		compatible = "qcom,msm-pcm-dsp";
